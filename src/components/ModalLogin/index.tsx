@@ -44,7 +44,7 @@ export const ModalLogin = ({
     email: yup
       .string()
       .email('Digite um E-mail válido!!!')
-      .required('Campo Obrigatório!!'),
+      .required('E-mail obrigatório'),
     password: yup
       .string()
       .required('Senha obrigatória')
@@ -172,7 +172,7 @@ export const ModalLogin = ({
                   </InputRightElement>
                 </InputGroup>
                 {errors.password?.message && (
-                  <MessageError error={errors.email?.message}></MessageError>
+                  <MessageError error={errors.password?.message}></MessageError>
                 )}
               </FormControl>
             </ModalBody>
@@ -208,7 +208,10 @@ export const ModalLogin = ({
                     onClose();
                     onOpenRegister();
                   }}
+                  className="underline hover:brightness-90 transition-colors"
                   variant="link"
+                  fontSize="14px"
+                  fontWeight="medium"
                   color="#c7c7c7"
                 >
                   Clique aqui

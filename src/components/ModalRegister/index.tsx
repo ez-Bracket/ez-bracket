@@ -23,9 +23,14 @@ import { MessageError } from '../MessageError';
 interface IModalRegister {
   isOpen: boolean;
   onClose: () => void;
+  onOpenLogin: () => void;
 }
 
-export const ModalRegister = ({ isOpen, onClose }: IModalRegister) => {
+export const ModalRegister = ({
+  isOpen,
+  onClose,
+  onOpenLogin,
+}: IModalRegister) => {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const initialRef = useRef(null);
@@ -314,9 +319,19 @@ export const ModalRegister = ({ isOpen, onClose }: IModalRegister) => {
               </Button>
               <p>
                 Já possui conta?{' '}
-                <span className="underline cursor-pointer hover:brightness-90 transition-colors">
+                <Button
+                  onClick={() => {
+                    onClose();
+                    onOpenLogin();
+                  }}
+                  className="underline hover:brightness-90 transition-colors"
+                  variant="link"
+                  fontSize="14px"
+                  fontWeight="medium"
+                  color="#c7c7c7"
+                >
                   Faça o login
-                </span>
+                </Button>
               </p>
             </ModalFooter>
           </form>
