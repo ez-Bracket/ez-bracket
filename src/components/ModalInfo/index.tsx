@@ -37,7 +37,7 @@ export const InfoModal = () => {
             transition="0.5s ease"
           />
           <ModalBody>
-            <p className="text-white">
+            <p className="text-white text-xl p-4 mb-4">
               Lorem Ipsum is simply dummy text of the
               printing and typesetting industry. Lorem Ipsum
               has been the industry's standard dummy text
