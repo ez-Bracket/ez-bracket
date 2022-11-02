@@ -1,9 +1,11 @@
 import Brackets from '../../assets/brackets.svg';
 import { ButtonDefault } from '../Button';
 
-export const HomeBrackets = () => {
-  const handleClick = () => {};
+interface IHomeBrackets {
+  onOpen: () => void;
+}
 
+export const HomeBrackets = ({ onOpen }: IHomeBrackets) => {
   return (
     <section className="px-4 py-[60px] bg-gray-300">
       <div className="max-w-7xl m-auto ">
@@ -21,7 +23,7 @@ export const HomeBrackets = () => {
             <p className="text-gray-100 mb-5 text-2xl">
               Chega de reunir seus amigos e organizar tudo com papel e caneta.
             </p>
-            <ButtonDefault text="Crie o seu torneio" onClick={handleClick} />
+            <ButtonDefault text="Crie o seu torneio" onClick={onOpen} />
           </div>
         </div>
       </div>

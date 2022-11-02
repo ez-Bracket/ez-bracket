@@ -9,19 +9,32 @@ import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { ButtonDefault } from '../Button';
 import 'animate.css';
 
-export const Header = () => {
+interface IHeader {
+  onOpenRegister: () => void;
+  onOpenLogin: () => void;
+}
+
+export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
   const mobile = useMedia('(max-width:40rem)');
   const { pathname } = useLocation();
   const [mobileMenu, setMobileMenu] = useState(false);
 
-  const handleClick = () => {};
+  const handleLogin = () => {
+    onOpenLogin();
+    setMobileMenu(false);
+  };
+
+  const handleRegister = () => {
+    onOpenRegister();
+    setMobileMenu(false);
+  };
 
   useEffect(() => {
     setMobileMenu(false);
   }, [pathname]);
 
   return (
-    <header className="bg-transparent border-b-[3px] border-green-100 border-opacity-50 relative">
+    <header className="bg-gray-300 border-b-[3px] border-green-100 border-opacity-50 relative">
       <div className="max-w-7xl m-auto px-4 py-5 flex items-center justify-between box-border">
         <div className="flex items-center gap-3 z-50">
           <Logo />
@@ -39,20 +52,27 @@ export const Header = () => {
               fontWeight="medium"
               textColor="white"
               variant="link"
+              onClick={handleLogin}
             >
               Entrar
             </Button>
-            <ButtonDefault text="Cadastrar" onClick={handleClick} />
+            <ButtonDefault onClick={handleRegister} text="Cadastrar" />
           </ButtonGroup>
         )}
 
         {mobileMenu && mobile ? (
           <div className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 z-10 animate__animated animate__fadeInDownBig animate__fast">
-            <button className="text-white text-xl py-6 flex items-center justify-between border-b-2 border-green-100 border-opacity-50">
+            <button
+              onClick={handleLogin}
+              className="text-white text-xl py-6 flex items-center justify-between border-b-2 border-green-100 border-opacity-50"
+            >
               Entrar
               <FiLogIn className="w-8 h-8 text-green-100" />
             </button>
-            <button className="text-white text-xl py-6 flex items-center justify-between border-b-2 border-green-100 border-opacity-50">
+            <button
+              onClick={handleRegister}
+              className="text-white text-xl py-6 flex items-center justify-between border-b-2 border-green-100 border-opacity-50"
+            >
               Cadastrar
               <HiOutlinePencilAlt className="w-8 h-8 text-green-100" />
             </button>
