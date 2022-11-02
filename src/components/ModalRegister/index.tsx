@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import {
   Modal,
@@ -19,6 +19,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { MessageError } from '../MessageError';
+import { UserContext } from '../../contexts/UserContext';
 
 interface IModalRegister {
   isOpen: boolean;
@@ -26,11 +27,21 @@ interface IModalRegister {
   onOpenLogin: () => void;
 }
 
+
+interface IdataRegister  {
+  email: string,
+  name: string,
+  password: string,
+  confirmPassword: string,
+  imgUrl?: string
+}
+
 export const ModalRegister = ({
   isOpen,
   onClose,
   onOpenLogin,
 }: IModalRegister) => {
+
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const initialRef = useRef(null);
@@ -57,16 +68,19 @@ export const ModalRegister = ({
     imgUrl: yup.string().url('URL inválida'),
   });
 
+  const { Register } = useContext(UserContext) 
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IdataRegister>({
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IdataRegister) => {
     console.log(data);
+    Register(data)
   };
 
   return (
