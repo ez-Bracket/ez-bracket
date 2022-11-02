@@ -6,12 +6,15 @@ import { useLocation } from 'react-router-dom';
 import { MobileMenu } from '../MobileMenu';
 import { FiLogIn } from 'react-icons/fi';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
+import { ButtonDefault } from '../Button';
 import 'animate.css';
 
 export const Header = () => {
   const mobile = useMedia('(max-width:40rem)');
   const { pathname } = useLocation();
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const handleClick = () => {};
 
   useEffect(() => {
     setMobileMenu(false);
@@ -39,14 +42,7 @@ export const Header = () => {
             >
               Entrar
             </Button>
-            <Button
-              fontSize="l"
-              fontWeight="medium"
-              bgColor="#61FFAA"
-              _hover={{ bg: '#38f892' }}
-            >
-              Cadastrar
-            </Button>
+            <ButtonDefault text="Cadastrar" onClick={handleClick} />
           </ButtonGroup>
         )}
 
