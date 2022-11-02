@@ -2,12 +2,12 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import 'animate.css';
 import { Dispatch } from 'react';
 
-interface iMobileMenu {
+interface IMobileMenu {
   mobileMenu: boolean;
   setMobileMenu: Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MobileMenu = ({ mobileMenu, setMobileMenu }: iMobileMenu) => {
+export const MobileMenu = ({ mobileMenu, setMobileMenu }: IMobileMenu) => {
   return (
     <button
       aria-label="Menu"

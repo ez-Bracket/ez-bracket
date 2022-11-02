@@ -19,9 +19,7 @@ import {
 
 export const RegisterModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [showPass, setShowPass] = useState(false);
-
   const [showConfirmPass, setShowConfirmPass] =
     useState(false);
 

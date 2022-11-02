@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@chakra-ui/react';
 
 interface IButtonDefaultProps {
@@ -7,7 +6,11 @@ interface IButtonDefaultProps {
   isLoading?: boolean | undefined;
 }
 
-const ButtonDefault = ({ onClick, text, isLoading }: IButtonDefaultProps) => {
+export const ButtonDefault = ({
+  onClick,
+  text,
+  isLoading,
+}: IButtonDefaultProps) => {
   return (
     <Button
       fontSize="l"
@@ -21,5 +24,3 @@ const ButtonDefault = ({ onClick, text, isLoading }: IButtonDefaultProps) => {
     </Button>
   );
 };
-
-export default ButtonDefault;
