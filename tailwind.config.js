@@ -21,6 +21,7 @@ module.exports = {
       black: '#000000',
       white: '#ffffff',
       gray: {
+        500: '#1D1A2C',
         400: '#100D1E',
         300: '#221E34',
         200: '#353149',
@@ -44,13 +45,7 @@ module.exports = {
       backgroundImage: {
         home: "url('/src/assets/homebackground.jpg')"
       },
-      backgroundOpacity: {
-        '10': '0.1',
-        '20': '0.2',
-        '95': '0.95',
-      }
     },
-
   },
   plugins: [],
 };
