@@ -36,9 +36,6 @@ export const RegisterModal = () => {
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -126,12 +123,15 @@ export const RegisterModal = () => {
                       onClick={handleShowPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: "tranparent" }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
+                      top="10px"
+                      right="10px"
                     >
                       {showPass ? (
-                        <BsEyeSlash className=" text-gray-100 mt-4 mr-3" />
+                        <BsEyeSlash className=" text-gray-100" />
                       ) : (
-                        <BsEye className=" text-gray-100 mt-4 mr-3" />
+                        <BsEye className=" text-gray-100" />
                       )}
                     </Button>
                   </InputRightElement>
@@ -162,12 +162,15 @@ export const RegisterModal = () => {
                       onClick={handleShowConfirmPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: "tranparent" }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
+                      top="10px"
+                      right="10px"
                     >
                       {showConfirmPass ? (
-                        <BsEyeSlash className=" text-gray-100 mt-4 mr-3" />
+                        <BsEyeSlash className=" text-gray-100" />
                       ) : (
-                        <BsEye className=" text-gray-100 mt-4 mr-3" />
+                        <BsEye className=" text-gray-100" />
                       )}
                     </Button>
                   </InputRightElement>
