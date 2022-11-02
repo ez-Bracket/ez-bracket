@@ -1,9 +1,10 @@
-import './styles/main.css';
+import "./styles/main.css";
+import { FooterHomePage } from "./components/footer";
 
 export const App = () => {
   return (
-    <div>
-      <h1>teste</h1>
+    <div className="bg-gray-300">
+      <FooterHomePage />
     </div>
   );
 };
