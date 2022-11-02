@@ -17,18 +17,12 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 
-export const RegisterModal = () => {
+export const LoginModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [showPass, setShowPass] = useState(false);
 
-  const [showConfirmPass, setShowConfirmPass] =
-    useState(false);
-
   const handleShowPass = () => setShowPass(!showPass);
-
-  const handleShowConfirmPass = () =>
-    setShowConfirmPass(!showConfirmPass);
 
   const initialRef = useRef(null);
   const finalRef = useRef(null);
@@ -53,9 +47,9 @@ export const RegisterModal = () => {
           border="2px solid #61FFAA"
           bg="#221E34"
         >
-          <div className="m-auto text-xl">
-            <ModalHeader className="text-green-100 mt-10 mb-0">
-              <p className="text-3xl">Crie a sua conta</p>
+          <div className="m-auto ">
+            <ModalHeader className="text-green-100   mt-10 mb-0">
+              <p className="text-3xl">Entre na sua conta</p>
             </ModalHeader>
 
             <ModalCloseButton
@@ -63,39 +57,12 @@ export const RegisterModal = () => {
               borderRadius={50}
             />
           </div>
+
           <form className="w-[100%]">
             <ModalBody className="mt-8 mb-6 mx-auto">
               <FormControl>
                 <FormLabel className="text-green-100">
                   Nome de usuário
-                </FormLabel>
-                <Input
-                  placeholder="Digite o nome de usuário"
-                  _placeholder={{ color: "#c7c7c7" }}
-                  borderColor="#353149"
-                  bg="#353149"
-                  height="60px"
-                  color="#c7c7c7"
-                />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel className="text-green-100">
-                  E-mail
-                </FormLabel>
-                <Input
-                  placeholder="Digite o nome de usuário"
-                  _placeholder={{ color: "#c7c7c7" }}
-                  borderColor="#353149"
-                  bg="#353149"
-                  height="60px"
-                  color="#c7c7c7"
-                />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel className="text-green-100">
-                  Foto de perfil
                 </FormLabel>
                 <Input
                   placeholder="Digite o nome de usuário"
@@ -129,42 +96,6 @@ export const RegisterModal = () => {
                       _hover={{ bg: "tranparent" }}
                     >
                       {showPass ? (
-                        <BsEyeSlash className=" text-gray-100 mt-4 mr-3" />
-                      ) : (
-                        <BsEye className=" text-gray-100 mt-4 mr-3" />
-                      )}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel className="text-green-100">
-                  Confirme sua senha
-                </FormLabel>
-                <InputGroup>
-                  <Input
-                    placeholder="Confirme sua senha"
-                    _placeholder={{ color: "#c7c7c7" }}
-                    borderColor="#353149"
-                    bg="#353149"
-                    height="60px"
-                    color="#c7c7c7"
-                    type={
-                      showConfirmPass ? "text" : "password"
-                    }
-                  />
-                  <InputRightElement
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <Button
-                      onClick={handleShowConfirmPass}
-                      bg="transparent"
-                      padding={0}
-                      _hover={{ bg: "tranparent" }}
-                    >
-                      {showConfirmPass ? (
                         <BsEyeSlash className=" text-gray-100 mt-4 mr-3" />
                       ) : (
                         <BsEye className=" text-gray-100 mt-4 mr-3" />
