@@ -42,6 +42,9 @@ module.exports = {
         sans: 'Roboto, sans-serif',
         winner: 'Play, sans-serif',
       },
+      backgroundImage: {
+        home: "url('/src/assets/homebackground.jpg')"
+      },
     },
   },
   plugins: [],
