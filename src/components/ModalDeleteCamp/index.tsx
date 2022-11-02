@@ -50,6 +50,8 @@ export const ModalDeleteCamp = () => {
           <ModalCloseButton
             className="mt-6 mr-7 bg-green-100 text-gray-300"
             borderRadius={50}
+            _hover={{ bg: "#38F892" }}
+            transition="0.5s ease"
           />
           <ModalBody>
             <p className="text-3xl text-center text-white mt-10">
@@ -57,14 +59,19 @@ export const ModalDeleteCamp = () => {
             </p>
           </ModalBody>
 
-          <ModalFooter>
-            <div className="flex w=[90%] justify-between mx-auto pb-9 gap-3">
+          <ModalFooter w="100%">
+            <div className="flex w-[90%] justify-between mx-auto pb-9 gap-3">
               <Button
                 bg="#61FFAA"
-                w="220px"
+                w="50%"
                 h="55px"
                 mr={3}
                 onClick={onClose}
+                _hover={{
+                  filter: "auto",
+                  brightness: "70%",
+                }}
+                transition="0.3s ease"
               >
                 <p className="text-gray-300 text-xl font-medium">
                   Sim
@@ -72,10 +79,15 @@ export const ModalDeleteCamp = () => {
               </Button>
               <Button
                 bg="#E64980"
-                w="220px"
+                w="50%"
                 h="55px"
                 mr={3}
                 onClick={onClose}
+                _hover={{
+                  filter: "auto",
+                  brightness: "80%",
+                }}
+                transition="0.3s ease"
               >
                 <p className="text-gray-300 text-xl font-medium">
                   Não
