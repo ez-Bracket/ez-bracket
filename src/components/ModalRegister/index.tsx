@@ -34,9 +34,6 @@ export const RegisterModal = () => {
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -59,6 +56,8 @@ export const RegisterModal = () => {
             <ModalCloseButton
               className="mt-6 bg-green-100 text-gray-300"
               borderRadius={50}
+              _hover={{ bg: "#38F892" }}
+              transition="0.5s ease"
             />
           </div>
           <form className="w-[100%]">
@@ -124,12 +123,15 @@ export const RegisterModal = () => {
                       onClick={handleShowPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: "tranparent" }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
+                      top="10px"
+                      right="10px"
                     >
                       {showPass ? (
-                        <BsEyeSlash className=" text-gray-100 mt-4 mr-3" />
+                        <BsEyeSlash className=" text-gray-100" />
                       ) : (
-                        <BsEye className=" text-gray-100 mt-4 mr-3" />
+                        <BsEye className=" text-gray-100" />
                       )}
                     </Button>
                   </InputRightElement>
@@ -160,12 +162,15 @@ export const RegisterModal = () => {
                       onClick={handleShowConfirmPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: "tranparent" }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
+                      top="10px"
+                      right="10px"
                     >
                       {showConfirmPass ? (
-                        <BsEyeSlash className=" text-gray-100 mt-4 mr-3" />
+                        <BsEyeSlash className=" text-gray-100" />
                       ) : (
-                        <BsEye className=" text-gray-100 mt-4 mr-3" />
+                        <BsEye className=" text-gray-100" />
                       )}
                     </Button>
                   </InputRightElement>
@@ -186,9 +191,15 @@ export const RegisterModal = () => {
               <Button
                 bg="#61FFAA"
                 color="#221E34"
+                fontWeight="500"
                 w="100%"
                 h="49px"
                 mb={10}
+                _hover={{
+                  bg: "#38F892",
+                  fontWeight: "700",
+                }}
+                transition="0.9s ease"
               >
                 Save
               </Button>
