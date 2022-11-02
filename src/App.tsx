@@ -4,6 +4,7 @@ import './styles/main.css';
 
 
 export const App = () => {
+
   const [loading, setLoading] = React.useState(false);
 
   return (
@@ -11,4 +12,5 @@ export const App = () => {
 
     </div>
   );
+
 };
