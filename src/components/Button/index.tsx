@@ -15,6 +15,8 @@ export const ButtonDefault = ({
     <Button
       fontSize="l"
       fontWeight="medium"
+      minWidth="150px"
+      maxWidth="max-content"
       bgColor="#61FFAA"
       _hover={{ bg: '#38F892' }}
       onClick={onClick}
