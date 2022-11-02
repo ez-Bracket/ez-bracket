@@ -55,7 +55,7 @@ export const RegisterModal = () => {
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100 mt-10 mb-0">
-              Crie a sua conta
+              <p className="text-3xl">Crie a sua conta</p>
             </ModalHeader>
 
             <ModalCloseButton
