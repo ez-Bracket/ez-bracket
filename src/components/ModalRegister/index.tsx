@@ -58,6 +58,8 @@ export const RegisterModal = () => {
             <ModalCloseButton
               className="mt-6 bg-green-100 text-gray-300"
               borderRadius={50}
+              _hover={{ bg: "#38F892" }}
+              transition="0.5s ease"
             />
           </div>
           <form className="w-[100%]">
@@ -191,9 +193,15 @@ export const RegisterModal = () => {
               <Button
                 bg="#61FFAA"
                 color="#221E34"
+                fontWeight="500"
                 w="100%"
                 h="49px"
                 mb={10}
+                _hover={{
+                  bg: "#38F892",
+                  fontWeight: "700",
+                }}
+                transition="0.9s ease"
               >
                 Save
               </Button>
