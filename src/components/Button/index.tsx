@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react';
+import { Button } from "@chakra-ui/react";
 
 interface IButtonDefaultProps {
   onClick: () => void;
@@ -18,7 +18,8 @@ export const ButtonDefault = ({
       minWidth="150px"
       maxWidth="max-content"
       bgColor="#61FFAA"
-      _hover={{ bg: '#38F892' }}
+      _hover={{ bg: "#38F892" }}
+      _active={{ bg: "#38F892" }}
       onClick={onClick}
       isLoading={isLoading}
     >
