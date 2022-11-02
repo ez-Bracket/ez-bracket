@@ -17,7 +17,8 @@ interface IuserDataRegister  {
     email: string,
     name: string,
     password: string,
-    imageUrl: string
+    confirmPassword: string,
+    imgUrl?: string
 }
 
 interface IuserApiRegisterResp {
@@ -25,7 +26,7 @@ interface IuserApiRegisterResp {
     user: {
 	    email: string,
 	    name: string,
-	    imageUrl:string,
+	    imgUrl?:string,
 	    id: string
   }
 }
@@ -40,7 +41,7 @@ interface IuserApiLoginResp {
     user: {
         email: string,
         name: string,
-        imageUrl:string,
+        imgUrl?:string,
         id: string
     }
 }
