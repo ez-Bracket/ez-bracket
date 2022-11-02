@@ -1,9 +1,6 @@
-import './styles/main.css';
+import { RegisterModal } from "./components/modals/registerModal";
+import "./styles/main.css";
 
 export const App = () => {
-  return (
-    <div>
-      <h1>teste</h1>
-    </div>
-  );
+  return <RegisterModal />;
 };
