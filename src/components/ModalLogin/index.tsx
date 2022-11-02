@@ -15,17 +15,59 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { MessageError } from '../MessageError';
+
+interface ILoginForm {
+  email: string;
+  password: string;
+}
 
 interface IModalLogin {
   isOpen: boolean;
   onClose: () => void;
+  onOpenRegister: () => void;
 }
 
-export const ModalLogin = ({ isOpen, onClose }: IModalLogin) => {
+export const ModalLogin = ({
+  isOpen,
+  onClose,
+  onOpenRegister,
+}: IModalLogin) => {
   const [showPass, setShowPass] = useState(false);
   const initialRef = useRef(null);
   const finalRef = useRef(null);
+
+  const loginSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email('Digite um E-mail válido!!!')
+      .required('Campo Obrigatório!!'),
+    password: yup
+      .string()
+      .required('Senha obrigatória')
+      .min(8, 'Deve conter no mínimo 8 caracteres')
+      .matches(/[A-Z]/, 'Deve conter ao menos uma letra maiúscula')
+      .matches(/[a-z]/, 'Deve conter ao menos uma letra minúscula')
+      .matches(/[0-9]/, 'Deve conter ao menos um número')
+      .matches(/(\W)|_/, 'Deve conter ao menos um caracter especial'),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginForm>({
+    resolver: yupResolver(loginSchema),
+  });
+
   const handleShowPass = () => setShowPass(!showPass);
+
+  const onSubmit = (data: ILoginForm) => {
+    console.log(data);
+  };
 
   return (
     <>
@@ -59,35 +101,57 @@ export const ModalLogin = ({ isOpen, onClose }: IModalLogin) => {
             />
           </div>
 
-          <form className="w-[100%]">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
             <ModalBody className=" mt-1 laptop:mt-4 mb-4">
               <FormControl position="relative">
-                <FormLabel fontSize={16} className="text-green-100">
-                  Nome de usuário
+                <FormLabel
+                  fontSize={16}
+                  className={errors.email ? 'text-error-100' : 'text-green-100'}
+                >
+                  Email
                 </FormLabel>
                 <Input
-                  placeholder="Digite o nome de usuário"
+                  placeholder="Digite o e-mail do usuário"
                   _placeholder={{ color: '#c7c7c7', opacity: '50%' }}
-                  borderColor="#353149"
+                  borderColor={errors.email?.message ? '#E64980' : '#353149'}
                   bg="#353149"
                   fontSize="14px"
                   height="50px"
-                  color="#c7c7c7"
+                  color={errors.email?.message ? '#E64980' : '#fff'}
+                  focusBorderColor={
+                    errors.email?.message ? '#E64980' : '#c7c7c7'
+                  }
+                  {...register('email')}
                 />
+                {errors.email?.message && (
+                  <MessageError error={errors.email?.message}></MessageError>
+                )}
               </FormControl>
 
               <FormControl mt={4}>
-                <FormLabel className="text-green-100">Senha</FormLabel>
+                <FormLabel
+                  className={
+                    errors.password ? 'text-error-100' : 'text-green-100'
+                  }
+                >
+                  Senha
+                </FormLabel>
                 <InputGroup>
                   <Input
                     placeholder="Digite sua senha"
                     _placeholder={{ color: '#c7c7c7', opacity: '50%' }}
-                    borderColor="#353149"
+                    borderColor={
+                      errors.password?.message ? '#E64980' : '#353149'
+                    }
                     bg="#353149"
                     fontSize="14px"
                     height="50px"
-                    color="#c7c7c7"
+                    color={errors.email?.message ? '#E64980' : '#fff'}
+                    focusBorderColor={
+                      errors.email?.message ? '#E64980' : '#c7c7c7'
+                    }
                     type={showPass ? 'text' : 'password'}
+                    {...register('password')}
                   />
                   <InputRightElement>
                     <Button
@@ -107,6 +171,9 @@ export const ModalLogin = ({ isOpen, onClose }: IModalLogin) => {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
+                {errors.password?.message && (
+                  <MessageError error={errors.email?.message}></MessageError>
+                )}
               </FormControl>
             </ModalBody>
 
@@ -134,7 +201,19 @@ export const ModalLogin = ({ isOpen, onClose }: IModalLogin) => {
               >
                 Entrar
               </Button>
-              <p>Já possui conta? Faça o login</p>
+              <p>
+                Não possui conta?{' '}
+                <Button
+                  onClick={() => {
+                    onClose();
+                    onOpenRegister();
+                  }}
+                  variant="link"
+                  color="#c7c7c7"
+                >
+                  Clique aqui
+                </Button>
+              </p>
             </ModalFooter>
           </form>
         </ModalContent>

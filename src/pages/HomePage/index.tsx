@@ -20,12 +20,18 @@ export const HomePage = () => {
   } = useDisclosure();
 
   return (
+
     <div className="bg-gray-300">
+
       <Header onOpenRegister={onOpenRegister} onOpenLogin={onOpenLogin} />
       <ContentBoxDiv />
       <HomeBrackets onOpen={onOpenRegister} />
       <Footer />
-      <ModalLogin isOpen={isOpenLogin} onClose={onCloseLogin} />
+      <ModalLogin
+        isOpen={isOpenLogin}
+        onClose={onCloseLogin}
+        onOpenRegister={onOpenRegister}
+      />
       <ModalRegister isOpen={isOpenRegister} onClose={onCloseRegister} />
     </div>
   );
