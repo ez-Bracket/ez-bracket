@@ -17,7 +17,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 
-export const LoginModal = () => {
+export const ModalLogin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [showPass, setShowPass] = useState(false);
