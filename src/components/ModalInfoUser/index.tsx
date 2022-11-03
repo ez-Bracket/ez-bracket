@@ -22,6 +22,11 @@ export const InfoUserModal = () => {
 
   const { user } = useContext(UserContext);
 
+  const handleClick = () => {
+    onCloseInfoUser();
+    onOpenRegister();
+  };
+
   return (
     <>
       {user &&
@@ -85,7 +90,7 @@ export const InfoUserModal = () => {
                 >
                   <Button
                     bg="#61FFAA"
-                    onClick={onOpenRegister}
+                    onClick={handleClick}
                     p="20px"
                     maxW="190px"
                     w="80%"
