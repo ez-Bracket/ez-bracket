@@ -1,5 +1,8 @@
-import { useRef, useState } from "react";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
+
+import { useContext, useRef, useState } from 'react';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+
+
 import {
   Modal,
   ModalOverlay,
@@ -14,11 +17,15 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-} from "@chakra-ui/react";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { MessageError } from "../MessageError";
+
+} from '@chakra-ui/react';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { MessageError } from '../MessageError';
+import { UserContext } from '../../contexts/UserContext';
+
+
 
 interface ILoginForm {
   email: string;
@@ -64,6 +71,8 @@ export const ModalLogin = ({
       ),
   });
 
+  const { Login } = useContext(UserContext)
+
   const {
     register,
     handleSubmit,
@@ -76,6 +85,7 @@ export const ModalLogin = ({
 
   const onSubmit = (data: ILoginForm) => {
     console.log(data);
+    Login(data)
   };
 
   return (
