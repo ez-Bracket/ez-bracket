@@ -27,7 +27,10 @@ export const Dashboard = () => {
       )}
 
       <InfoUserModal />
-      <ModalRegister title="Edite sua conta" />
+      <ModalRegister
+        title="Edite sua conta"
+        buttonDesc="Editar"
+      />
       <NewCampModal />
     </>
   );

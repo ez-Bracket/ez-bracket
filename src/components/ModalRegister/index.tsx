@@ -28,6 +28,8 @@ import { MessageError } from "../MessageError";
 
 interface IModalRegister {
   title: string;
+  buttonDesc: string;
+  isRegister?: boolean;
 }
 
 interface IdataRegister {
@@ -40,6 +42,8 @@ interface IdataRegister {
 
 export const ModalRegister = ({
   title,
+  buttonDesc,
+  isRegister,
 }: IModalRegister) => {
   const { isOpenRegister, onCloseRegister, onOpenLogin } =
     useContext(ContextModal);
@@ -446,24 +450,27 @@ export const ModalRegister = ({
                 _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
               >
-                Cadastrar
+                {buttonDesc}
               </Button>
-              <p>
-                Já possui conta?{" "}
-                <Button
-                  onClick={() => {
-                    onCloseRegister();
-                    onOpenLogin();
-                  }}
-                  className="underline hover:brightness-90 transition-colors"
-                  variant="link"
-                  fontSize="14px"
-                  fontWeight="medium"
-                  color="#c7c7c7"
-                >
-                  Faça o login
-                </Button>
-              </p>
+
+              {isRegister && (
+                <p>
+                  Já possui conta?{" "}
+                  <Button
+                    onClick={() => {
+                      onCloseRegister();
+                      onOpenLogin();
+                    }}
+                    className="underline hover:brightness-90 transition-colors"
+                    variant="link"
+                    fontSize="14px"
+                    fontWeight="medium"
+                    color="#c7c7c7"
+                  >
+                    Faça o login
+                  </Button>
+                </p>
+              )}
             </ModalFooter>
           </form>
         </ModalContent>

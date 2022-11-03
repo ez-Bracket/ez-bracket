@@ -17,7 +17,11 @@ export const HomePage = () => {
       <HomeBrackets />
       <Footer />
       <ModalLogin />
-      <ModalRegister title="Crie a sua conta" />
+      <ModalRegister
+        title="Crie a sua conta"
+        buttonDesc="Criar"
+        isRegister={true}
+      />
     </div>
   );
 };
