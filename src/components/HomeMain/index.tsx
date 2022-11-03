@@ -8,10 +8,9 @@ interface IHomeMain {
 
 export const HomeMain = ({ onOpenRegister }: IHomeMain) => {
   return (
-    <main className="bg-home bg-cover flex flex-col items-center justify-center h-screen relative -top-[120px]">
-      <div className="absolute bg-gray-300 h-screen w-full opacity-90 shadow-[0_100px_100px_#1D1B2D]"></div>
+    <main className="py-32 tablet:py-56 flex flex-col items-center justify-center">
       <motion.h1
-        className="text-green-100 text-4xl laptop:text-5xl text-center font-bold tablet:w-[24ch] mx-3 mt-10 relative"
+        className="text-green-100 text-4xl laptop:text-5xl text-center font-bold tablet:w-[24ch] mx-3 relative"
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0 }}
