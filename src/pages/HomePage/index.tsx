@@ -22,6 +22,7 @@ export const HomePage = () => {
 
   return (
     <div className="bg-gray-300">
+      <div className="bg-home bg-cover h-screen w-full absolute opacity-10 shadow-[0_100px_100px_#070516]"></div>
       <Header onOpenRegister={onOpenRegister} onOpenLogin={onOpenLogin} />
       <HomeMain onOpenRegister={onOpenRegister} />
       <ContentBoxDiv />
