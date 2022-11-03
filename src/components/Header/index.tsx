@@ -61,7 +61,7 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
         )}
 
         {mobileMenu && mobile ? (
-          <div className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 z-10 animate__animated animate__fadeInDownBig animate__fast">
+          <nav className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 z-10 animate__animated animate__fadeInDownBig animate__fast">
             <button
               onClick={handleLogin}
               className="text-white text-xl py-6 flex items-center justify-between border-b-2 border-green-100 border-opacity-50"
@@ -76,7 +76,7 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
               Cadastrar
               <HiOutlinePencilAlt className="w-8 h-8 text-green-100" />
             </button>
-          </div>
+          </nav>
         ) : (
           <div className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 animate__animated animate__fadeOutUpBig animate__fast"></div>
         )}
