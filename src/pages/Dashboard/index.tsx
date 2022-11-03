@@ -6,15 +6,5 @@ import { UserContext } from '../../contexts/UserContext';
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
 
-  return (
-    <>
-      {user ? (
-        <div>
-          Dashboard <NewCampModal />
-        </div>
-      ) : (
-        <Navigate to="/" />
-      )}
-    </>
-  );
+  return <>{user ? <div>Dashboard</div> : <Navigate to="/" />}</>;
 };
