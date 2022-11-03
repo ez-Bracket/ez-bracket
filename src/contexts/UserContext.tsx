@@ -1,5 +1,5 @@
 import { Api } from '../services/Api';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CustomToast } from '../components/Toast';
 
@@ -9,7 +9,7 @@ interface iUserContextProps {
 
 interface IuserContext {
   isLoading: boolean;
-  user: IuserApiLoginResp | null;
+  user: IuserApiGet[];
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
 }
@@ -47,10 +47,19 @@ interface IuserApiLoginResp {
   };
 }
 
+interface IuserApiGet {
+  confirmPassword: string,
+  email: string,
+  id: number | string,
+  imgUrl: string,
+  name: string,
+  password: string
+}
+
 export const UserContext = createContext<IuserContext>({} as IuserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
-  const [user, setUser] = useState<IuserApiLoginResp | null>(null);
+  const [user, setUser] = useState<IuserApiGet[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toastify } = CustomToast();
@@ -62,9 +71,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       window.localStorage.clear();
       window.localStorage.setItem('@EZ:TOKEN', resp.data.accessToken);
       window.localStorage.setItem('@EZ:USERID', resp.data.user.id);
-      setUser(resp.data);
-      navigate('/dashboard');
-
+      LoadUser();
       toastify({
         description: 'Login realizado com sucesso!',
         status: 'success',
@@ -96,6 +103,25 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       return error;
     }
   };
+  
+  const LoadUser = async () => {
+    const token = localStorage.getItem("@EZ:TOKEN")
+    const id    = localStorage.getItem("@EZ:USERID")
+    if(token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`
+        const res = await Api.get<IuserApiGet>(`users/${id}`)
+        setUser([res.data]);
+        navigate('/dashboard');
+      } catch (error) {
+        console.log(error)
+      }
+    } 
+  };
+
+  useEffect(() => {
+    LoadUser();
+  }, [])
 
   return (
     <UserContext.Provider value={{ Login, Register, user, isLoading }}>

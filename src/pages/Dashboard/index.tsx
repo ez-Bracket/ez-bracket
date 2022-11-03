@@ -8,7 +8,8 @@ export const Dashboard = () => {
 
   return (
     <>
-      {user ? (
+
+      {user.length > 0  ? (
         <div className="bg-gray-300 h-screen w-screen">
           <div className="bg-dashboard bg-cover h-screen w-full absolute opacity-10"></div>
           <DashboardMenu />
@@ -16,6 +17,7 @@ export const Dashboard = () => {
       ) : (
         <Navigate to="/" replace />
       )}
+    
     </>
   );
 };
