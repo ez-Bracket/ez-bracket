@@ -34,7 +34,7 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
   }, [pathname]);
 
   return (
-    <header className="bg-gray-300 border-b-[3px] border-green-100 border-opacity-50 relative">
+    <header className="bg-transparent border-b-[3px] border-green-100 border-opacity-50 relative z-10">
       <div className="max-w-7xl m-auto px-4 py-5 flex items-center justify-between box-border">
         <div className="flex items-center gap-3 z-50">
           <Logo />

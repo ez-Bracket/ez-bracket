@@ -28,6 +28,7 @@ module.exports = {
         100: '#C7C7C7',
       },
       green: {
+        200: '#08490e',
         100: '#61FFAA',
       },
       yellow: {
@@ -43,7 +44,7 @@ module.exports = {
         winner: 'Play, sans-serif',
       },
       backgroundImage: {
-        home: "url('/src/assets/homebackground.jpg')"
+        home: "url('/src/assets/homebackground.jpg')",
       },
     },
   },

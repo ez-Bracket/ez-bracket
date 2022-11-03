@@ -304,7 +304,7 @@ export const ModalRegister = ({
               <Button
                 type="submit"
                 bg="#61FFAA"
-                color="#221E34"
+                color="#08490e"
                 fontWeight="500"
                 fontSize="18px"
                 w="100%"
@@ -313,6 +313,7 @@ export const ModalRegister = ({
                 _hover={{
                   bg: '#38F892',
                 }}
+                _active={{ bgColor: '#61FFAA' }}
                 transition="0.3s ease"
               >
                 Cadastrar
