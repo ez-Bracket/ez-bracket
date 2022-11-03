@@ -69,8 +69,11 @@ export const UserProvider = ({
   children,
 }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
+
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
+
   const { toastify } = CustomToast();
 
   const LoadUser = async () => {
@@ -81,9 +84,11 @@ export const UserProvider = ({
       setIsLoading(true);
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
+
         const res = await Api.get<IuserApiGet>(
-          `users/${id}`
+          `users/${id}?_embed=competition`
         );
+
         setUser([res.data]);
         navigate("/dashboard");
       } catch (error) {
