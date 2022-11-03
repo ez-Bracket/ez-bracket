@@ -51,7 +51,7 @@ interface IuserApiLoginResp {
 interface IuserApiGet {
   confirmPassword: string;
   email: string;
-  id: number | string;
+  id: number;
   imgUrl: string;
   name: string;
   password: string;
