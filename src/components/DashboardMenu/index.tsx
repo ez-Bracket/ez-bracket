@@ -4,8 +4,12 @@ import { BiUser } from 'react-icons/bi';
 import { FiLogOut } from 'react-icons/fi';
 import { ButtonNav } from '../ButtonNav';
 import { Logo } from '../Logo';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 
 export const DashboardMenu = () => {
+  const { Logout } = useContext(UserContext);
+
   return (
     <nav className="fixed bottom-0 flex tablet:justify-center py-4 tablet:py-10 bg-transparent border-t-2 tablet:border-t-0 tablet:border-r-2 border-green-100 tablet:h-screen w-full tablet:w-32">
       <div className="mx-4 flex tablet:flex-col tablet:items-center tablet:gap-0 justify-between w-full">
@@ -21,7 +25,7 @@ export const DashboardMenu = () => {
           <ButtonNav>
             <BiUser className="text-4xl" />
           </ButtonNav>
-          <button>
+          <button onClick={Logout}>
             <FiLogOut className="text-green-100 text-4xl hover:scale-110 transition-transform" />
           </button>
         </div>
