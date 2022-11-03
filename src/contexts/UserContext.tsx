@@ -48,12 +48,12 @@ interface IuserApiLoginResp {
 }
 
 interface IuserApiGet {
-  confirmPassword: string,
-  email: string,
-  id: number | string,
-  imgUrl: string,
-  name: string,
-  password: string
+  confirmPassword: string;
+  email: string;
+  id: number | string;
+  imgUrl: string;
+  name: string;
+  password: string;
 }
 
 export const UserContext = createContext<IuserContext>({} as IuserContext);
@@ -103,25 +103,30 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       return error;
     }
   };
-  
+
   const LoadUser = async () => {
-    const token = localStorage.getItem("@EZ:TOKEN")
-    const id    = localStorage.getItem("@EZ:USERID")
-    if(token) {
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
+
+    if (token) {
+      setIsLoading(true);
       try {
-        Api.defaults.headers.authorization = `Bearer ${token}`
-        const res = await Api.get<IuserApiGet>(`users/${id}`)
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const res = await Api.get<IuserApiGet>(`users/${id}`);
         setUser([res.data]);
         navigate('/dashboard');
       } catch (error) {
-        console.log(error)
+        return error;
+      } finally {
+        setIsLoading(false);
       }
-    } 
+    }
   };
 
   useEffect(() => {
     LoadUser();
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <UserContext.Provider value={{ Login, Register, user, isLoading }}>
