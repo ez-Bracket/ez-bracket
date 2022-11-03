@@ -1,6 +1,11 @@
-export const Logo = () => {
+interface ILogo {
+  className?: string;
+}
+
+export const Logo = ({ className }: ILogo) => {
   return (
     <svg
+      className={className}
       width="51"
       height="51"
       viewBox="0 0 51 51"
