@@ -1,12 +1,17 @@
-import { ContentBox } from '../ContentBox';
-import { AiOutlineTrophy } from 'react-icons/ai';
-import { IoCreateOutline, IoStatsChartOutline } from 'react-icons/io5';
-import { BsPersonLinesFill } from 'react-icons/bs';
-import { VscDebugRestart } from 'react-icons/vsc';
-import { TbTournament } from 'react-icons/tb';
+import { AiOutlineTrophy } from "react-icons/ai";
+import {
+  IoCreateOutline,
+  IoStatsChartOutline,
+} from "react-icons/io5";
+import { BsPersonLinesFill } from "react-icons/bs";
+import { VscDebugRestart } from "react-icons/vsc";
+import { TbTournament } from "react-icons/tb";
+
+// Components
+import { ContentBox } from "../ContentBox";
 
 export const ContentBoxDiv = () => {
-  const classBox = 'text-green-100 text-5xl';
+  const classBox = "text-green-100 text-5xl";
 
   return (
     <section className="flex justify-center relative z-8 laptop:pb-10">
