@@ -12,6 +12,7 @@ interface IuserContext {
   user: IuserApiGet[];
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
+  Logout: () => void;
 }
 
 interface IuserDataRegister {
@@ -68,6 +69,30 @@ export const UserProvider = ({
   const navigate = useNavigate();
   const { toastify } = CustomToast();
 
+  const LoadUser = async () => {
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
+
+    if (token) {
+      setIsLoading(true);
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const res = await Api.get<IuserApiGet>(`users/${id}`);
+        setUser([res.data]);
+        navigate('/dashboard');
+      } catch (error) {
+        return error;
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    LoadUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const Login = async (data: IuserDataLogin) => {
     try {
       setIsLoading(true);
@@ -122,31 +147,16 @@ export const UserProvider = ({
     }
   };
 
-  const LoadUser = async () => {
-    const token = localStorage.getItem("@EZ:TOKEN");
-    const id = localStorage.getItem("@EZ:USERID");
-    if (token) {
-      try {
-        Api.defaults.headers.authorization = `Bearer ${token}`;
-        const res = await Api.get<IuserApiGet>(
-          `users/${id}`
-        );
-        setUser([res.data]);
-        navigate("/dashboard");
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  const Logout = () => {
+    setUser([]);
+    window.localStorage.removeItem('@EZ:TOKEN');
+    window.localStorage.removeItem('@EZ:USERID');
+    navigate('/');
   };
 
-  useEffect(() => {
-    LoadUser();
-  }, []);
-
   return (
-    <UserContext.Provider
-      value={{ Login, Register, user, isLoading }}
-    >
+    <UserContext.Provider value={{ Login, Register, Logout, user, isLoading }}>
+
       {children}
     </UserContext.Provider>
   );
