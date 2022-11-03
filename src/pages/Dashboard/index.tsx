@@ -1,12 +1,10 @@
-import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { DashboardMenu } from '../../components/DashboardMenu';
-import { InfoUserModal } from '../../components/ModalInfoUser';
-import { NewCampModal } from '../../components/ModalNewCamp';
-import { ModalRegister } from '../../components/ModalRegister';
-import { UserContext } from '../../contexts/UserContext';
-
-import { useDisclosure } from '@chakra-ui/react';
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { DashboardMenu } from "../../components/DashboardMenu";
+import { InfoUserModal } from "../../components/ModalInfoUser";
+import { NewCampModal } from "../../components/ModalNewCamp";
+import { ModalRegister } from "../../components/ModalRegister";
+import { UserContext } from "../../contexts/UserContext";
 
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
