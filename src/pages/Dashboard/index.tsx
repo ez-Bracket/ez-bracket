@@ -1,8 +1,13 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { DashboardMenu } from "../../components/DashboardMenu";
-import { UserContext } from "../../contexts/UserContext";
+
 import { DashboardTournament } from "../../components/DashboardTournament";
+
+import { InfoUserModal } from "../../components/ModalInfoUser";
+import { NewCampModal } from "../../components/ModalNewCamp";
+import { ModalRegister } from "../../components/ModalRegister";
+import { UserContext } from "../../contexts/UserContext";
 
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -18,6 +23,11 @@ export const Dashboard = () => {
       ) : (
         <Navigate to="/" replace />
       )}
+
+      <InfoUserModal />
+      <ModalRegister title="Edite sua conta" />
+      <NewCampModal />
+
     </>
   );
 };

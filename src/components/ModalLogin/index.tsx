@@ -1,5 +1,5 @@
-import { useContext, useRef, useState } from 'react';
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { useContext, useRef, useState } from "react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 import {
   Modal,
@@ -15,41 +15,36 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-} from '@chakra-ui/react';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { MessageError } from '../MessageError';
-import { UserContext } from '../../contexts/UserContext';
-import { Loading } from '../Loading';
+} from "@chakra-ui/react";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { MessageError } from "../MessageError";
+import { UserContext } from "../../contexts/UserContext";
+import { Loading } from "../Loading";
+import { ContextModal } from "../../contexts/ModalContext";
 
 interface ILoginForm {
   email: string;
   password: string;
 }
 
-interface IModalLogin {
-  isOpen: boolean;
-  onClose: () => void;
-  onOpenRegister: () => void;
-}
-
-export const ModalLogin = ({
-  isOpen,
-  onClose,
-  onOpenRegister,
-}: IModalLogin) => {
+export const ModalLogin = () => {
   const [showPass, setShowPass] = useState(false);
+
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
   const loginSchema = yup.object().shape({
     email: yup
       .string()
-      .email('E-mail obrigatório')
-      .required('E-mail obrigatório'),
-    password: yup.string().required('Senha obrigatória'),
+      .email("E-mail obrigatório")
+      .required("E-mail obrigatório"),
+    password: yup.string().required("Senha obrigatória"),
   });
+
+  const { isOpenLogin, onCloseLogin, onOpenRegister } =
+    useContext(ContextModal);
 
   const { Login, isLoading } = useContext(UserContext);
 
@@ -76,8 +71,8 @@ export const ModalLogin = ({
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenLogin}
+        onClose={onCloseLogin}
       >
         <ModalOverlay />
         <ModalContent
@@ -90,7 +85,9 @@ export const ModalLogin = ({
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
-              <h2 className="text-xl tablet:text-2xl">Entre na sua conta</h2>
+              <h2 className="text-xl tablet:text-2xl">
+                Entre na sua conta
+              </h2>
             </ModalHeader>
 
             <ModalCloseButton
@@ -98,45 +95,66 @@ export const ModalLogin = ({
               borderRadius={50}
               h={6}
               w={6}
-              _hover={{ bg: '#38F892' }}
+              _hover={{ bg: "#38F892" }}
               transition="0.3s ease"
             />
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-[100%]"
+          >
             <ModalBody className=" mt-1 laptop:mt-4 mb-4">
               <FormControl position="relative">
                 <FormLabel
                   fontSize={16}
-                  className={errors.email ? 'text-error-100' : 'text-green-100'}
+                  className={
+                    errors.email
+                      ? "text-error-100"
+                      : "text-green-100"
+                  }
                 >
                   Email
                 </FormLabel>
                 <Input
                   placeholder="Digite o e-mail do usuário"
                   _placeholder={{
-                    color: '#c7c7c7',
-                    opacity: '50%',
+                    color: "#c7c7c7",
+                    opacity: "50%",
                   }}
-                  borderColor={errors.email?.message ? '#E64980' : '#353149'}
+                  borderColor={
+                    errors.email?.message
+                      ? "#E64980"
+                      : "#353149"
+                  }
                   bg="#353149"
                   fontSize="14px"
                   height="50px"
-                  color={errors.email?.message ? '#E64980' : '#fff'}
-                  focusBorderColor={
-                    errors.email?.message ? '#E64980' : '#c7c7c7'
+                  color={
+                    errors.email?.message
+                      ? "#E64980"
+                      : "#fff"
                   }
-                  {...register('email')}
+                  focusBorderColor={
+                    errors.email?.message
+                      ? "#E64980"
+                      : "#c7c7c7"
+                  }
+                  {...register("email")}
                 />
                 {errors.email?.message && (
-                  <MessageError error={errors.email?.message}></MessageError>
+                  <MessageError
+                    error={errors.email?.message}
+                  ></MessageError>
                 )}
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel
                   className={
-                    errors.password ? 'text-error-100' : 'text-green-100'
+                    errors.password
+                      ? "text-error-100"
+                      : "text-green-100"
                   }
                 >
                   Senha
@@ -145,29 +163,37 @@ export const ModalLogin = ({
                   <Input
                     placeholder="Digite sua senha"
                     _placeholder={{
-                      color: '#c7c7c7',
-                      opacity: '50%',
+                      color: "#c7c7c7",
+                      opacity: "50%",
                     }}
                     borderColor={
-                      errors.password?.message ? '#E64980' : '#353149'
+                      errors.password?.message
+                        ? "#E64980"
+                        : "#353149"
                     }
                     bg="#353149"
                     fontSize="14px"
                     height="50px"
-                    color={errors.email?.message ? '#E64980' : '#fff'}
-                    focusBorderColor={
-                      errors.email?.message ? '#E64980' : '#c7c7c7'
+                    color={
+                      errors.email?.message
+                        ? "#E64980"
+                        : "#fff"
                     }
-                    type={showPass ? 'text' : 'password'}
-                    {...register('password')}
+                    focusBorderColor={
+                      errors.email?.message
+                        ? "#E64980"
+                        : "#c7c7c7"
+                    }
+                    type={showPass ? "text" : "password"}
+                    {...register("password")}
                   />
                   <InputRightElement>
                     <Button
                       onClick={handleShowPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: 'transparent' }}
-                      _active={{ bg: 'transparent' }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
                       top="5px"
                       right="10px"
                     >
@@ -180,7 +206,9 @@ export const ModalLogin = ({
                   </InputRightElement>
                 </InputGroup>
                 {errors.password?.message && (
-                  <MessageError error={errors.password?.message}></MessageError>
+                  <MessageError
+                    error={errors.password?.message}
+                  ></MessageError>
                 )}
               </FormControl>
             </ModalBody>
@@ -203,17 +231,17 @@ export const ModalLogin = ({
                 h="49px"
                 mb={5}
                 _hover={{
-                  bg: '#38F892',
+                  bg: "#38F892",
                 }}
                 transition="0.3s ease"
               >
                 Entrar
               </Button>
               <p>
-                Não possui conta?{' '}
+                Não possui conta?{" "}
                 <Button
                   onClick={() => {
-                    onClose();
+                    onCloseLogin();
                     onOpenRegister();
                   }}
                   className="underline hover:brightness-90 transition-colors"

@@ -1,21 +1,20 @@
-import { Logo } from '../Logo';
-import { Button, ButtonGroup } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { useMedia } from '../../hooks/useMedia';
-import { useLocation } from 'react-router-dom';
-import { MobileMenu } from '../MobileMenu';
-import { FiLogIn } from 'react-icons/fi';
-import { HiOutlinePencilAlt } from 'react-icons/hi';
-import { ButtonDefault } from '../Button';
-import 'animate.css';
+import { Logo } from "../Logo";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
+import { useMedia } from "../../hooks/useMedia";
+import { useLocation } from "react-router-dom";
+import { MobileMenu } from "../MobileMenu";
+import { FiLogIn } from "react-icons/fi";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { ButtonDefault } from "../Button";
+import { ContextModal } from "../../contexts/ModalContext";
+import "animate.css";
 
-interface IHeader {
-  onOpenRegister: () => void;
-  onOpenLogin: () => void;
-}
+export const Header = () => {
+  const { onOpenLogin, onOpenRegister } =
+    useContext(ContextModal);
 
-export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
-  const mobile = useMedia('(max-width:40rem)');
+  const mobile = useMedia("(max-width:40rem)");
   const { pathname } = useLocation();
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -44,7 +43,10 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
         </div>
 
         {mobile ? (
-          <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+          <MobileMenu
+            mobileMenu={mobileMenu}
+            setMobileMenu={setMobileMenu}
+          />
         ) : (
           <ButtonGroup gap="10">
             <Button
@@ -56,7 +58,10 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
             >
               Entrar
             </Button>
-            <ButtonDefault onClick={handleRegister} text="Cadastrar" />
+            <ButtonDefault
+              onClick={handleRegister}
+              text="Cadastrar"
+            />
           </ButtonGroup>
         )}
 
