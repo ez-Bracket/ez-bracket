@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -7,32 +7,28 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Button,
   FormControl,
   FormLabel,
   Input,
   Select,
 } from "@chakra-ui/react";
+import { ContextModal } from "../../contexts/ModalContext";
 
 export const NewCampModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpenNewCamp, onCloseNewCamp } =
+    useContext(ContextModal);
 
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
-
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenNewCamp}
+        onClose={onCloseNewCamp}
       >
         <ModalOverlay />
         <ModalContent

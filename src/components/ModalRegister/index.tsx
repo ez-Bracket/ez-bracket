@@ -20,11 +20,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MessageError } from "../MessageError";
 import { UserContext } from "../../contexts/UserContext";
+import { ContextModal } from "../../contexts/ModalContext";
 
 interface IModalRegister {
-  isOpen: boolean;
-  onClose: () => void;
-  onOpenLogin: () => void;
+  title: string;
 }
 
 interface IdataRegister {
@@ -36,10 +35,11 @@ interface IdataRegister {
 }
 
 export const ModalRegister = ({
-  isOpen,
-  onClose,
-  onOpenLogin,
+  title,
 }: IModalRegister) => {
+  const { isOpenRegister, onCloseRegister, onOpenLogin } =
+    useContext(ContextModal);
+
   const [showPass, setShowPass] = useState(false);
 
   const [showConfirmPass, setShowConfirmPass] =
@@ -107,8 +107,8 @@ export const ModalRegister = ({
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenRegister}
+        onClose={onCloseRegister}
       >
         <ModalOverlay />
         <ModalContent
@@ -122,7 +122,7 @@ export const ModalRegister = ({
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
               <h2 className="text-xl tablet:text-2xl">
-                Crie a sua conta
+                {title}
               </h2>
             </ModalHeader>
 
@@ -439,7 +439,7 @@ export const ModalRegister = ({
                 _hover={{
                   bg: "#38F892",
                 }}
-                _active={{ bgColor: '#61FFAA' }}
+                _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
               >
                 Cadastrar
@@ -448,7 +448,7 @@ export const ModalRegister = ({
                 Já possui conta?{" "}
                 <Button
                   onClick={() => {
-                    onClose();
+                    onCloseRegister();
                     onOpenLogin();
                   }}
                   className="underline hover:brightness-90 transition-colors"

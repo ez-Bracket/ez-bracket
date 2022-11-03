@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { Button } from '@chakra-ui/react';
-import 'animate.css';
+import { motion } from "framer-motion";
+import { Button } from "@chakra-ui/react";
+import "animate.css";
+import { useContext } from "react";
+import { ContextModal } from "../../contexts/ModalContext";
 
-interface IHomeMain {
-  onOpenRegister: () => void;
-}
+export const HomeMain = () => {
+  const { onOpenRegister } = useContext(ContextModal);
 
-export const HomeMain = ({ onOpenRegister }: IHomeMain) => {
   return (
     <main className="py-32 tablet:py-56 flex flex-col items-center justify-center">
       <motion.h1
@@ -16,7 +16,8 @@ export const HomeMain = ({ onOpenRegister }: IHomeMain) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Gerencie os seus torneios de forma rápida e gratuita!
+        Gerencie os seus torneios de forma rápida e
+        gratuita!
       </motion.h1>
       <motion.p
         className="mt-4 mb-16 text-center text-xl tablet:text-xl text-gray-100 relative mx-3"
@@ -25,7 +26,8 @@ export const HomeMain = ({ onOpenRegister }: IHomeMain) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Crie os seus campeonatos, convide os seus amigos e se divirta!
+        Crie os seus campeonatos, convide os seus amigos e
+        se divirta!
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -42,9 +44,12 @@ export const HomeMain = ({ onOpenRegister }: IHomeMain) => {
           height="80px"
           fontWeight="semibold"
           fontSize="18px"
-          _hover={{ bgColor: '#61FFAA', textColor: '#08490e' }}
+          _hover={{
+            bgColor: "#61FFAA",
+            textColor: "#08490e",
+          }}
           transition="0.3s ease"
-          _active={{ bgColor: '#61FFAA' }}
+          _active={{ bgColor: "#61FFAA" }}
           onClick={onOpenRegister}
         >
           Comece agora!
