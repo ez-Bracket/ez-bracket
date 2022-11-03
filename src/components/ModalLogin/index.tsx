@@ -24,6 +24,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { MessageError } from '../MessageError';
 import { UserContext } from '../../contexts/UserContext';
+import { Loading } from '../Loading';
 
 
 
@@ -71,7 +72,7 @@ export const ModalLogin = ({
       ),
   });
 
-  const { Login } = useContext(UserContext)
+  const { Login, isLoading } = useContext(UserContext)
 
   const {
     register,
@@ -87,6 +88,10 @@ export const ModalLogin = ({
     console.log(data);
     Login(data)
   };
+
+  if(isLoading) {
+    return <Loading/>
+  }
 
   return (
     <>

@@ -46,46 +46,6 @@ interface IuserApiLoginResp {
     }
 }
 
-export const UserContext = createContext<IuserContext>({} as IuserContext);
-
-export const UserProvider = ({children}: iUserContextProps) => {
-
-    const navigate = useNavigate()
-
-    const [user, setUser] = useState <IuserApiLoginResp | null > (null)
-
-    const Login = async (data: IuserDataLogin) => {
-        try {
-            const resp  = await Api.post <IuserApiLoginResp> ('login', data)
-                window.localStorage.clear()
-                window.localStorage.setItem("@EZ:TOKEN", resp.data.accessToken)
-                window.localStorage.setItem("@EZ:USERID", resp.data.user.id)
-                setUser(resp.data)
-                navigate("/dashboard")
-        } catch (error) {
-            console.log(error)
-        }
-    } 
-
-    const Register = async (data: IuserDataRegister) => {
-        try {
-            const res = await Api.post <IuserApiRegisterResp> ('register', data)
-            console.log(res)
-        } catch (error) {
-            console.log(error)
-        }
-    } 
-
-
-    return (
-        <UserContext.Provider value={{Login, Register, user}}>
-            {children}
-        </UserContext.Provider>
-    )
-
-
-}
-
 export const UserContext = createContext<IuserContext>(
   {} as IuserContext
 );
@@ -97,6 +57,8 @@ export const UserProvider = ({
     useState<IuserApiLoginResp | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate()
 
   const Login = async (data: IuserDataLogin) => {
     try {
@@ -115,6 +77,7 @@ export const UserProvider = ({
         resp.data.user.id
       );
       setUser(resp.data);
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -124,7 +87,7 @@ export const UserProvider = ({
 
   const Register = async (data: IuserDataRegister) => {
     try {
-      const res = await Api.post<IuserApiRegisterResp>(
+    await Api.post<IuserApiRegisterResp>(
         "register",
         data
       );
