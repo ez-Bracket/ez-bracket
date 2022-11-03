@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@chakra-ui/react";
 import "animate.css";
-import { useContext } from "react";
+
+// Utilities
 import { ContextModal } from "../../contexts/ModalContext";
 
 export const HomeMain = () => {
