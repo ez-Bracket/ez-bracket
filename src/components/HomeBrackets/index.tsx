@@ -4,7 +4,7 @@ import { ContextModal } from "../../contexts/ModalContext";
 import { ButtonDefault } from "../Button";
 
 export const HomeBrackets = () => {
-  const { onOpenNewCamp } = useContext(ContextModal);
+  const { onOpenRegister } = useContext(ContextModal);
 
   return (
     <section className="px-4 py-[60px] bg-gray-500 border-t-2 border-t-green-100 border-opacity-50">
@@ -30,7 +30,7 @@ export const HomeBrackets = () => {
             <ButtonDefault
               className="w-max"
               text="Crie o seu torneio"
-              onClick={onOpenNewCamp}
+              onClick={onOpenRegister}
             />
           </div>
         </div>
