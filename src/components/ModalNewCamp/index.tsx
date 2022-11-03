@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useContext, useRef } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -7,7 +7,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Button,
   FormControl,
   FormLabel,
@@ -20,6 +19,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { UserContext } from '../../contexts/UserContext';
 import { MessageError } from '../MessageError';
+import { ContextModal } from '../../contexts/ModalContext';
 
 interface INewCampForm {
   competition: string;
@@ -29,7 +29,7 @@ interface INewCampForm {
 }
 
 export const NewCampModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpenNewCamp, onCloseNewCamp } = useContext(ContextModal);
   const { user } = useContext(UserContext);
 
   const initialRef = useRef(null);
@@ -41,7 +41,7 @@ export const NewCampModal = () => {
     date: yup.string(),
     description: yup.string(),
     status: yup.boolean().default(true),
-    userId: yup.string().default(user[0].id.toString()),
+    userId: yup.string().default(user[0]?.id.toString()),
   });
 
   const {
@@ -58,16 +58,11 @@ export const NewCampModal = () => {
   };
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
-
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenNewCamp}
+        onClose={onCloseNewCamp}
       >
         <ModalOverlay />
         <ModalContent

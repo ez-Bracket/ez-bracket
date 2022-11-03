@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { DashboardMenu } from '../../components/DashboardMenu';
+import { InfoUserModal } from '../../components/ModalInfoUser';
+import { NewCampModal } from '../../components/ModalNewCamp';
+import { ModalRegister } from '../../components/ModalRegister';
 import { UserContext } from '../../contexts/UserContext';
 
-import { NewCampModal } from '../../components/ModalNewCamp';
 import { useDisclosure } from '@chakra-ui/react';
 
 export const Dashboard = () => {
@@ -19,6 +21,9 @@ export const Dashboard = () => {
       ) : (
         <Navigate to="/" replace />
       )}
+      <InfoUserModal />
+      <ModalRegister title="Edite sua conta" />
+      <NewCampModal />
     </>
   );
 };
