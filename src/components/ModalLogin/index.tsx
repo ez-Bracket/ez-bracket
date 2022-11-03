@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import {
   Modal,
@@ -19,6 +19,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { MessageError } from '../MessageError';
+import { UserContext } from '../../contexts/UserContext';
 
 interface ILoginForm {
   email: string;
@@ -55,6 +56,8 @@ export const ModalLogin = ({
       .matches(/(\W)|_/, 'Deve conter ao menos um caracter especial'),
   });
 
+  const { Login } = useContext(UserContext)
+
   const {
     register,
     handleSubmit,
@@ -67,6 +70,7 @@ export const ModalLogin = ({
 
   const onSubmit = (data: ILoginForm) => {
     console.log(data);
+    Login(data)
   };
 
   return (

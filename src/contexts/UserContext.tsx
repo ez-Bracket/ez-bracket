@@ -1,6 +1,6 @@
 
 import { Api } from "../services/Api";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface iUserContextProps {
@@ -50,6 +50,8 @@ export const UserContext = createContext<IuserContext>({} as IuserContext);
 
 export const UserProvider = ({children}: iUserContextProps) => {
 
+    const navigate = useNavigate()
+
     const [user, setUser] = useState <IuserApiLoginResp | null > (null)
 
     const Login = async (data: IuserDataLogin) => {
@@ -59,6 +61,7 @@ export const UserProvider = ({children}: iUserContextProps) => {
                 window.localStorage.setItem("@EZ:TOKEN", resp.data.accessToken)
                 window.localStorage.setItem("@EZ:USERID", resp.data.user.id)
                 setUser(resp.data)
+                navigate("/dashboard")
         } catch (error) {
             console.log(error)
         }
