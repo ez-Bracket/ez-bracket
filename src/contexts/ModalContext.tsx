@@ -1,5 +1,6 @@
-import { createContext } from "react";
-import { useDisclosure } from "@chakra-ui/react";
+import { createContext, useEffect } from 'react';
+import { useDisclosure } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 
 interface iModalContextProps {
   children: React.ReactNode;
@@ -20,13 +21,16 @@ interface iModalContext {
   onCloseInfoUser: () => void;
 }
 
-export const ContextModal = createContext<iModalContext>(
-  {} as iModalContext
-);
+export const ContextModal = createContext<iModalContext>({} as iModalContext);
 
-export const ModalProvider = ({
-  children,
-}: iModalContextProps) => {
+export const ModalProvider = ({ children }: iModalContextProps) => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    onCloseLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
   const {
     isOpen: isOpenRegister,
     onOpen: onOpenRegister,

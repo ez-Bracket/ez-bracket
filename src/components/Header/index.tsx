@@ -7,8 +7,8 @@ import { MobileMenu } from "../MobileMenu";
 import { FiLogIn } from "react-icons/fi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { ButtonDefault } from "../Button";
-import "animate.css";
 import { ContextModal } from "../../contexts/ModalContext";
+import "animate.css";
 
 export const Header = () => {
   const { onOpenLogin, onOpenRegister } =
