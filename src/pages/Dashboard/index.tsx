@@ -11,7 +11,7 @@ export const Dashboard = () => {
   return (
     <>
       {
-        user ? 
+        user.length > 0 ? 
           <div>Dashboard</div>
           :
         <Navigate to="/"/>
