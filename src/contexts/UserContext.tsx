@@ -1,6 +1,7 @@
 import { Api } from "../services/Api";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CustomToast } from "../components/Toast";
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -37,13 +38,13 @@ interface IuserDataLogin {
 }
 
 interface IuserApiLoginResp {
-    accessToken: string,
-    user: {
-        email: string,
-        name: string,
-        imgUrl?:string,
-        id: string
-    }
+  accessToken: string;
+  user: {
+    email: string;
+    name: string;
+    imgUrl?: string;
+    id: string;
+  };
 }
 
 export const UserContext = createContext<IuserContext>(
@@ -58,7 +59,9 @@ export const UserProvider = ({
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const { toastify } = CustomToast();
 
   const Login = async (data: IuserDataLogin) => {
     try {
@@ -78,8 +81,18 @@ export const UserProvider = ({
       );
       setUser(resp.data);
       navigate("/dashboard");
+
+      toastify({
+        description: "Login realizado com sucesso!",
+        status: "success",
+      });
     } catch (error) {
       console.log(error);
+      toastify({
+        description:
+          "E-mail ou senha inválido, tente novamente!",
+        status: "error",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -87,12 +100,23 @@ export const UserProvider = ({
 
   const Register = async (data: IuserDataRegister) => {
     try {
-    await Api.post<IuserApiRegisterResp>(
+      await Api.post<IuserApiRegisterResp>(
         "register",
         data
       );
+
+      toastify({
+        description: "Usuário cadastrado com sucesso!",
+        status: "success",
+      });
     } catch (error) {
       console.log(error);
+
+      toastify({
+        description:
+          "Ops, algo deu errado tente novamente!",
+        status: "error",
+      });
     }
   };
 
