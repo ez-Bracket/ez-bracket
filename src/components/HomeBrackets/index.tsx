@@ -12,7 +12,7 @@ export const HomeBrackets = ({ onOpen }: IHomeBrackets) => {
         <h1 className="text-4xl text-white">
           Chaveamento simples e de fácil organização
         </h1>
-        <div className="my-[60px] flex gap-20 laptop:gap-[120px] laptop:items-center justify-between flex-col laptop:flex-row items-start">
+        <div className="tablet:my-[60px] flex gap-20 laptop:gap-[120px] laptop:items-center justify-between flex-col laptop:flex-row items-start">
           <div className="hidden tablet:flex w-full">
             <img src={Brackets} alt="Exemplo de chaveamento" />
           </div>
@@ -23,7 +23,11 @@ export const HomeBrackets = ({ onOpen }: IHomeBrackets) => {
             <p className="text-gray-100 mb-5 text-2xl">
               Chega de reunir seus amigos e organizar tudo com papel e caneta.
             </p>
-            <ButtonDefault text="Crie o seu torneio" onClick={onOpen} />
+            <ButtonDefault
+              className="w-max"
+              text="Crie o seu torneio"
+              onClick={onOpen}
+            />
           </div>
         </div>
       </div>

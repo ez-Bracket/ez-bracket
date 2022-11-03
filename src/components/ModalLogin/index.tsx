@@ -251,7 +251,7 @@ export const ModalLogin = ({
               <Button
                 type="submit"
                 bg="#61FFAA"
-                color="#221E34"
+                color="#08490e"
                 fontWeight="500"
                 fontSize="18px"
                 w="100%"

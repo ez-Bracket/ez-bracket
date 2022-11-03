@@ -1,25 +1,31 @@
-import { Button } from "@chakra-ui/react";
+import { Button } from '@chakra-ui/react';
 
 interface IButtonDefaultProps {
   onClick: () => void;
   text: string;
   isLoading?: boolean | undefined;
+  className?: string;
+  height?: string;
 }
 
 export const ButtonDefault = ({
   onClick,
   text,
   isLoading,
+  className,
+  height,
 }: IButtonDefaultProps) => {
   return (
     <Button
+      className={className}
       fontSize="l"
       fontWeight="medium"
       minWidth="150px"
-      maxWidth="max-content"
+      height={height}
       bgColor="#61FFAA"
-      _hover={{ bg: "#38F892" }}
-      _active={{ bg: "#38F892" }}
+      color="#08490e"
+      _hover={{ bg: '#38F892' }}
+      _active={{ bg: '#38F892' }}
       onClick={onClick}
       isLoading={isLoading}
     >

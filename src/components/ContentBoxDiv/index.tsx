@@ -9,8 +9,8 @@ export const ContentBoxDiv = () => {
   const classBox = 'text-green-100 text-5xl';
 
   return (
-    <div className="flex justify-center">
-      <div className="max-w-7xl m-auto px-4 py-5 flex gap-10 laptop:justify-evenly overflow-x-scroll laptop:overflow-hidden laptop:flex-wrap  laptop:bg-transparent laptop:w-full mb-[120px]">
+    <div className="flex justify-center -mt-[130px] relative z-8 laptop:pb-10">
+      <div className="max-w-7xl m-auto px-4 flex gap-10 laptop:gap-4 laptop:justify-evenly overflow-x-scroll laptop:overflow-hidden laptop:flex-wrap laptop:w-full mb-20 laptop:mb-[120px]">
         <ContentBox
           title="Crie torneios"
           text="Convide seus amigos e gerencie campeonatos."
