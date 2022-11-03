@@ -1,21 +1,20 @@
-import { Logo } from '../Logo';
-import { Button, ButtonGroup } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { useMedia } from '../../hooks/useMedia';
-import { useLocation } from 'react-router-dom';
-import { MobileMenu } from '../MobileMenu';
-import { FiLogIn } from 'react-icons/fi';
-import { HiOutlinePencilAlt } from 'react-icons/hi';
-import { ButtonDefault } from '../Button';
-import 'animate.css';
+import { Logo } from "../Logo";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
+import { useMedia } from "../../hooks/useMedia";
+import { useLocation } from "react-router-dom";
+import { MobileMenu } from "../MobileMenu";
+import { FiLogIn } from "react-icons/fi";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { ButtonDefault } from "../Button";
+import { ContextModal } from "../../contexts/ModalContext";
+import "animate.css";
 
-interface IHeader {
-  onOpenRegister: () => void;
-  onOpenLogin: () => void;
-}
+export const Header = () => {
+  const { onOpenLogin, onOpenRegister } =
+    useContext(ContextModal);
 
-export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
-  const mobile = useMedia('(max-width:40rem)');
+  const mobile = useMedia("(max-width:40rem)");
   const { pathname } = useLocation();
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -44,7 +43,10 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
         </div>
 
         {mobile ? (
-          <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+          <MobileMenu
+            mobileMenu={mobileMenu}
+            setMobileMenu={setMobileMenu}
+          />
         ) : (
           <ButtonGroup gap="10">
             <Button
@@ -56,12 +58,15 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
             >
               Entrar
             </Button>
-            <ButtonDefault onClick={handleRegister} text="Cadastrar" />
+            <ButtonDefault
+              onClick={handleRegister}
+              text="Cadastrar"
+            />
           </ButtonGroup>
         )}
 
         {mobileMenu && mobile ? (
-          <div className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 z-10 animate__animated animate__fadeInDownBig animate__fast">
+          <nav className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 z-10 animate__animated animate__fadeInDownBig animate__fast">
             <button
               onClick={handleLogin}
               className="text-white text-xl py-6 flex items-center justify-between border-b-2 border-green-100 border-opacity-50"
@@ -76,7 +81,7 @@ export const Header = ({ onOpenRegister, onOpenLogin }: IHeader) => {
               Cadastrar
               <HiOutlinePencilAlt className="w-8 h-8 text-green-100" />
             </button>
-          </div>
+          </nav>
         ) : (
           <div className="absolute top-[94px] left-0 flex flex-col bg-gray-300 w-full h-screen px-8 animate__animated animate__fadeOutUpBig animate__fast"></div>
         )}

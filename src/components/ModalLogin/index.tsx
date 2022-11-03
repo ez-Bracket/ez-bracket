@@ -1,7 +1,5 @@
-
-import { useContext, useRef, useState } from 'react';
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
-
+import { useContext, useRef, useState } from "react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 import {
   Modal,
@@ -17,62 +15,38 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-
-} from '@chakra-ui/react';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { MessageError } from '../MessageError';
-import { UserContext } from '../../contexts/UserContext';
-import { Loading } from '../Loading';
-
-
+} from "@chakra-ui/react";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { MessageError } from "../MessageError";
+import { UserContext } from "../../contexts/UserContext";
+import { Loading } from "../Loading";
+import { ContextModal } from "../../contexts/ModalContext";
 
 interface ILoginForm {
   email: string;
   password: string;
 }
 
-interface IModalLogin {
-  isOpen: boolean;
-  onClose: () => void;
-  onOpenRegister: () => void;
-}
-
-export const ModalLogin = ({
-  isOpen,
-  onClose,
-  onOpenRegister,
-}: IModalLogin) => {
+export const ModalLogin = () => {
   const [showPass, setShowPass] = useState(false);
+
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
   const loginSchema = yup.object().shape({
     email: yup
       .string()
-      .email("Digite um E-mail válido!!!")
+      .email("E-mail obrigatório")
       .required("E-mail obrigatório"),
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .min(8, "Deve conter no mínimo 8 caracteres")
-      .matches(
-        /[A-Z]/,
-        "Deve conter ao menos uma letra maiúscula"
-      )
-      .matches(
-        /[a-z]/,
-        "Deve conter ao menos uma letra minúscula"
-      )
-      .matches(/[0-9]/, "Deve conter ao menos um número")
-      .matches(
-        /(\W)|_/,
-        "Deve conter ao menos um caracter especial"
-      ),
+    password: yup.string().required("Senha obrigatória"),
   });
 
-  const { Login, isLoading } = useContext(UserContext)
+  const { isOpenLogin, onCloseLogin, onOpenRegister } =
+    useContext(ContextModal);
+
+  const { Login, isLoading } = useContext(UserContext);
 
   const {
     register,
@@ -85,12 +59,11 @@ export const ModalLogin = ({
   const handleShowPass = () => setShowPass(!showPass);
 
   const onSubmit = (data: ILoginForm) => {
-    console.log(data);
-    Login(data)
+    Login(data);
   };
 
-  if(isLoading) {
-    return <Loading/>
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
@@ -98,8 +71,8 @@ export const ModalLogin = ({
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenLogin}
+        onClose={onCloseLogin}
       >
         <ModalOverlay />
         <ModalContent
@@ -268,7 +241,7 @@ export const ModalLogin = ({
                 Não possui conta?{" "}
                 <Button
                   onClick={() => {
-                    onClose();
+                    onCloseLogin();
                     onOpenRegister();
                   }}
                   className="underline hover:brightness-90 transition-colors"

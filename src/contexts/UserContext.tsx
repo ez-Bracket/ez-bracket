@@ -1,6 +1,7 @@
-import { Api } from "../services/Api";
-import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Api } from '../services/Api';
+import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CustomToast } from '../components/Toast';
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -8,9 +9,10 @@ interface iUserContextProps {
 
 interface IuserContext {
   isLoading: boolean;
-  user: IuserApiLoginResp | null;
+  user: IuserApiGet[];
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
+  Logout: () => void;
 }
 
 interface IuserDataRegister {
@@ -37,49 +39,74 @@ interface IuserDataLogin {
 }
 
 interface IuserApiLoginResp {
-    accessToken: string,
-    user: {
-        email: string,
-        name: string,
-        imgUrl?:string,
-        id: string
-    }
+  accessToken: string;
+  user: {
+    email: string;
+    name: string;
+    imgUrl?: string;
+    id: string;
+  };
 }
 
-export const UserContext = createContext<IuserContext>(
-  {} as IuserContext
-);
+interface IuserApiGet {
+  confirmPassword: string;
+  email: string;
+  id: number | string;
+  imgUrl: string;
+  name: string;
+  password: string;
+}
 
-export const UserProvider = ({
-  children,
-}: iUserContextProps) => {
-  const [user, setUser] =
-    useState<IuserApiLoginResp | null>(null);
+export const UserContext = createContext<IuserContext>({} as IuserContext);
 
+export const UserProvider = ({ children }: iUserContextProps) => {
+  const [user, setUser] = useState<IuserApiGet[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { toastify } = CustomToast();
 
-  const navigate = useNavigate()
+  const LoadUser = async () => {
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
+
+    if (token) {
+      setIsLoading(true);
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const res = await Api.get<IuserApiGet>(`users/${id}`);
+        setUser([res.data]);
+        navigate('/dashboard');
+      } catch (error) {
+        return error;
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    LoadUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const Login = async (data: IuserDataLogin) => {
     try {
       setIsLoading(true);
-      const resp = await Api.post<IuserApiLoginResp>(
-        "login",
-        data
-      );
+      const resp = await Api.post<IuserApiLoginResp>('login', data);
       window.localStorage.clear();
-      window.localStorage.setItem(
-        "@EZ:TOKEN",
-        resp.data.accessToken
-      );
-      window.localStorage.setItem(
-        "@EZ:USERID",
-        resp.data.user.id
-      );
-      setUser(resp.data);
-      navigate("/dashboard");
+      window.localStorage.setItem('@EZ:TOKEN', resp.data.accessToken);
+      window.localStorage.setItem('@EZ:USERID', resp.data.user.id);
+      LoadUser();
+      toastify({
+        description: 'Login realizado com sucesso!',
+        status: 'success',
+      });
     } catch (error) {
-      console.log(error);
+      toastify({
+        description: 'E-mail ou senha inválido, tente novamente!',
+        status: 'error',
+      });
+      return error;
     } finally {
       setIsLoading(false);
     }
@@ -87,19 +114,30 @@ export const UserProvider = ({
 
   const Register = async (data: IuserDataRegister) => {
     try {
-    await Api.post<IuserApiRegisterResp>(
-        "register",
-        data
-      );
+      await Api.post<IuserApiRegisterResp>('register', data);
+
+      toastify({
+        description: 'Usuário cadastrado com sucesso!',
+        status: 'success',
+      });
     } catch (error) {
-      console.log(error);
+      toastify({
+        description: 'Ops, algo deu errado tente novamente!',
+        status: 'error',
+      });
+      return error;
     }
   };
 
+  const Logout = () => {
+    setUser([]);
+    window.localStorage.removeItem('@EZ:TOKEN');
+    window.localStorage.removeItem('@EZ:USERID');
+    navigate('/');
+  };
+
   return (
-    <UserContext.Provider
-      value={{ Login, Register, user, isLoading }}
-    >
+    <UserContext.Provider value={{ Login, Register, Logout, user, isLoading }}>
       {children}
     </UserContext.Provider>
   );
