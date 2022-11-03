@@ -5,6 +5,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 import { NewCampModal } from '../../components/ModalNewCamp';
 import { useDisclosure } from '@chakra-ui/react';
+
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
 

@@ -41,7 +41,7 @@ export const NewCampModal = () => {
     date: yup.string(),
     description: yup.string(),
     status: yup.boolean().default(true),
-    userId: yup.string().default(user?.user.id.toString()),
+    userId: yup.string().default(user[0].id.toString()),
   });
 
   const {
