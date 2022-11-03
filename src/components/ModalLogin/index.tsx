@@ -1,7 +1,5 @@
-
 import { useContext, useRef, useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-
 
 import {
   Modal,
@@ -17,7 +15,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-
 } from '@chakra-ui/react';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -25,8 +22,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { MessageError } from '../MessageError';
 import { UserContext } from '../../contexts/UserContext';
 import { Loading } from '../Loading';
-
-
 
 interface ILoginForm {
   email: string;
@@ -51,28 +46,12 @@ export const ModalLogin = ({
   const loginSchema = yup.object().shape({
     email: yup
       .string()
-      .email("Digite um E-mail válido!!!")
-      .required("E-mail obrigatório"),
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .min(8, "Deve conter no mínimo 8 caracteres")
-      .matches(
-        /[A-Z]/,
-        "Deve conter ao menos uma letra maiúscula"
-      )
-      .matches(
-        /[a-z]/,
-        "Deve conter ao menos uma letra minúscula"
-      )
-      .matches(/[0-9]/, "Deve conter ao menos um número")
-      .matches(
-        /(\W)|_/,
-        "Deve conter ao menos um caracter especial"
-      ),
+      .email('E-mail obrigatório')
+      .required('E-mail obrigatório'),
+    password: yup.string().required('Senha obrigatória'),
   });
 
-  const { Login, isLoading } = useContext(UserContext)
+  const { Login, isLoading } = useContext(UserContext);
 
   const {
     register,
@@ -85,12 +64,11 @@ export const ModalLogin = ({
   const handleShowPass = () => setShowPass(!showPass);
 
   const onSubmit = (data: ILoginForm) => {
-    console.log(data);
-    Login(data)
+    Login(data);
   };
 
-  if(isLoading) {
-    return <Loading/>
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
@@ -112,9 +90,7 @@ export const ModalLogin = ({
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
-              <h2 className="text-xl tablet:text-2xl">
-                Entre na sua conta
-              </h2>
+              <h2 className="text-xl tablet:text-2xl">Entre na sua conta</h2>
             </ModalHeader>
 
             <ModalCloseButton
@@ -122,66 +98,45 @@ export const ModalLogin = ({
               borderRadius={50}
               h={6}
               w={6}
-              _hover={{ bg: "#38F892" }}
+              _hover={{ bg: '#38F892' }}
               transition="0.3s ease"
             />
           </div>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-[100%]"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
             <ModalBody className=" mt-1 laptop:mt-4 mb-4">
               <FormControl position="relative">
                 <FormLabel
                   fontSize={16}
-                  className={
-                    errors.email
-                      ? "text-error-100"
-                      : "text-green-100"
-                  }
+                  className={errors.email ? 'text-error-100' : 'text-green-100'}
                 >
                   Email
                 </FormLabel>
                 <Input
                   placeholder="Digite o e-mail do usuário"
                   _placeholder={{
-                    color: "#c7c7c7",
-                    opacity: "50%",
+                    color: '#c7c7c7',
+                    opacity: '50%',
                   }}
-                  borderColor={
-                    errors.email?.message
-                      ? "#E64980"
-                      : "#353149"
-                  }
+                  borderColor={errors.email?.message ? '#E64980' : '#353149'}
                   bg="#353149"
                   fontSize="14px"
                   height="50px"
-                  color={
-                    errors.email?.message
-                      ? "#E64980"
-                      : "#fff"
-                  }
+                  color={errors.email?.message ? '#E64980' : '#fff'}
                   focusBorderColor={
-                    errors.email?.message
-                      ? "#E64980"
-                      : "#c7c7c7"
+                    errors.email?.message ? '#E64980' : '#c7c7c7'
                   }
-                  {...register("email")}
+                  {...register('email')}
                 />
                 {errors.email?.message && (
-                  <MessageError
-                    error={errors.email?.message}
-                  ></MessageError>
+                  <MessageError error={errors.email?.message}></MessageError>
                 )}
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel
                   className={
-                    errors.password
-                      ? "text-error-100"
-                      : "text-green-100"
+                    errors.password ? 'text-error-100' : 'text-green-100'
                   }
                 >
                   Senha
@@ -190,37 +145,29 @@ export const ModalLogin = ({
                   <Input
                     placeholder="Digite sua senha"
                     _placeholder={{
-                      color: "#c7c7c7",
-                      opacity: "50%",
+                      color: '#c7c7c7',
+                      opacity: '50%',
                     }}
                     borderColor={
-                      errors.password?.message
-                        ? "#E64980"
-                        : "#353149"
+                      errors.password?.message ? '#E64980' : '#353149'
                     }
                     bg="#353149"
                     fontSize="14px"
                     height="50px"
-                    color={
-                      errors.email?.message
-                        ? "#E64980"
-                        : "#fff"
-                    }
+                    color={errors.email?.message ? '#E64980' : '#fff'}
                     focusBorderColor={
-                      errors.email?.message
-                        ? "#E64980"
-                        : "#c7c7c7"
+                      errors.email?.message ? '#E64980' : '#c7c7c7'
                     }
-                    type={showPass ? "text" : "password"}
-                    {...register("password")}
+                    type={showPass ? 'text' : 'password'}
+                    {...register('password')}
                   />
                   <InputRightElement>
                     <Button
                       onClick={handleShowPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: "transparent" }}
-                      _active={{ bg: "transparent" }}
+                      _hover={{ bg: 'transparent' }}
+                      _active={{ bg: 'transparent' }}
                       top="5px"
                       right="10px"
                     >
@@ -233,9 +180,7 @@ export const ModalLogin = ({
                   </InputRightElement>
                 </InputGroup>
                 {errors.password?.message && (
-                  <MessageError
-                    error={errors.password?.message}
-                  ></MessageError>
+                  <MessageError error={errors.password?.message}></MessageError>
                 )}
               </FormControl>
             </ModalBody>
@@ -258,14 +203,14 @@ export const ModalLogin = ({
                 h="49px"
                 mb={5}
                 _hover={{
-                  bg: "#38F892",
+                  bg: '#38F892',
                 }}
                 transition="0.3s ease"
               >
                 Entrar
               </Button>
               <p>
-                Não possui conta?{" "}
+                Não possui conta?{' '}
                 <Button
                   onClick={() => {
                     onClose();
