@@ -110,8 +110,6 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
 
         game.data.games[0] = createGames;
 
-        console.log(game.data);
-
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
         console.log("Quantidade de jogadores errada! 4 ou 8 ou 16!");

@@ -11,10 +11,6 @@ export const DashboardMain = () => {
 
   useEffect(() => {
     getCompetition(Number(idUser));
-  }, []);
-
-  useEffect(() => {
-    console.log(camp);
   }, [camp]);
 
   return camp.length ? (

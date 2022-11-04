@@ -1,7 +1,7 @@
-import { useContext, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useRef } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Modal,
   ModalOverlay,
@@ -16,17 +16,17 @@ import {
   Input,
   Select,
   Textarea,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 // Utilities
-import { UserContext } from '../../contexts/UserContext';
-import { ContextModal } from '../../contexts/ModalContext';
-import { iCampRegister } from '../../contexts/CampContext';
-import { CampConext } from '../../contexts/CampContext';
+import { UserContext } from "../../contexts/UserContext";
+import { ContextModal } from "../../contexts/ModalContext";
+import { iCampRegister } from "../../contexts/CampContext";
+import { CampConext } from "../../contexts/CampContext";
 
 // Components
-import { MessageError } from '../MessageError';
-import { CustomToast } from '../Toast';
+import { MessageError } from "../MessageError";
+import { CustomToast } from "../Toast";
 
 interface INewCampForm {
   competition: string;
@@ -46,14 +46,14 @@ export const NewCampModal = () => {
   const finalRef = useRef(null);
 
   const newCampSchema = yup.object().shape({
-    name: yup.string().required('Campo obrigatório'),
-    number_of_players: yup.string().required('Campo Obrigatório!!!'),
+    name: yup.string().required("Campo obrigatório"),
+    number_of_players: yup.string().required("Campo Obrigatório!!!"),
 
     date: yup.string(),
     description: yup.string(),
     status: yup.boolean().default(true),
-    userId: yup.number().default(user[0]?.id),
-    winner: yup.string().default(''),
+    idUser: yup.number().default(user[0]?.id),
+    winner: yup.string().default(""),
     games: yup.array().default([]),
     players: yup.array().default([]),
   });
@@ -70,15 +70,15 @@ export const NewCampModal = () => {
     try {
       createCompetition(data);
       const res = {
-        description: 'Torneio criado com sucesso',
-        status: 'success',
+        description: "Torneio criado com sucesso",
+        status: "success",
       };
       toastify(res);
       onCloseNewCamp();
     } catch (error) {
       const res = {
-        description: 'Ops, algo deu errado!!',
-        status: 'error',
+        description: "Ops, algo deu errado!!",
+        status: "error",
       };
       toastify(res);
     }
@@ -112,7 +112,7 @@ export const NewCampModal = () => {
               h={6}
               w={6}
               bg="#61FFAA"
-              _hover={{ bg: '#38F892' }}
+              _hover={{ bg: "#38F892" }}
               transition="0.3s ease"
             />
           </div>
@@ -123,7 +123,7 @@ export const NewCampModal = () => {
                 <FormLabel
                   fontSize={16}
                   className={
-                    errors.name?.message ? 'text-error-100' : 'text-green-100'
+                    errors.name?.message ? "text-error-100" : "text-green-100"
                   }
                 >
                   Nome do torneio
@@ -132,18 +132,18 @@ export const NewCampModal = () => {
                 <Input
                   placeholder="Digite o nome do torneio"
                   _placeholder={{
-                    color: '#c7c7c7',
-                    opacity: '50%',
+                    color: "#c7c7c7",
+                    opacity: "50%",
                   }}
                   bg="#353149"
                   fontSize="14px"
                   height="50px"
                   color="#c7c7c7"
                   focusBorderColor={
-                    errors.name?.message ? '#E64980' : '#c7c7c7'
+                    errors.name?.message ? "#E64980" : "#c7c7c7"
                   }
-                  borderColor={errors.name?.message ? '#E64980' : '#353149'}
-                  {...register('name')}
+                  borderColor={errors.name?.message ? "#E64980" : "#353149"}
+                  {...register("name")}
                 />
                 {errors.name?.message && (
                   <MessageError error={errors.name.message}></MessageError>
@@ -163,8 +163,8 @@ export const NewCampModal = () => {
                     fontSize={16}
                     className={
                       errors.number_of_players?.message
-                        ? 'text-error-100'
-                        : 'text-green-100'
+                        ? "text-error-100"
+                        : "text-green-100"
                     }
                   >
                     Participantes
@@ -175,20 +175,20 @@ export const NewCampModal = () => {
                     h="60px"
                     w="100%"
                     focusBorderColor={
-                      errors.number_of_players?.message ? '#E64980' : '#c7c7c7'
+                      errors.number_of_players?.message ? "#E64980" : "#c7c7c7"
                     }
                     borderColor={
-                      errors.number_of_players?.message ? '#E64980' : '#353149'
+                      errors.number_of_players?.message ? "#E64980" : "#353149"
                     }
-                    {...register('number_of_players')}
+                    {...register("number_of_players")}
                   >
-                    <option style={{ backgroundColor: '#353149' }} value="4">
+                    <option style={{ backgroundColor: "#353149" }} value="4">
                       4
                     </option>
-                    <option style={{ backgroundColor: '#353149' }} value="8">
+                    <option style={{ backgroundColor: "#353149" }} value="8">
                       8
                     </option>
-                    <option style={{ backgroundColor: '#353149' }} value="16">
+                    <option style={{ backgroundColor: "#353149" }} value="16">
                       16
                     </option>
                   </Select>
@@ -212,13 +212,13 @@ export const NewCampModal = () => {
                     h="60px"
                     w="100%"
                     css={{
-                      '::-webkit-calendar-picker-indicator': {
-                        cursor: 'pointer',
-                        color: '#c7c7c7',
+                      "::-webkit-calendar-picker-indicator": {
+                        cursor: "pointer",
+                        color: "#c7c7c7",
                         background: `url(https://cdn1.iconfinder.com/data/icons/time-and-date-ii/24/Material_icons-03-70-256.png)center/100% no-repeat `,
                       },
                     }}
-                    {...register('date')}
+                    {...register("date")}
                   />
                 </div>
               </FormControl>
@@ -229,8 +229,8 @@ export const NewCampModal = () => {
                 <Textarea
                   placeholder="Adicione uma descrição do torneio"
                   _placeholder={{
-                    color: '#c7c7c7',
-                    opacity: '50%',
+                    color: "#c7c7c7",
+                    opacity: "50%",
                   }}
                   borderColor="#353149"
                   bg="#353149"
@@ -238,7 +238,7 @@ export const NewCampModal = () => {
                   paddingTop={4}
                   color="#c7c7c7"
                   resize="none"
-                  {...register('description')}
+                  {...register("description")}
                 />
               </FormControl>
             </ModalBody>
@@ -252,9 +252,9 @@ export const NewCampModal = () => {
                 w="100%"
                 h="49px"
                 _hover={{
-                  bg: '#38F892',
+                  bg: "#38F892",
                 }}
-                _active={{ bgColor: '#61FFAA' }}
+                _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
                 type="submit"
               >
