@@ -17,10 +17,11 @@ export const ModalDeleteCamp = () => {
 
   const { deleteCompetition } = useContext(CampConext);
 
+  const { idCamp } = useContext(CampConext);
+
   const onSubmitDelete = () => {
-    onCloseDeleteCamp();
-    const idCamp = 16;
     deleteCompetition(idCamp);
+    onCloseDeleteCamp();
   };
 
   const finalRef = useRef(null);
