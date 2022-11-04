@@ -86,8 +86,25 @@ export const ModalRegister = () => {
     imgUrl: yup.string().url("URL inválida"),
   });
 
-  const { Register, isRegisterSuccess } =
-    useContext(UserContext);
+  const {
+    Register,
+    isRegisterSuccess,
+    setIsRegisterSuccess,
+  } = useContext(UserContext);
+
+  console.log(isRegisterSuccess);
+
+  const handleClick = () => {
+    if (isRegisterSuccess) {
+      onCloseRegister();
+    }
+    return null;
+  };
+
+  if (isRegisterSuccess) {
+    onCloseRegister();
+    setIsRegisterSuccess(!isRegisterSuccess);
+  }
 
   const {
     register,
@@ -428,11 +445,7 @@ export const ModalRegister = () => {
               fontSize="14px"
             >
               <Button
-                onClick={() =>
-                  !isRegisterSuccess
-                    ? onCloseRegister()
-                    : "null"
-                }
+                onClick={handleClick}
                 type="submit"
                 bg="#61FFAA"
                 color="#08490e"

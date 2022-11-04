@@ -1,6 +1,6 @@
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Utilities
 import { Api } from "../services/Api";
@@ -23,6 +23,9 @@ interface IuserContext {
   Register: (data: IuserDataRegister) => void;
   Logout: () => void;
   EditUser: (data: IdataEditUser) => void;
+  setIsRegisterSuccess: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
 }
 
 interface IuserDataRegister {
@@ -84,7 +87,9 @@ interface IapiEditResp {
   id: number;
 }
 
-export const UserContext = createContext<IuserContext>({} as IuserContext);
+export const UserContext = createContext<IuserContext>(
+  {} as IuserContext
+);
 
 export const UserProvider = ({
   children,
@@ -176,29 +181,23 @@ export const UserProvider = ({
     }
   };
 
-  const { onCloseEditUser } = useContext(ContextModal);
-
-  const CloseModal = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    onCloseEditUser;
-  };
-
   const EditUser = async (data: IdataEditUser) => {
 
-    const token = localStorage.getItem('@EZ:TOKEN');
-    const id = localStorage.getItem('@EZ:USERID');
+    const token = localStorage.getItem("@EZ:TOKEN");
+    const id = localStorage.getItem("@EZ:USERID");
 
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
       await Api.patch<IapiEditResp>(`users/${id}`, data);
       toastify({
-        description: 'Usuário alterado com sucesso!',
-        status: 'success',
+        description: "Usuário alterado com sucesso!",
+        status: "success",
       });
       LoadUser();
     } catch (error) {
       toastify({
-        description: "Ops, algo deu errado tente novamente!",
+        description:
+          "Ops, algo deu errado tente novamente!",
         status: "error",
 
       });
@@ -223,6 +222,7 @@ export const UserProvider = ({
         isLoading,
         EditUser,
         isRegisterSuccess,
+        setIsRegisterSuccess,
       }}
     >
       {children}
