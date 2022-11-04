@@ -17,12 +17,17 @@ import {
   Select,
 } from "@chakra-ui/react";
 
+
 // Utilities
 import { UserContext } from "../../contexts/UserContext";
 import { ContextModal } from "../../contexts/ModalContext";
+import { iCampRegister } from '../../contexts/CampContext';
+import { CampConext } from '../../contexts/CampContext';
+
 
 // Components
 import { MessageError } from "../MessageError";
+import { CustomToast } from '../Toast';
 
 interface INewCampForm {
   competition: string;
@@ -31,38 +36,56 @@ interface INewCampForm {
   description?: string;
 }
 
+
 export const NewCampModal = () => {
   const { isOpenNewCamp, onCloseNewCamp } =
     useContext(ContextModal);
   const { user } = useContext(UserContext);
+  const { createCompetition } = useContext(CampConext);
+
+  const { toastify } = CustomToast();
 
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
   const newCampSchema = yup.object().shape({
-    competition: yup
-      .string()
-      .required("Campo Obrigatório!!!"),
-    number_of_players: yup
-      .string()
-      .required("Campo Obrigatório!!!"),
+
+    name: yup.string().required('Campo Obrigatório!!!'),
+    number_of_players: yup.string().required('Campo Obrigatório!!!'),
+
     date: yup.string(),
     description: yup.string(),
     status: yup.boolean().default(true),
-    userId: yup.string().default(user[0]?.id.toString()),
+    userId: yup.number().default(user[0]?.id),
+    winner: yup.string().default(''),
+    games: yup.array().default([]),
+    players: yup.array().default([]),
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<INewCampForm>({
+  } = useForm<iCampRegister>({
     resolver: yupResolver(newCampSchema),
   });
 
-  console.log(errors);
-  const onSubmit = (data: INewCampForm) => {
-    console.log(data);
+  const onSubmit = (data: iCampRegister) => {
+    try {
+      createCompetition(data);
+      const res = {
+        description: 'Torneio criado com sucesso',
+        status: 'success',
+      };
+      toastify(res);
+      onCloseNewCamp();
+    } catch (error) {
+      const res = {
+        description: 'Ops, algo deu errado!!',
+        status: 'error',
+      };
+      toastify(res);
+    }
   };
   return (
     <>
@@ -102,9 +125,9 @@ export const NewCampModal = () => {
               <FormControl>
                 <FormLabel
                   className={
-                    errors.competition?.message
-                      ? "text-error-100"
-                      : "text-green-100"
+
+                    errors.name?.message ? 'text-error-100' : 'text-green-100'
+
                   }
                 >
                   Nome do torneio
@@ -117,21 +140,15 @@ export const NewCampModal = () => {
                   height="60px"
                   color="#c7c7c7"
                   focusBorderColor={
-                    errors.competition?.message
-                      ? "#E64980"
-                      : "#c7c7c7"
+
+                    errors.name?.message ? '#E64980' : '#c7c7c7'
                   }
-                  borderColor={
-                    errors.competition?.message
-                      ? "#E64980"
-                      : "#353149"
-                  }
-                  {...register("competition")}
+                  borderColor={errors.name?.message ? '#E64980' : '#353149'}
+                  {...register('name')}
+
                 />
-                {errors.competition?.message && (
-                  <MessageError
-                    error={errors.competition.message}
-                  ></MessageError>
+                {errors.name?.message && (
+                  <MessageError error={errors.name.message}></MessageError>
                 )}
               </FormControl>
 
