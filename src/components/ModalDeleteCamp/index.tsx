@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -7,32 +7,30 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  Box,
   Button,
 } from "@chakra-ui/react";
+import { ContextModal } from "../../contexts/ModalContext";
+import { CampConext } from "../../contexts/CampContext";
 
 export const ModalDeleteCamp = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpenDeleteCamp, onCloseDeleteCamp } = useContext(ContextModal);
+
+  const { deleteCompetition } = useContext(CampConext);
+
+  const onSubmitDelete = () => {
+    onCloseDeleteCamp();
+    const idCamp = 16;
+    deleteCompetition(idCamp);
+  };
+
   const finalRef = useRef(null);
 
   return (
     <>
-      <Box
-        ref={finalRef}
-        tabIndex={-1}
-        aria-label="Focus moved to this box"
-      >
-        Some other content that'll receive focus on close.
-      </Box>
-
-      <Button mt={4} onClick={onOpen}>
-        Open Modal
-      </Button>
       <Modal
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenDeleteCamp}
+        onClose={onCloseDeleteCamp}
       >
         <ModalOverlay />
         <ModalContent
@@ -43,9 +41,7 @@ export const ModalDeleteCamp = () => {
           bg="#221E34"
         >
           <ModalHeader className="text-green-100 mt-9 mb-0">
-            <p className="text-3xl text-center">
-              Deletar torneio
-            </p>
+            <p className="text-3xl text-center">Deletar torneio</p>
           </ModalHeader>
           <ModalCloseButton
             className="mt-6 mr-7 bg-green-100 text-gray-300"
@@ -66,32 +62,28 @@ export const ModalDeleteCamp = () => {
                 w="50%"
                 h="55px"
                 mr={3}
-                onClick={onClose}
+                onClick={onSubmitDelete}
                 _hover={{
                   filter: "auto",
                   brightness: "70%",
                 }}
                 transition="0.3s ease"
               >
-                <p className="text-gray-300 text-xl font-medium">
-                  Sim
-                </p>
+                <p className="text-gray-300 text-xl font-medium">Sim</p>
               </Button>
               <Button
                 bg="#E64980"
                 w="50%"
                 h="55px"
                 mr={3}
-                onClick={onClose}
+                onClick={onCloseDeleteCamp}
                 _hover={{
                   filter: "auto",
                   brightness: "80%",
                 }}
                 transition="0.3s ease"
               >
-                <p className="text-gray-300 text-xl font-medium">
-                  Não
-                </p>
+                <p className="text-gray-300 text-xl font-medium">Não</p>
               </Button>
             </div>
           </ModalFooter>

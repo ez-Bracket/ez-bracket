@@ -1,12 +1,17 @@
-import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { DashboardMenu } from '../../components/DashboardMenu';
-import { AddBox } from '../../components/AddBox';
-import { DashboardBox } from '../../components/DashboardBox';
-import { InfoUserModal } from '../../components/ModalInfoUser';
-import { NewCampModal } from '../../components/ModalNewCamp';
-import { ModalRegister } from '../../components/ModalRegister';
-import { UserContext } from '../../contexts/UserContext';
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { DashboardMenu } from "../../components/DashboardMenu";
+import { AddBox } from "../../components/AddBox";
+import { DashboardBox } from "../../components/DashboardBox";
+import { InfoUserModal } from "../../components/ModalInfoUser";
+import { NewCampModal } from "../../components/ModalNewCamp";
+
+import { ModalRegister } from "../../components/ModalRegister";
+import { UserContext } from "../../contexts/UserContext";
+import { ModalDeleteCamp } from "../../components/ModalDeleteCamp";
+
+import { ModalEdit } from "../../components/ModalEditUser";
+
 
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -28,11 +33,10 @@ export const Dashboard = () => {
         <Navigate to="/" replace />
       )}
       <InfoUserModal />
-      <ModalRegister
-        title="Edite sua conta"
-        buttonDesc="Editar"
-      />
+      <ModalRegister title="Edite sua conta" buttonDesc="Editar" />
+      <ModalEdit />
       <NewCampModal />
+      <ModalDeleteCamp />
     </>
   );
 };
