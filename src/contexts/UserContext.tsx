@@ -1,15 +1,13 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Utilities
 import { Api } from '../services/Api';
 
 // Components
-import { CustomToast } from "../components/Toast";
-import { Data } from "victory";
-import { ContextModal } from "./ModalContext";
-
+import { CustomToast } from '../components/Toast';
+import { Data } from 'victory';
+import { ContextModal } from './ModalContext';
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -67,8 +65,6 @@ interface IuserApiGet {
   competition: [];
 }
 
-
-
 interface IdataEditUser {
   email?: string;
   name?: string;
@@ -78,16 +74,14 @@ interface IdataEditUser {
 }
 
 interface IapiEditResp {
-	email: string,
-	password: string,
-	name: string,
-	imageUrl: string,
-	id: number
+  email: string;
+  password: string;
+  name: string;
+  imageUrl: string;
+  id: number;
 }
 
-export const UserContext = createContext<IuserContext>(
-  {} as IuserContext
-);
+export const UserContext = createContext<IuserContext>({} as IuserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
@@ -109,7 +103,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         );
 
         setUser([res.data]);
-        navigate('/dashboard');
+        // navigate('/dashboard');
       } catch (error) {
         return error;
       } finally {
@@ -163,30 +157,29 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     }
   };
 
-  const { onCloseEditUser } = useContext(ContextModal)
+  const { onCloseEditUser } = useContext(ContextModal);
 
   const CloseModal = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  onCloseEditUser;
-  }
+    onCloseEditUser;
+  };
 
   const EditUser = async (data: IdataEditUser) => {
-    const token = localStorage.getItem("@EZ:TOKEN");
-    const id    = localStorage.getItem("@EZ:USERID");
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
       await Api.patch<IapiEditResp>(`users/${id}`, data);
       toastify({
-        description: "Usuário alterado com sucesso!",
-        status: "success",
+        description: 'Usuário alterado com sucesso!',
+        status: 'success',
       });
       LoadUser();
       CloseModal();
     } catch (error) {
       toastify({
-        description:
-          "Ops, algo deu errado tente novamente!",
-        status: "error",
+        description: 'Ops, algo deu errado tente novamente!',
+        status: 'error',
       });
       return error;
     }
@@ -200,11 +193,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   return (
-
     <UserContext.Provider
       value={{ Login, Register, Logout, user, isLoading, EditUser }}
     >
-
       {children}
     </UserContext.Provider>
   );
