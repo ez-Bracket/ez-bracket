@@ -1,6 +1,6 @@
-import { createContext, useEffect } from 'react';
-import { useDisclosure } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
+import { createContext, useEffect } from "react";
+import { useDisclosure } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 
 interface iModalContextProps {
   children: React.ReactNode;
@@ -11,6 +11,7 @@ interface iModalContext {
   isOpenLogin: boolean;
   isOpenNewCamp: boolean;
   isOpenInfoUser: boolean;
+  isOpenEditUser: boolean;
   onOpenRegister: () => void;
   onCloseRegister: () => void;
   onOpenLogin: () => void;
@@ -19,11 +20,17 @@ interface iModalContext {
   onCloseNewCamp: () => void;
   onOpenInfoUser: () => void;
   onCloseInfoUser: () => void;
+  onOpenEditUser: () => void;
+  onCloseEditUser: () => void;
 }
 
-export const ContextModal = createContext<iModalContext>({} as iModalContext);
+export const ContextModal = createContext<iModalContext>(
+  {} as iModalContext
+);
 
-export const ModalProvider = ({ children }: iModalContextProps) => {
+export const ModalProvider = ({
+  children,
+}: iModalContextProps) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -55,6 +62,12 @@ export const ModalProvider = ({ children }: iModalContextProps) => {
     onClose: onCloseInfoUser,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenEditUser,
+    onOpen: onOpenEditUser,
+    onClose: onCloseEditUser,
+  } = useDisclosure();
+
   return (
     <ContextModal.Provider
       value={{
@@ -70,6 +83,9 @@ export const ModalProvider = ({ children }: iModalContextProps) => {
         isOpenInfoUser,
         onOpenInfoUser,
         onCloseInfoUser,
+        isOpenEditUser,
+        onOpenEditUser,
+        onCloseEditUser,
       }}
     >
       {children}

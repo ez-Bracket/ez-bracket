@@ -46,7 +46,7 @@ export const NewCampModal = () => {
   const finalRef = useRef(null);
 
   const newCampSchema = yup.object().shape({
-    name: yup.string().required('Campo Obrigatório!!!'),
+    name: yup.string().required('Campo obrigatório'),
     number_of_players: yup.string().required('Campo Obrigatório!!!'),
 
     date: yup.string(),
