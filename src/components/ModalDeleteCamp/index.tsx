@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,23 +8,20 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
-import { ContextModal } from "../../contexts/ModalContext";
-import { CampConext } from "../../contexts/CampContext";
+} from '@chakra-ui/react';
+import { ContextModal } from '../../contexts/ModalContext';
+import { CampConext } from '../../contexts/CampContext';
 
 export const ModalDeleteCamp = () => {
   const { isOpenDeleteCamp, onCloseDeleteCamp } = useContext(ContextModal);
-
   const { deleteCompetition } = useContext(CampConext);
-
   const { idCamp } = useContext(CampConext);
+  const finalRef = useRef(null);
 
   const onSubmitDelete = () => {
     deleteCompetition(idCamp);
     onCloseDeleteCamp();
   };
-
-  const finalRef = useRef(null);
 
   return (
     <>
@@ -35,23 +32,27 @@ export const ModalDeleteCamp = () => {
       >
         <ModalOverlay />
         <ModalContent
-          maxW={573}
-          m="auto"
-          h="450px"
+          maxW={550}
+          mx={4}
+          p={3}
+          px={[0, 3]}
           border="2px solid #61FFAA"
           bg="#221E34"
         >
           <ModalHeader className="text-green-100 mt-9 mb-0">
-            <p className="text-3xl text-center">Deletar torneio</p>
+            <h2 className="text-2xl tablet:text-3xl text-center">
+              Deletar torneio
+            </h2>
           </ModalHeader>
           <ModalCloseButton
-            className="mt-6 mr-7 bg-green-100 text-gray-300"
+            className="mt-3 mr-2 bg-green-100 text-gray-300"
             borderRadius={50}
-            _hover={{ bg: "#38F892" }}
-            transition="0.5s ease"
+            bg="#61FFAA"
+            _hover={{ bg: '#38F892' }}
+            transition="0.3s ease"
           />
           <ModalBody>
-            <p className="text-3xl text-center text-white mt-10">
+            <p className="text-xl tablet:text-2xl text-center text-white mt-8 mb-5">
               Deseja realmente deletar esse torneio?
             </p>
           </ModalBody>
@@ -65,8 +66,8 @@ export const ModalDeleteCamp = () => {
                 mr={3}
                 onClick={onSubmitDelete}
                 _hover={{
-                  filter: "auto",
-                  brightness: "70%",
+                  filter: 'auto',
+                  brightness: '70%',
                 }}
                 transition="0.3s ease"
               >
@@ -79,8 +80,8 @@ export const ModalDeleteCamp = () => {
                 mr={3}
                 onClick={onCloseDeleteCamp}
                 _hover={{
-                  filter: "auto",
-                  brightness: "80%",
+                  filter: 'auto',
+                  brightness: '80%',
                 }}
                 transition="0.3s ease"
               >
