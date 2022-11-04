@@ -1,5 +1,6 @@
-import CampInfo from '../../components/CampInfo';
-import { DashboardMenu } from '../../components/DashboardMenu';
+import { CampInfo } from "../../components/CampInfo";
+import { DashboardMenu } from "../../components/DashboardMenu";
+import { InfoModal } from "../../components/ModalInfoCamp";
 
 export const Tournament = () => {
   return (
@@ -20,6 +21,7 @@ export const Tournament = () => {
           </div>
         </section>
       </div>
+      <InfoModal />
     </div>
   );
 };
