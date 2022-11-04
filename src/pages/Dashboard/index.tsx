@@ -1,15 +1,14 @@
-import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { DashboardMenu } from '../../components/DashboardMenu';
-import { InfoUserModal } from '../../components/ModalInfoUser';
-import { NewCampModal } from '../../components/ModalNewCamp';
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { DashboardMenu } from "../../components/DashboardMenu";
+import { InfoUserModal } from "../../components/ModalInfoUser";
+import { NewCampModal } from "../../components/ModalNewCamp";
 
-import { ModalRegister } from '../../components/ModalRegister';
-import { UserContext } from '../../contexts/UserContext';
-import { DashboardMain } from '../../components/DashboardMain';
-import { ModalDeleteCamp } from '../../components/ModalDeleteCamp';
-import { ModalEdit } from '../../components/ModalEditUser';
-
+import { ModalRegister } from "../../components/ModalRegister";
+import { UserContext } from "../../contexts/UserContext";
+import { DashboardMain } from "../../components/DashboardMain";
+import { ModalDeleteCamp } from "../../components/ModalDeleteCamp";
+import { ModalEdit } from "../../components/ModalEditUser";
 
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
