@@ -1,5 +1,9 @@
 import { useContext } from "react";
+
+// Utilities
 import Brackets from "../../assets/brackets.svg";
+
+// Components
 import { ContextModal } from "../../contexts/ModalContext";
 import { ButtonDefault } from "../Button";
 

@@ -1,14 +1,18 @@
-import { Logo } from "../Logo";
-import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { useMedia } from "../../hooks/useMedia";
 import { useLocation } from "react-router-dom";
-import { MobileMenu } from "../MobileMenu";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 import { FiLogIn } from "react-icons/fi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
-import { ButtonDefault } from "../Button";
-import { ContextModal } from "../../contexts/ModalContext";
 import "animate.css";
+
+// Utilities
+import { useMedia } from "../../hooks/useMedia";
+
+// Components
+import { Logo } from "../Logo";
+import { ContextModal } from "../../contexts/ModalContext";
+import { ButtonDefault } from "../Button";
+import { MobileMenu } from "../MobileMenu";
 
 export const Header = () => {
   const { onOpenLogin, onOpenRegister } =
