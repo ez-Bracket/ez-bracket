@@ -92,8 +92,6 @@ export const ModalRegister = () => {
     setIsRegisterSuccess,
   } = useContext(UserContext);
 
-  console.log(isRegisterSuccess);
-
   const handleClick = () => {
     if (isRegisterSuccess) {
       onCloseRegister();
