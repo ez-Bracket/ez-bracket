@@ -12,6 +12,7 @@ import {
   FormLabel,
   Input,
   Select,
+  Textarea,
 } from '@chakra-ui/react';
 
 import { useForm } from 'react-hook-form';
@@ -36,8 +37,8 @@ export const NewCampModal = () => {
   const finalRef = useRef(null);
 
   const newCampSchema = yup.object().shape({
-    competition: yup.string().required('Campo Obrigatório!!!'),
-    number_of_players: yup.string().required('Campo Obrigatório!!!'),
+    competition: yup.string().required('Campo obrigatório'),
+    number_of_players: yup.string().required('Campo obrigatório'),
     date: yup.string(),
     description: yup.string(),
     status: yup.boolean().default(true),
@@ -52,10 +53,10 @@ export const NewCampModal = () => {
     resolver: yupResolver(newCampSchema),
   });
 
-  console.log(errors);
   const onSubmit = (data: INewCampForm) => {
     console.log(data);
   };
+
   return (
     <>
       <Modal
@@ -66,28 +67,33 @@ export const NewCampModal = () => {
       >
         <ModalOverlay />
         <ModalContent
-          maxW={573}
-          m="auto"
+          maxW={550}
+          mx={4}
+          p={3}
+          px={[0, 3]}
           border="2px solid #61FFAA"
           bg="#221E34"
         >
-          <div className="m-auto ">
-            <ModalHeader className="text-green-100   mt-10 mb-0">
-              <p className="text-3xl">Crie um novo torneio</p>
+          <div className="m-auto text-xl">
+            <ModalHeader className="text-green-100">
+              <h2 className="text-xl tablet:text-2xl">Crie um novo torneio</h2>
             </ModalHeader>
 
             <ModalCloseButton
-              className="mt-6 bg-green-100 text-gray-300"
+              className="mt-3 mr-2 bg-green-100 text-gray-300"
               borderRadius={50}
+              h={6}
+              w={6}
               _hover={{ bg: '#38F892' }}
-              transition="0.5s ease"
+              transition="0.3s ease"
             />
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
-            <ModalBody className="mt-8 mb-6 mx-auto">
+            <ModalBody className="mt-1 laptop:mt-4 mb-4">
               <FormControl>
                 <FormLabel
+                  fontSize={16}
                   className={
                     errors.competition?.message
                       ? 'text-error-100'
@@ -99,9 +105,13 @@ export const NewCampModal = () => {
 
                 <Input
                   placeholder="Digite o nome do torneio"
-                  _placeholder={{ color: '#c7c7c7' }}
+                  _placeholder={{
+                    color: '#c7c7c7',
+                    opacity: '50%',
+                  }}
                   bg="#353149"
-                  height="60px"
+                  fontSize="14px"
+                  height="50px"
                   color="#c7c7c7"
                   focusBorderColor={
                     errors.competition?.message ? '#E64980' : '#c7c7c7'
@@ -119,29 +129,27 @@ export const NewCampModal = () => {
               </FormControl>
 
               <FormControl
+                className="flex-col tablet:flex-row"
                 mt={4}
                 w="100%"
                 display="flex"
                 justifyContent="space-between"
-                alignItems="center"
+                gap="20px"
               >
-                <div className="max-w-[45%]">
-                  <FormLabel>
-                    <p
-                      className={
-                        errors.number_of_players?.message
-                          ? 'text-error-100'
-                          : 'text-green-100'
-                      }
-                    >
-                      Participantes
-                    </p>
+                <div className="tablet:w-[50%]">
+                  <FormLabel
+                    fontSize={16}
+                    className={
+                      errors.number_of_players?.message
+                        ? 'text-error-100'
+                        : 'text-green-100'
+                    }
+                  >
+                    Participantes
                   </FormLabel>
-
                   <Select
-                    placeholder="Quantidade de participantes"
-                    _focus={{ color: '#353149' }}
                     color="#c7c7c7"
+                    bg="#353149"
                     h="60px"
                     w="100%"
                     focusBorderColor={
@@ -152,9 +160,15 @@ export const NewCampModal = () => {
                     }
                     {...register('number_of_players')}
                   >
-                    <option value="4">4</option>
-                    <option value="8">8</option>
-                    <option value="16">16</option>
+                    <option style={{ backgroundColor: '#353149' }} value="4">
+                      4
+                    </option>
+                    <option style={{ backgroundColor: '#353149' }} value="8">
+                      8
+                    </option>
+                    <option style={{ backgroundColor: '#353149' }} value="16">
+                      16
+                    </option>
                   </Select>
                   {errors.number_of_players?.message && (
                     <MessageError
@@ -163,13 +177,15 @@ export const NewCampModal = () => {
                   )}
                 </div>
 
-                <div className="max-w-[45%]">
-                  <FormLabel>
-                    <p className="text-green-100">Data de início</p>
+                <div className="tablet:w-[50%]">
+                  <FormLabel fontSize={16} className="text-green-100">
+                    Data de início
                   </FormLabel>
 
                   <Input
                     type="date"
+                    bg="#353149"
+                    borderColor="#353149"
                     color="#c7c7c7"
                     h="60px"
                     w="100%"
@@ -188,40 +204,36 @@ export const NewCampModal = () => {
               <FormControl mt={4}>
                 <FormLabel className="text-green-100">Descrição</FormLabel>
 
-                <Input
+                <Textarea
                   placeholder="Adicione uma descrição do torneio"
-                  _placeholder={{ color: '#c7c7c7' }}
+                  _placeholder={{
+                    color: '#c7c7c7',
+                    opacity: '50%',
+                  }}
                   borderColor="#353149"
                   bg="#353149"
-                  height="160px"
+                  height="120px"
+                  paddingTop={4}
                   color="#c7c7c7"
+                  resize="none"
                   {...register('description')}
                 />
               </FormControl>
             </ModalBody>
 
-            <ModalFooter
-              display="flex"
-              flexDirection="column"
-              justifyContent="space-evenly"
-              w="100%"
-              mb={10}
-              color="#c7c7c7"
-              fontSize="14px"
-              paddingBottom=""
-            >
+            <ModalFooter mb={5} paddingBottom="">
               <Button
                 bg="#61FFAA"
-                color="#221E34"
+                color="#08490e"
                 fontWeight="500"
+                fontSize="18px"
                 w="100%"
                 h="49px"
-                mb={10}
                 _hover={{
                   bg: '#38F892',
-                  fontWeight: '700',
                 }}
-                transition="0.9s ease"
+                _active={{ bgColor: '#61FFAA' }}
+                transition="0.3s ease"
                 type="submit"
               >
                 Criar
