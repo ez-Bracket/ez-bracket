@@ -46,7 +46,8 @@ export const DashboardBox = ({ tournament }: iTournament) => {
         </h3>
         {tournament.date ? (
           <span className="text-gray-100 flex items-center gap-[10px]">
-            <AiFillCalendar className="text-green-100" /> {tournament.date}
+            <AiFillCalendar className="text-green-100" />{" "}
+            {tournament.date.split("-").reverse().join("/")}
           </span>
         ) : null}
       </div>
