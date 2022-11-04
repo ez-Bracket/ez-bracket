@@ -38,10 +38,11 @@ export const InfoUserModal = () => {
               bg="#221E34"
             >
               <ModalCloseButton
-                className="mt-5 mr-5 bg-green-100 text-gray-300"
+                className="mt-5 mr-5 text-gray-300"
                 borderRadius={50}
                 h={6}
                 w={6}
+                bg="#61FFAA"
                 _hover={{ bg: '#38F892' }}
                 transition="0.3s ease"
               />
