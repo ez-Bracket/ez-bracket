@@ -2,7 +2,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 // Utilities
 import { Api } from "../services/Api";
 
@@ -11,7 +10,6 @@ import { Api } from "../services/Api";
 import { CustomToast } from '../components/Toast';
 import { Data } from 'victory';
 import { ContextModal } from './ModalContext';
-
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -127,19 +125,12 @@ export const UserProvider = ({
   const Login = async (data: IuserDataLogin) => {
     try {
       setIsLoading(true);
-      const resp = await Api.post<IuserApiLoginResp>(
-        "login",
-        data
-      );
+
+      const resp = await Api.post<IuserApiLoginResp>("login", data);
       window.localStorage.clear();
-      window.localStorage.setItem(
-        "@EZ:TOKEN",
-        resp.data.accessToken
-      );
-      window.localStorage.setItem(
-        "@EZ:USERID",
-        resp.data.user.id
-      );
+      window.localStorage.setItem("@EZ:TOKEN", resp.data.accessToken);
+      window.localStorage.setItem("@EZ:USERID", resp.data.user.id);
+
       LoadUser();
       toastify({
         description: "Login realizado com sucesso!",
@@ -147,8 +138,9 @@ export const UserProvider = ({
       });
     } catch (error) {
       toastify({
-        description:
-          "E-mail ou senha inválido, tente novamente!",
+
+        description: "E-mail ou senha inválido, tente novamente!",
+
         status: "error",
       });
       return error;
@@ -162,11 +154,13 @@ export const UserProvider = ({
 
   const Register = async (data: IuserDataRegister) => {
     try {
+
       await Api.post<IuserApiRegisterResp>(
         "register",
         data
       );
       setIsRegisterSuccess(true);
+
 
       toastify({
         description: "Usuário cadastrado com sucesso!",
@@ -174,8 +168,7 @@ export const UserProvider = ({
       });
     } catch (error) {
       toastify({
-        description:
-          "Ops, algo deu errado tente novamente!",
+        description: "Ops, algo deu errado tente novamente!",
         status: "error",
       });
       setIsRegisterSuccess(false);
@@ -191,6 +184,7 @@ export const UserProvider = ({
   };
 
   const EditUser = async (data: IdataEditUser) => {
+
     const token = localStorage.getItem('@EZ:TOKEN');
     const id = localStorage.getItem('@EZ:USERID');
 
@@ -204,8 +198,9 @@ export const UserProvider = ({
       LoadUser();
     } catch (error) {
       toastify({
-        description: 'Ops, algo deu errado tente novamente!',
-        status: 'error',
+        description: "Ops, algo deu errado tente novamente!",
+        status: "error",
+
       });
       return error;
     }
