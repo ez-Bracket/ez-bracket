@@ -41,8 +41,10 @@ const AddPlayerForm = ({
   };
 
   return (
-    <div className="w-[400px]">
+
+    <div className="w:full tablet:w-[400px]">
       <form className="w-[100%]" onSubmit={handleSubmit(onSubmit)}>
+
         <FormControl position="relative">
           <FormLabel
             fontSize={16}

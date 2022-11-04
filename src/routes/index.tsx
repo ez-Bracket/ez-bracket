@@ -10,9 +10,11 @@ export const RoutesApp = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/addplayers" element={<AddPlayers />} />
       <Route path="/tournament/:id" element={<Tournament />} />
+
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

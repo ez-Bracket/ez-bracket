@@ -19,10 +19,13 @@ interface IuserContext {
   isLoading: boolean;
   isRegisterSuccess: boolean;
   user: IuserApiGet[];
+  isLogged: boolean;
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
   Logout: () => void;
   EditUser: (data: IdataEditUser) => void;
+
+  LoadUser: () => void;
   setIsRegisterSuccess: React.Dispatch<
     React.SetStateAction<boolean>
   >;
@@ -87,15 +90,14 @@ interface IapiEditResp {
   id: number;
 }
 
-export const UserContext = createContext<IuserContext>(
-  {} as IuserContext
-);
+export const UserContext = createContext<IuserContext>({} as IuserContext);
 
 export const UserProvider = ({
   children,
 }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLogged, setIsLogged] = useState(!!localStorage.getItem('@EZ:TOKEN'));
   const navigate = useNavigate();
   const { toastify } = CustomToast();
 
@@ -107,14 +109,13 @@ export const UserProvider = ({
       setIsLoading(true);
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-
-        const res = await Api.get<IuserApiGet>(
-          `users/${id}?_embed=competition`
-        );
+        const res = await Api.get<IuserApiGet>(`users/${id}`);
 
         setUser([res.data]);
-        navigate("/dashboard");
+        setIsLogged(true);
+
       } catch (error) {
+        console.log(error);
         return error;
       } finally {
         setIsLoading(false);
@@ -124,19 +125,20 @@ export const UserProvider = ({
 
   useEffect(() => {
     LoadUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Login = async (data: IuserDataLogin) => {
     try {
       setIsLoading(true);
 
-      const resp = await Api.post<IuserApiLoginResp>("login", data);
-      window.localStorage.clear();
-      window.localStorage.setItem("@EZ:TOKEN", resp.data.accessToken);
-      window.localStorage.setItem("@EZ:USERID", resp.data.user.id);
+      const res = await Api.post<IuserApiLoginResp>('login', data);
+      localStorage.clear();
+      localStorage.setItem('@EZ:TOKEN', res.data.accessToken);
+      localStorage.setItem('@EZ:USERID', res.data.user.id);
+
 
       LoadUser();
+      navigate('/dashboard');
       toastify({
         description: "Login realizado com sucesso!",
         status: "success",
@@ -183,22 +185,15 @@ export const UserProvider = ({
 
   const EditUser = async (data: IdataEditUser) => {
 
-    const token = localStorage.getItem("@EZ:TOKEN");
-    const id = localStorage.getItem("@EZ:USERID");
-
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
-      await Api.patch<IapiEditResp>(`users/${id}`, data);
-      toastify({
-        description: "Usuário alterado com sucesso!",
-        status: "success",
-      });
-      LoadUser();
+      await Api.patch<IapiEditResp>(`user/${id}`, data);
     } catch (error) {
       toastify({
-        description:
-          "Ops, algo deu errado tente novamente!",
-        status: "error",
+        description: 'Ops, algo deu errado tente novamente!',
+        status: 'error',
 
       });
       return error;
@@ -207,9 +202,12 @@ export const UserProvider = ({
 
   const Logout = () => {
     setUser([]);
-    window.localStorage.removeItem("@EZ:TOKEN");
-    window.localStorage.removeItem("@EZ:USERID");
-    navigate("/");
+
+    setIsLogged(false);
+    localStorage.removeItem('@EZ:TOKEN');
+    localStorage.removeItem('@EZ:USERID');
+    navigate('/');
+
   };
 
   return (
@@ -218,6 +216,9 @@ export const UserProvider = ({
         Login,
         Register,
         Logout,
+
+        LoadUser,
+        isLogged,
         user,
         isLoading,
         EditUser,
