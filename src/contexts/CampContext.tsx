@@ -170,6 +170,10 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   };
 
   const deleteCompetition = async (id: number) => {
+    console.log(id);
+    const token = localStorage.getItem(`@EZ:TOKEN`);
+    console.log(token);
+
     try {
       const config = {
         headers: {
