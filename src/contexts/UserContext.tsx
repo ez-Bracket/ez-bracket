@@ -14,10 +14,12 @@ interface iUserContextProps {
 interface IuserContext {
   isLoading: boolean;
   user: IuserApiGet[];
+  isLogged: boolean;
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
   Logout: () => void;
   EditUser: (data: IdataEditUser) => void;
+  LoadUser: () => void;
 }
 
 interface IuserDataRegister {
@@ -63,8 +65,6 @@ interface IuserApiGet {
   competition: [];
 }
 
-
-
 interface IdataEditUser {
   email?: string;
   name?: string;
@@ -74,20 +74,19 @@ interface IdataEditUser {
 }
 
 interface IapiEditResp {
-	email: string,
-	password: string,
-	name: string,
-	imageUrl: string,
-	id: number
+  email: string;
+  password: string;
+  name: string;
+  imageUrl: string;
+  id: number;
 }
 
-export const UserContext = createContext<IuserContext>(
-  {} as IuserContext
-);
+export const UserContext = createContext<IuserContext>({} as IuserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLogged, setIsLogged] = useState(!!localStorage.getItem('@EZ:TOKEN'));
   const navigate = useNavigate();
   const { toastify } = CustomToast();
 
@@ -99,14 +98,12 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       setIsLoading(true);
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-
-        const res = await Api.get<IuserApiGet>(
-          `users/${id}?_embed=competition`,
-        );
+        const res = await Api.get<IuserApiGet>(`users/${id}`);
 
         setUser([res.data]);
-        navigate('/dashboard');
+        setIsLogged(true);
       } catch (error) {
+        console.log(error);
         return error;
       } finally {
         setIsLoading(false);
@@ -116,17 +113,18 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   useEffect(() => {
     LoadUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Login = async (data: IuserDataLogin) => {
     try {
       setIsLoading(true);
-      const resp = await Api.post<IuserApiLoginResp>('login', data);
-      window.localStorage.clear();
-      window.localStorage.setItem('@EZ:TOKEN', resp.data.accessToken);
-      window.localStorage.setItem('@EZ:USERID', resp.data.user.id);
+      const res = await Api.post<IuserApiLoginResp>('login', data);
+      localStorage.clear();
+      localStorage.setItem('@EZ:TOKEN', res.data.accessToken);
+      localStorage.setItem('@EZ:USERID', res.data.user.id);
+
       LoadUser();
+      navigate('/dashboard');
       toastify({
         description: 'Login realizado com sucesso!',
         status: 'success',
@@ -159,39 +157,42 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     }
   };
 
-
   const EditUser = async (data: IdataEditUser) => {
-    const token = localStorage.getItem("@EZ:TOKEN");
-    const id = localStorage.getItem("@EZ:USERID");
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
-      await Api.patch<IapiEditResp>(
-        `user/${id}`,
-        data
-      )
+      await Api.patch<IapiEditResp>(`user/${id}`, data);
     } catch (error) {
       toastify({
-        description:
-          "Ops, algo deu errado tente novamente!",
-        status: "error",
+        description: 'Ops, algo deu errado tente novamente!',
+        status: 'error',
       });
       return error;
     }
-  }
+  };
 
   const Logout = () => {
     setUser([]);
-    window.localStorage.removeItem('@EZ:TOKEN');
-    window.localStorage.removeItem('@EZ:USERID');
+    setIsLogged(false);
+    localStorage.removeItem('@EZ:TOKEN');
+    localStorage.removeItem('@EZ:USERID');
     navigate('/');
   };
 
   return (
-
     <UserContext.Provider
-      value={{ Login, Register, Logout, user, isLoading, EditUser }}
+      value={{
+        Login,
+        Register,
+        Logout,
+        LoadUser,
+        isLogged,
+        user,
+        isLoading,
+        EditUser,
+      }}
     >
-
       {children}
     </UserContext.Provider>
   );

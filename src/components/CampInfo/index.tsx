@@ -33,7 +33,7 @@ const CampInfo = ({
       <div className="mt-4 laptop:mt-0">
         <h2 className="text-base text-white font-normal">
           <BsController className="inline-block text-xl mr-1 text-green-100" />{' '}
-          Quantidade de participantes:{number_of_players}
+          Quantidade de participantes: {number_of_players}
         </h2>
       </div>
       <div className="flex gap-8">
@@ -41,7 +41,12 @@ const CampInfo = ({
           <BsCalendarDate className="inline-block text-base mr-1 text-green-100" />{' '}
           {date}
         </h2>
-        <Button fontWeight={400} color="white" variant="link">
+        <Button
+          fontWeight={400}
+          color="white"
+          variant="link"
+          _active={{ textColor: 'white' }}
+        >
           <BsInfoCircle className="inline-block text-xl mr-2 text-green-100" />{' '}
           Informações
         </Button>
