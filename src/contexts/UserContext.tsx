@@ -87,11 +87,8 @@ export const UserContext = createContext<IuserContext>(
 
 export const UserProvider = ({ children }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
-
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
-
   const { toastify } = CustomToast();
 
   const LoadUser = async () => {
@@ -108,7 +105,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         );
 
         setUser([res.data]);
-        // navigate('/dashboard');
+        navigate('/dashboard');
       } catch (error) {
         return error;
       } finally {

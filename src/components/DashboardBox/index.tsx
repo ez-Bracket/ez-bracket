@@ -1,9 +1,6 @@
 import { BsFillTrashFill, BsController } from "react-icons/bs";
 import { AiFillCalendar } from "react-icons/ai";
-
 import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-
 import { ContextModal } from "../../contexts/ModalContext";
 
 interface iTournamentProps {
@@ -23,8 +20,6 @@ interface iTournament {
 
 export const DashboardBox = ({ tournament }: iTournament) => {
   const { onOpenDeleteCamp } = useContext(ContextModal);
-
-  const { user } = useContext(UserContext);
  
   const handleModalDelete = () => {
     onOpenDeleteCamp();
