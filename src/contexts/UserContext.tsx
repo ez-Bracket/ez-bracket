@@ -59,6 +59,7 @@ interface IuserApiGet {
   imgUrl: string;
   name: string;
   password: string;
+  competition: [];
 }
 
 export const UserContext = createContext<IuserContext>(
