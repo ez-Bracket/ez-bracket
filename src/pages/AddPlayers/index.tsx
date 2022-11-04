@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState}from 'react';
 import AddPlayerForm from '../../components/AddPlayerForm';
 import CampInfo from '../../components/CampInfo';
 import { DashboardMenu } from '../../components/DashboardMenu';
@@ -6,11 +6,19 @@ import { ModalEdit } from '../../components/ModalEditUser';
 import { InfoUserModal } from '../../components/ModalInfoUser';
 import { NewCampModal } from '../../components/ModalNewCamp';
 import PlayersList from '../../components/PlayersList';
-import { UserContext } from '../../contexts/UserContext';
 import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
 
+import { UserContext } from '../../contexts/UserContext';
+
+interface iPlayerList {
+  player: string;
+  playerImg?: string;
+}
+
 export const AddPlayers = () => {
-  const { isLogged } = useContext(UserContext);
+  const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
+  
+    const { isLogged } = useContext(UserContext);
   useProtectedRoutes(isLogged, true);
 
   return (
@@ -26,9 +34,11 @@ export const AddPlayers = () => {
               date="-/-/-"
               number_of_players="16"
             />
+
             <div className="flex gap-24 laptop:flex-row flex-col w-full tablet:w-[80%] mt-12">
-              <AddPlayerForm />
-              <PlayersList />
+              <AddPlayerForm playersList={playersList} setPlayersList={setPlayersList}/>
+              <PlayersList playersList={playersList}/>
+
             </div>
           </div>
         </section>

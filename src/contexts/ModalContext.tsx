@@ -29,7 +29,6 @@ interface iModalContext {
 
   onOpenEditUser: () => void;
   onCloseEditUser: () => void;
-
 }
 
 export const ContextModal = createContext<iModalContext>(
@@ -71,15 +70,15 @@ export const ModalProvider = ({
   } = useDisclosure();
 
   const {
-
-    isOpen: isOpenDeleteCamp,
-    onOpen: onOpenDeleteCamp,
-    onClose: onCloseDeleteCamp,
-
     isOpen: isOpenEditUser,
     onOpen: onOpenEditUser,
     onClose: onCloseEditUser,
+  } = useDisclosure();
 
+  const {
+    isOpen: isOpenDeleteCamp,
+    onOpen: onOpenDeleteCamp,
+    onClose: onCloseDeleteCamp,
   } = useDisclosure();
 
   return (
@@ -105,7 +104,6 @@ export const ModalProvider = ({
         isOpenEditUser,
         onOpenEditUser,
         onCloseEditUser,
-
       }}
     >
       {children}

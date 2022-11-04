@@ -21,6 +21,9 @@ interface iCampConext {
     chave: number,
     winnerPlayer: string
   ) => void;
+
+  setIdCamp: (id: number) => void;
+  idCamp: number;
 }
 
 interface iCamp {
@@ -50,6 +53,7 @@ export const CampConext = createContext<iCampConext>({} as iCampConext);
 
 export const CampProvider = ({ children }: iCampProvidertProps) => {
   const [camp, setCamp] = useState<iCamp[]>([]);
+  const [idCamp, setIdCamp] = useState<number>(0);
 
   const getCompetition = async (idUser: number) => {
     try {
@@ -105,8 +109,6 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         }
 
         game.data.games[0] = createGames;
-
-        console.log(game.data);
 
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
@@ -181,6 +183,8 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         },
       };
       await Api.delete(`deathmatch/${id}`, config);
+      const newListCamp = camp?.filter((e: iCamp) => e.id !== idCamp);
+      setCamp(newListCamp);
     } catch (error) {
       console.log(error);
     }
@@ -195,6 +199,8 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         deleteCompetition,
         addPlayersCompetition,
         winnerPlayerCompetition,
+        setIdCamp,
+        idCamp,
       }}
     >
       {children}

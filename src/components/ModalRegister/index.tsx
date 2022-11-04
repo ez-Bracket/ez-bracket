@@ -1,8 +1,8 @@
-import { useContext, useRef, useState } from 'react';
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useRef, useState } from "react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Modal,
   ModalOverlay,
@@ -17,14 +17,14 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 // Utilities
-import { UserContext } from '../../contexts/UserContext';
-import { ContextModal } from '../../contexts/ModalContext';
+import { UserContext } from "../../contexts/UserContext";
+import { ContextModal } from "../../contexts/ModalContext";
 
 // Components
-import { MessageError } from '../MessageError';
+import { MessageError } from "../MessageError";
 
 interface IdataRegister {
   email: string;
@@ -40,34 +40,69 @@ export const ModalRegister = () => {
 
   const [showPass, setShowPass] = useState(false);
 
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] =
+    useState(false);
 
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
   const handleShowPass = () => setShowPass(!showPass);
 
-  const handleShowConfirmPass = () => setShowConfirmPass(!showConfirmPass);
+  const handleShowConfirmPass = () =>
+    setShowConfirmPass(!showConfirmPass);
 
   const formSchema = yup.object().shape({
-    name: yup.string().required('Nome de usuário obrigatório'),
-    email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+    name: yup
+      .string()
+      .required("Nome de usuário obrigatório"),
+    email: yup
+      .string()
+      .required("E-mail obrigatório")
+      .email("E-mail inválido"),
     password: yup
       .string()
-      .required('Senha obrigatória')
-      .min(8, 'Deve conter no mínimo 8 caracteres')
-      .matches(/[A-Z]/, 'Deve conter ao menos uma letra maiúscula')
-      .matches(/[a-z]/, 'Deve conter ao menos uma letra minúscula')
-      .matches(/[0-9]/, 'Deve conter ao menos um número')
-      .matches(/(\W)|_/, 'Deve conter ao menos um caracter especial'),
+      .required("Senha obrigatória")
+      .min(8, "Deve conter no mínimo 8 caracteres")
+      .matches(
+        /[A-Z]/,
+        "Deve conter ao menos uma letra maiúscula"
+      )
+      .matches(
+        /[a-z]/,
+        "Deve conter ao menos uma letra minúscula"
+      )
+      .matches(/[0-9]/, "Deve conter ao menos um número")
+      .matches(
+        /(\W)|_/,
+        "Deve conter ao menos um caracter especial"
+      ),
     confirmPassword: yup
       .string()
-      .required('Confirmação de senha obrigatória')
-      .oneOf([yup.ref('password')], 'As senhas não conferem'),
-    imgUrl: yup.string().url('URL inválida'),
+      .required("Confirmação de senha obrigatória")
+      .oneOf(
+        [yup.ref("password")],
+        "As senhas não conferem"
+      ),
+    imgUrl: yup.string().url("URL inválida"),
   });
 
-  const { Register } = useContext(UserContext);
+  const {
+    Register,
+    isRegisterSuccess,
+    setIsRegisterSuccess,
+  } = useContext(UserContext);
+
+  const handleClick = () => {
+    if (isRegisterSuccess) {
+      onCloseRegister();
+    }
+    return null;
+  };
+
+  if (isRegisterSuccess) {
+    onCloseRegister();
+    setIsRegisterSuccess(!isRegisterSuccess);
+  }
 
   const {
     register,
@@ -100,11 +135,9 @@ export const ModalRegister = () => {
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
-
               <h2 className="text-xl tablet:text-2xl">
                 Crie sua conta
               </h2>
-
             </ModalHeader>
 
             <ModalCloseButton
@@ -113,79 +146,116 @@ export const ModalRegister = () => {
               h={6}
               w={6}
               bg="#61FFAA"
-              _hover={{ bg: '#38F892' }}
+              _hover={{ bg: "#38F892" }}
               transition="0.3s ease"
             />
           </div>
-          <form className="w-[100%]" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="w-[100%]"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <ModalBody className=" mt-1 laptop:mt-4 mb-4">
               <FormControl position="relative">
                 <FormLabel
                   fontSize={16}
                   className={
-                    errors.name?.message ? 'text-error-100' : 'text-green-100'
+                    errors.name?.message
+                      ? "text-error-100"
+                      : "text-green-100"
                   }
                 >
                   Nome de usuário
-                  <span className="text-error-100 ml-1">*</span>
+                  <span className="text-error-100 ml-1">
+                    *
+                  </span>
                 </FormLabel>
                 <Input
                   id="name"
                   placeholder="Digite o nome de usuário"
-                  {...register('name')}
+                  {...register("name")}
                   _placeholder={{
-                    color: '#c7c7c7',
-                    opacity: '50%',
+                    color: "#c7c7c7",
+                    opacity: "50%",
                   }}
                   fontSize="14px"
-                  borderColor={errors.name?.message ? '#E64980' : '#353149'}
+                  borderColor={
+                    errors.name?.message
+                      ? "#E64980"
+                      : "#353149"
+                  }
                   bg="#353149"
                   height="50px"
-                  color={errors.name?.message ? '#E64980' : '#fff'}
+                  color={
+                    errors.name?.message
+                      ? "#E64980"
+                      : "#fff"
+                  }
                   focusBorderColor={
-                    errors.name?.message ? '#E64980' : '#c7c7c7'
+                    errors.name?.message
+                      ? "#E64980"
+                      : "#c7c7c7"
                   }
                 />
                 {errors.name?.message && (
-                  <MessageError error={errors.name?.message}></MessageError>
+                  <MessageError
+                    error={errors.name?.message}
+                  ></MessageError>
                 )}
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel
                   className={
-                    errors.email?.message ? 'text-error-100' : 'text-green-100'
+                    errors.email?.message
+                      ? "text-error-100"
+                      : "text-green-100"
                   }
                 >
                   E-mail
-                  <span className="text-error-100 ml-1">*</span>
+                  <span className="text-error-100 ml-1">
+                    *
+                  </span>
                 </FormLabel>
                 <Input
                   id="email"
                   placeholder="Digite o seu e-mail"
-                  {...register('email')}
+                  {...register("email")}
                   _placeholder={{
-                    color: '#c7c7c7',
-                    opacity: '50%',
+                    color: "#c7c7c7",
+                    opacity: "50%",
                   }}
                   fontSize="14px"
-                  borderColor={errors.email?.message ? '#E64980' : '#353149'}
+                  borderColor={
+                    errors.email?.message
+                      ? "#E64980"
+                      : "#353149"
+                  }
                   bg="#353149"
                   height="50px"
-                  color={errors.email?.message ? '#E64980' : '#fff'}
+                  color={
+                    errors.email?.message
+                      ? "#E64980"
+                      : "#fff"
+                  }
                   focusBorderColor={
-                    errors.email?.message ? '#E64980' : '#c7c7c7'
+                    errors.email?.message
+                      ? "#E64980"
+                      : "#c7c7c7"
                   }
                 />
                 {errors.email?.message && (
-                  <MessageError error={errors.email?.message}></MessageError>
+                  <MessageError
+                    error={errors.email?.message}
+                  ></MessageError>
                 )}
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel
                   className={
-                    errors.imgUrl?.message ? 'text-error-100' : 'text-green-100'
+                    errors.imgUrl?.message
+                      ? "text-error-100"
+                      : "text-green-100"
                   }
                 >
                   Foto de perfil
@@ -193,22 +263,34 @@ export const ModalRegister = () => {
                 <Input
                   id="imgUrl"
                   placeholder="URL da foto de perfil"
-                  {...register('imgUrl')}
+                  {...register("imgUrl")}
                   _placeholder={{
-                    color: '#c7c7c7',
-                    opacity: '50%',
+                    color: "#c7c7c7",
+                    opacity: "50%",
                   }}
                   fontSize="14px"
-                  borderColor={errors.imgUrl?.message ? '#E64980' : '#353149'}
+                  borderColor={
+                    errors.imgUrl?.message
+                      ? "#E64980"
+                      : "#353149"
+                  }
                   bg="#353149"
                   height="50px"
-                  color={errors.imgUrl?.message ? '#E64980' : '#fff'}
+                  color={
+                    errors.imgUrl?.message
+                      ? "#E64980"
+                      : "#fff"
+                  }
                   focusBorderColor={
-                    errors.imgUrl?.message ? '#E64980' : '#c7c7c7'
+                    errors.imgUrl?.message
+                      ? "#E64980"
+                      : "#c7c7c7"
                   }
                 />
                 {errors.imgUrl?.message && (
-                  <MessageError error={errors.imgUrl?.message}></MessageError>
+                  <MessageError
+                    error={errors.imgUrl?.message}
+                  ></MessageError>
                 )}
               </FormControl>
 
@@ -216,41 +298,51 @@ export const ModalRegister = () => {
                 <FormLabel
                   className={
                     errors.password?.message
-                      ? 'text-error-100'
-                      : 'text-green-100'
+                      ? "text-error-100"
+                      : "text-green-100"
                   }
                 >
                   Senha
-                  <span className="text-error-100 ml-1">*</span>
+                  <span className="text-error-100 ml-1">
+                    *
+                  </span>
                 </FormLabel>
                 <InputGroup>
                   <Input
                     id="password"
                     placeholder="Digite sua senha"
-                    {...register('password')}
+                    {...register("password")}
                     _placeholder={{
-                      color: '#c7c7c7',
-                      opacity: '50%',
+                      color: "#c7c7c7",
+                      opacity: "50%",
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors.password?.message ? '#E64980' : '#353149'
+                      errors.password?.message
+                        ? "#E64980"
+                        : "#353149"
                     }
                     bg="#353149"
                     height="50px"
-                    color={errors.password?.message ? '#E64980' : '#fff'}
-                    focusBorderColor={
-                      errors.password?.message ? '#E64980' : '#c7c7c7'
+                    color={
+                      errors.password?.message
+                        ? "#E64980"
+                        : "#fff"
                     }
-                    type={showPass ? 'text' : 'password'}
+                    focusBorderColor={
+                      errors.password?.message
+                        ? "#E64980"
+                        : "#c7c7c7"
+                    }
+                    type={showPass ? "text" : "password"}
                   />
                   <InputRightElement>
                     <Button
                       onClick={handleShowPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: 'transparent' }}
-                      _active={{ bg: 'transparent' }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
                       top="5px"
                       right="10px"
                     >
@@ -263,7 +355,9 @@ export const ModalRegister = () => {
                   </InputRightElement>
                 </InputGroup>
                 {errors.password?.message && (
-                  <MessageError error={errors.password?.message}></MessageError>
+                  <MessageError
+                    error={errors.password?.message}
+                  ></MessageError>
                 )}
               </FormControl>
 
@@ -271,41 +365,56 @@ export const ModalRegister = () => {
                 <FormLabel
                   className={
                     errors.confirmPassword?.message
-                      ? 'text-error-100'
-                      : 'text-green-100'
+                      ? "text-error-100"
+                      : "text-green-100"
                   }
                 >
                   Confirme sua senha
-                  <span className="text-error-100 ml-1">*</span>
+                  <span className="text-error-100 ml-1">
+                    *
+                  </span>
                 </FormLabel>
                 <InputGroup>
                   <Input
                     id="confirmPassword"
                     placeholder="Confirme sua senha"
-                    {...register('confirmPassword')}
+                    {...register("confirmPassword")}
                     _placeholder={{
-                      color: '#c7c7c7',
-                      opacity: '50%',
+                      color: "#c7c7c7",
+                      opacity: "50%",
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors.confirmPassword?.message ? '#E64980' : '#353149'
+                      errors.confirmPassword?.message
+                        ? "#E64980"
+                        : "#353149"
                     }
                     bg="#353149"
                     height="50px"
-                    color={errors.confirmPassword?.message ? '#E64980' : '#fff'}
-                    focusBorderColor={
-                      errors.confirmPassword?.message ? '#E64980' : '#c7c7c7'
+                    color={
+                      errors.confirmPassword?.message
+                        ? "#E64980"
+                        : "#fff"
                     }
-                    type={showConfirmPass ? 'text' : 'password'}
+                    focusBorderColor={
+                      errors.confirmPassword?.message
+                        ? "#E64980"
+                        : "#c7c7c7"
+                    }
+                    type={
+                      showConfirmPass ? "text" : "password"
+                    }
                   />
-                  <InputRightElement display="flex" alignItems="center">
+                  <InputRightElement
+                    display="flex"
+                    alignItems="center"
+                  >
                     <Button
                       onClick={handleShowConfirmPass}
                       bg="transparent"
                       padding={0}
-                      _hover={{ bg: 'transparent' }}
-                      _active={{ bg: 'transparent' }}
+                      _hover={{ bg: "transparent" }}
+                      _active={{ bg: "transparent" }}
                       top="5px"
                       right="10px"
                     >
@@ -334,7 +443,7 @@ export const ModalRegister = () => {
               fontSize="14px"
             >
               <Button
-                onClick={onCloseRegister}
+                onClick={handleClick}
                 type="submit"
                 bg="#61FFAA"
                 color="#08490e"
@@ -344,9 +453,9 @@ export const ModalRegister = () => {
                 h="49px"
                 mb={5}
                 _hover={{
-                  bg: '#38F892',
+                  bg: "#38F892",
                 }}
-                _active={{ bgColor: '#61FFAA' }}
+                _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
               >
                 Criar
@@ -368,7 +477,6 @@ export const ModalRegister = () => {
                   Faça o login
                 </Button>
               </p>
-
             </ModalFooter>
           </form>
         </ModalContent>

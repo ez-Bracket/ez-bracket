@@ -1,8 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Modal,
   ModalOverlay,
@@ -27,11 +25,11 @@ import { ContextModal } from "../../contexts/ModalContext";
 import { MessageError } from "../MessageError";
 
 interface IdataEditUser {
-  email?: string;
-  name?: string;
-  password?: string;
-  confirmPassword?: string;
-  imgUrl?: string;
+  email?: string | undefined;
+  name?: string | undefined;
+  password?: string | undefined;
+  confirmPassword?: string | undefined;
+  imgUrl?: string | undefined;
 }
 
 export const ModalEdit = () => {
@@ -51,48 +49,31 @@ export const ModalEdit = () => {
   const handleShowConfirmPass = () =>
     setShowConfirmPass(!showConfirmPass);
 
-  const formSchema = yup.object().shape({
-    name: yup.string(),
-    email: yup.string().email("E-mail inválido"),
-    // password: yup
-    //   .string()
-    //   .min(8, "Deve conter no mínimo 8 caracteres")
-    //   .matches(
-    //     /[A-Z]/,
-    //     "Deve conter ao menos uma letra maiúscula"
-    //   )
-    //   .matches(
-    //     /[a-z]/,
-    //     "Deve conter ao menos uma letra minúscula"
-    //   )
-    //   .matches(/[0-9]/, "Deve conter ao menos um número")
-    //   .matches(
-    //     /(\W)|_/,
-    //     "Deve conter ao menos um caracter especial"
-    //   ),
-    // confirmPassword: yup
-    //   .string()
-    //   .required("Confirmação de senha obrigatória")
-    //   .oneOf(
-    //     [yup.ref("password")],
-    //     "As senhas não conferem"
-    //   ),
-    imgUrl: yup.string().url("URL inválida"),
-  });
-
   const { EditUser } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IdataEditUser>({
-    resolver: yupResolver(formSchema),
-  });
+  } = useForm<IdataEditUser>();
 
-  const onSubmit = (data: IdataEditUser) => {
+  const onSubmit = (data: any) => {
     // EditUser(data);
-    console.log(data);
+    if (data.name?.length! > 0) {
+      EditUser({ name: data.name });
+    }
+    if (data.email?.length! > 0) {
+      EditUser({ email: data.email });
+    }
+    if (data.imgUrl?.length! > 0) {
+      EditUser({ imgUrl: data.imgUrl });
+    }
+    if (data.password.length > 0) {
+      EditUser({ password: data.password });
+    }
+    if (data.confirmPassword.length > 0) {
+      EditUser({ confirmPassword: data });
+    }
   };
 
   return (
@@ -134,7 +115,10 @@ export const ModalEdit = () => {
           >
             <ModalBody className=" mt-1 laptop:mt-4 mb-4">
               <FormControl position="relative">
-                <FormLabel fontSize={16}>
+                <FormLabel
+                  fontSize={16}
+                  className="text-green-100"
+                >
                   Nome de usuário
                 </FormLabel>
                 <Input
@@ -145,6 +129,7 @@ export const ModalEdit = () => {
                     color: "#c7c7c7",
                     opacity: "50%",
                   }}
+                  borderColor="#353149"
                   fontSize="14px"
                   bg="#353149"
                   height="50px"
@@ -383,7 +368,7 @@ export const ModalEdit = () => {
               fontSize="14px"
             >
               <Button
-                // onClick={onCloseEditUser}
+                onClick={onCloseEditUser}
                 type="submit"
                 bg="#61FFAA"
                 color="#08490e"

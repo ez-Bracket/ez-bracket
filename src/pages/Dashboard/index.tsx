@@ -1,3 +1,4 @@
+
 import { DashboardMenu } from '../../components/DashboardMenu';
 import { InfoUserModal } from '../../components/ModalInfoUser';
 import { NewCampModal } from '../../components/ModalNewCamp';
@@ -8,6 +9,9 @@ import { ModalEdit } from '../../components/ModalEditUser';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
+
+import { Navigate } from "react-router-dom";
+
 
 export const Dashboard = () => {
   const { isLogged } = useContext(UserContext);
