@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Utilities
@@ -6,6 +6,8 @@ import { Api } from "../services/Api";
 
 // Components
 import { CustomToast } from "../components/Toast";
+import { Data } from "victory";
+import { ContextModal } from "./ModalContext";
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -176,16 +178,25 @@ export const UserProvider = ({
     }
   };
 
+  const { onCloseEditUser } = useContext(ContextModal)
+
+  const CloseModal = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  onCloseEditUser;
+  }
 
   const EditUser = async (data: IdataEditUser) => {
     const token = localStorage.getItem("@EZ:TOKEN");
-    const id = localStorage.getItem("@EZ:USERID");
+    const id    = localStorage.getItem("@EZ:USERID");
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
-      await Api.patch<IapiEditResp>(
-        `user/${id}`,
-        data
-      )
+      await Api.patch<IapiEditResp>(`users/${id}`, data);
+      toastify({
+        description: "Usuário alterado com sucesso!",
+        status: "success",
+      });
+      LoadUser();
+      CloseModal();
     } catch (error) {
       toastify({
         description:
@@ -194,7 +205,7 @@ export const UserProvider = ({
       });
       return error;
     }
-  }
+  };
 
   const Logout = () => {
     setUser([]);
