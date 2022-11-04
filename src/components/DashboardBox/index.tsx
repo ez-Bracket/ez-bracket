@@ -1,16 +1,31 @@
 import { BsFillTrashFill, BsController } from "react-icons/bs";
 import { AiFillCalendar } from "react-icons/ai";
+
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 import { ContextModal } from "../../contexts/ModalContext";
 
-export const DashboardBox = () => {
+interface iTournamentProps {
+  idUser: number;
+  name: string;
+  status: boolean;
+  winner: string | null;
+  games: string[][];
+  players: string[];
+  date?: string;
+  description?: string;
+}
+
+interface iTournament {
+  tournament: iTournamentProps;
+}
+
+export const DashboardBox = ({ tournament }: iTournament) => {
   const { onOpenDeleteCamp } = useContext(ContextModal);
 
   const { user } = useContext(UserContext);
-  console.log(user);
-
+ 
   const handleModalDelete = () => {
     onOpenDeleteCamp();
   };
@@ -23,17 +38,24 @@ export const DashboardBox = () => {
           className="text-gray-100 text-2xl cursor-pointer hover:scale-110 transition-all"
           onClick={handleModalDelete}
         />
+
       </header>
       <div className="flex flex-col gap-[15px]">
         <h3 className="text-gray-100 flex items-center gap-[10px]">
-          <BsController className="text-green-100" /> Quantidade de
-          participantes: 16
+          <BsController className="text-green-100" />
+          {tournament.players.length}
         </h3>
-        <span className="text-gray-100 flex items-center gap-[10px]">
-          <AiFillCalendar className="text-green-100" /> 31/10/2022
-        </span>
+        {tournament.date ? (
+          <span className="text-gray-100 flex items-center gap-[10px]">
+            <AiFillCalendar className="text-green-100" /> {tournament.date}
+          </span>
+        ) : null}
       </div>
-      <span className="text-green-100 self-end">Em andamento</span>
+      {tournament.status ? (
+        <span className="text-green-100 self-end">Em andamento</span>
+      ) : (
+        <span className="text-error-100 self-end">Encerrado</span>
+      )}
     </div>
   );
 };
