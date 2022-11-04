@@ -16,7 +16,10 @@ export const DashboardMain = () => {
   return camp.length ? (
     <div className="flex justify-center tablet:justify-start flex-wrap mx-4 tablet:mr-8 tablet:ml-44 gap-10">
       {camp.map((tournament) => (
-        <DashboardBox tournament={tournament} />
+        <DashboardBox
+          tournament={tournament}
+          key={tournament.id}
+        />
       ))}
       <AddBox />
     </div>
