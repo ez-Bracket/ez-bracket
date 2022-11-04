@@ -1,13 +1,19 @@
-import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import 'animate.css';
-import { Dispatch } from 'react';
+import { Dispatch } from "react";
+import {
+  AiOutlineMenu,
+  AiOutlineClose,
+} from "react-icons/ai";
+import "animate.css";
 
 interface IMobileMenu {
   mobileMenu: boolean;
   setMobileMenu: Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MobileMenu = ({ mobileMenu, setMobileMenu }: IMobileMenu) => {
+export const MobileMenu = ({
+  mobileMenu,
+  setMobileMenu,
+}: IMobileMenu) => {
   return (
     <button
       aria-label="Menu"

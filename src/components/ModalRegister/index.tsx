@@ -1,5 +1,8 @@
 import { useContext, useRef, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Modal,
   ModalOverlay,
@@ -15,15 +18,18 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { MessageError } from "../MessageError";
+
+// Utilities
 import { UserContext } from "../../contexts/UserContext";
 import { ContextModal } from "../../contexts/ModalContext";
 
+// Components
+import { MessageError } from "../MessageError";
+
 interface IModalRegister {
   title: string;
+  buttonDesc: string;
+  isRegister?: boolean;
 }
 
 interface IdataRegister {
@@ -36,6 +42,8 @@ interface IdataRegister {
 
 export const ModalRegister = ({
   title,
+  buttonDesc,
+  isRegister,
 }: IModalRegister) => {
   const { isOpenRegister, onCloseRegister, onOpenLogin } =
     useContext(ContextModal);
@@ -442,24 +450,27 @@ export const ModalRegister = ({
                 _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
               >
-                Cadastrar
+                {buttonDesc}
               </Button>
-              <p>
-                Já possui conta?{" "}
-                <Button
-                  onClick={() => {
-                    onCloseRegister();
-                    onOpenLogin();
-                  }}
-                  className="underline hover:brightness-90 transition-colors"
-                  variant="link"
-                  fontSize="14px"
-                  fontWeight="medium"
-                  color="#c7c7c7"
-                >
-                  Faça o login
-                </Button>
-              </p>
+
+              {isRegister && (
+                <p>
+                  Já possui conta?{" "}
+                  <Button
+                    onClick={() => {
+                      onCloseRegister();
+                      onOpenLogin();
+                    }}
+                    className="underline hover:brightness-90 transition-colors"
+                    variant="link"
+                    fontSize="14px"
+                    fontWeight="medium"
+                    color="#c7c7c7"
+                  >
+                    Faça o login
+                  </Button>
+                </p>
+              )}
             </ModalFooter>
           </form>
         </ModalContent>

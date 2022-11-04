@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { Button } from "@chakra-ui/button";
 import {
@@ -9,7 +10,7 @@ import {
   ModalOverlay,
 } from "@chakra-ui/modal";
 
-import { useContext } from "react";
+// Components
 import { UserContext } from "../../contexts/UserContext";
 import { ContextModal } from "../../contexts/ModalContext";
 

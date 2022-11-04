@@ -1,6 +1,8 @@
 import { useContext, useRef, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Modal,
   ModalOverlay,
@@ -16,13 +18,14 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { MessageError } from "../MessageError";
+
+// Utilities
 import { UserContext } from "../../contexts/UserContext";
-import { Loading } from "../Loading";
 import { ContextModal } from "../../contexts/ModalContext";
+
+// Components
+import { MessageError } from "../MessageError";
+import { Loading } from "../Loading";
 
 interface ILoginForm {
   email: string;

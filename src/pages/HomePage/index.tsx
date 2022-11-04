@@ -1,3 +1,4 @@
+// Components
 import { ContentBoxDiv } from "../../components/ContentBoxDiv";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
@@ -16,7 +17,11 @@ export const HomePage = () => {
       <HomeBrackets />
       <Footer />
       <ModalLogin />
-      <ModalRegister title="Crie a sua conta" />
+      <ModalRegister
+        title="Crie a sua conta"
+        buttonDesc="Criar"
+        isRegister={true}
+      />
     </div>
   );
 };

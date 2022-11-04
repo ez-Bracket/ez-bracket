@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import { BiUser } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
-import { ButtonNav } from "../ButtonNav";
-import { Logo } from "../Logo";
 import { useContext } from "react";
+
+// Utilities
 import { UserContext } from "../../contexts/UserContext";
 import { ContextModal } from "../../contexts/ModalContext";
+
+// Components
+import { ButtonNav } from "../ButtonNav";
+import { Logo } from "../Logo";
 
 export const DashboardMenu = () => {
   const { Logout } = useContext(UserContext);
