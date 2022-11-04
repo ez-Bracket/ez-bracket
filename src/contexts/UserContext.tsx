@@ -17,6 +17,7 @@ interface IuserContext {
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
   Logout: () => void;
+  EditUser: (data: IdataEditUser) => void;
 }
 
 interface IuserDataRegister {
@@ -60,6 +61,22 @@ interface IuserApiGet {
   name: string;
   password: string;
   competition: [];
+}
+
+interface IdataEditUser {
+  email?: string;
+  name?: string;
+  password?: string;
+  confirmPassword?: string;
+  imgUrl?: string;
+}
+
+interface IapiEditResp {
+	email: string,
+	password: string,
+	name: string,
+	imageUrl: string,
+	id: number
 }
 
 export const UserContext = createContext<IuserContext>(
@@ -159,6 +176,26 @@ export const UserProvider = ({
     }
   };
 
+
+  const EditUser = async (data: IdataEditUser) => {
+    const token = localStorage.getItem("@EZ:TOKEN");
+    const id = localStorage.getItem("@EZ:USERID");
+    try {
+      Api.defaults.headers.authorization = `Bearer ${token}`;
+      await Api.patch<IapiEditResp>(
+        `user/${id}`,
+        data
+      )
+    } catch (error) {
+      toastify({
+        description:
+          "Ops, algo deu errado tente novamente!",
+        status: "error",
+      });
+      return error;
+    }
+  }
+
   const Logout = () => {
     setUser([]);
     window.localStorage.removeItem("@EZ:TOKEN");
@@ -168,7 +205,7 @@ export const UserProvider = ({
 
   return (
     <UserContext.Provider
-      value={{ Login, Register, Logout, user, isLoading }}
+      value={{ Login, Register, Logout, user, isLoading, EditUser }}
     >
       {children}
     </UserContext.Provider>
