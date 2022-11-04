@@ -44,7 +44,7 @@ export const HomeBrackets = () => {
                 Chega de reunir seus amigos e organizar tudo com papel e caneta.
               </p>
               <ButtonDefault
-                className="w-max"
+                className="w-max hover:scale-105"
                 text="Crie o seu torneio"
                 onClick={onOpenRegister}
               />
