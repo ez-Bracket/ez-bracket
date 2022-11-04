@@ -26,16 +26,16 @@ import { ContextModal } from "../../contexts/ModalContext";
 // Components
 import { MessageError } from "../MessageError";
 
-interface IdataRegister {
-  email: string;
-  name: string;
-  password: string;
-  confirmPassword: string;
+interface IdataEditUser {
+  email?: string;
+  name?: string;
+  password?: string;
+  confirmPassword?: string;
   imgUrl?: string;
 }
 
-export const ModalRegister = () => {
-  const { isOpenRegister, onCloseRegister, onOpenLogin } =
+export const ModalEdit = () => {
+  const { isOpenEditUser, onCloseEditUser } =
     useContext(ContextModal);
 
   const [showPass, setShowPass] = useState(false);
@@ -52,52 +52,47 @@ export const ModalRegister = () => {
     setShowConfirmPass(!showConfirmPass);
 
   const formSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required("Nome de usuário obrigatório"),
-    email: yup
-      .string()
-      .required("E-mail obrigatório")
-      .email("E-mail inválido"),
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .min(8, "Deve conter no mínimo 8 caracteres")
-      .matches(
-        /[A-Z]/,
-        "Deve conter ao menos uma letra maiúscula"
-      )
-      .matches(
-        /[a-z]/,
-        "Deve conter ao menos uma letra minúscula"
-      )
-      .matches(/[0-9]/, "Deve conter ao menos um número")
-      .matches(
-        /(\W)|_/,
-        "Deve conter ao menos um caracter especial"
-      ),
-    confirmPassword: yup
-      .string()
-      .required("Confirmação de senha obrigatória")
-      .oneOf(
-        [yup.ref("password")],
-        "As senhas não conferem"
-      ),
+    name: yup.string(),
+    email: yup.string().email("E-mail inválido"),
+    // password: yup
+    //   .string()
+    //   .min(8, "Deve conter no mínimo 8 caracteres")
+    //   .matches(
+    //     /[A-Z]/,
+    //     "Deve conter ao menos uma letra maiúscula"
+    //   )
+    //   .matches(
+    //     /[a-z]/,
+    //     "Deve conter ao menos uma letra minúscula"
+    //   )
+    //   .matches(/[0-9]/, "Deve conter ao menos um número")
+    //   .matches(
+    //     /(\W)|_/,
+    //     "Deve conter ao menos um caracter especial"
+    //   ),
+    // confirmPassword: yup
+    //   .string()
+    //   .required("Confirmação de senha obrigatória")
+    //   .oneOf(
+    //     [yup.ref("password")],
+    //     "As senhas não conferem"
+    //   ),
     imgUrl: yup.string().url("URL inválida"),
   });
 
-  const { Register } = useContext(UserContext);
+  const { EditUser } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IdataRegister>({
+  } = useForm<IdataEditUser>({
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data: IdataRegister) => {
-    Register(data);
+  const onSubmit = (data: IdataEditUser) => {
+    // EditUser(data);
+    console.log(data);
   };
 
   return (
@@ -105,8 +100,8 @@ export const ModalRegister = () => {
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpenRegister}
-        onClose={onCloseRegister}
+        isOpen={isOpenEditUser}
+        onClose={onCloseEditUser}
       >
         <ModalOverlay />
         <ModalContent
@@ -120,7 +115,7 @@ export const ModalRegister = () => {
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
               <h2 className="text-xl tablet:text-2xl">
-                Crie sua conta
+                Edite sua conta
               </h2>
             </ModalHeader>
 
@@ -139,18 +134,8 @@ export const ModalRegister = () => {
           >
             <ModalBody className=" mt-1 laptop:mt-4 mb-4">
               <FormControl position="relative">
-                <FormLabel
-                  fontSize={16}
-                  className={
-                    errors.name?.message
-                      ? "text-error-100"
-                      : "text-green-100"
-                  }
-                >
+                <FormLabel fontSize={16}>
                   Nome de usuário
-                  <span className="text-error-100 ml-1">
-                    *
-                  </span>
                 </FormLabel>
                 <Input
                   id="name"
@@ -161,29 +146,10 @@ export const ModalRegister = () => {
                     opacity: "50%",
                   }}
                   fontSize="14px"
-                  borderColor={
-                    errors.name?.message
-                      ? "#E64980"
-                      : "#353149"
-                  }
                   bg="#353149"
                   height="50px"
-                  color={
-                    errors.name?.message
-                      ? "#E64980"
-                      : "#fff"
-                  }
-                  focusBorderColor={
-                    errors.name?.message
-                      ? "#E64980"
-                      : "#c7c7c7"
-                  }
+                  color="#fff"
                 />
-                {errors.name?.message && (
-                  <MessageError
-                    error={errors.name?.message}
-                  ></MessageError>
-                )}
               </FormControl>
 
               <FormControl mt={4}>
@@ -195,9 +161,6 @@ export const ModalRegister = () => {
                   }
                 >
                   E-mail
-                  <span className="text-error-100 ml-1">
-                    *
-                  </span>
                 </FormLabel>
                 <Input
                   id="email"
@@ -280,15 +243,12 @@ export const ModalRegister = () => {
               <FormControl mt={4}>
                 <FormLabel
                   className={
-                    errors.password?.message
+                    errors?.password?.message
                       ? "text-error-100"
                       : "text-green-100"
                   }
                 >
                   Senha
-                  <span className="text-error-100 ml-1">
-                    *
-                  </span>
                 </FormLabel>
                 <InputGroup>
                   <Input
@@ -301,19 +261,19 @@ export const ModalRegister = () => {
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors.password?.message
+                      errors?.password?.message
                         ? "#E64980"
                         : "#353149"
                     }
                     bg="#353149"
                     height="50px"
                     color={
-                      errors.password?.message
+                      errors?.password?.message
                         ? "#E64980"
                         : "#fff"
                     }
                     focusBorderColor={
-                      errors.password?.message
+                      errors?.password?.message
                         ? "#E64980"
                         : "#c7c7c7"
                     }
@@ -353,9 +313,6 @@ export const ModalRegister = () => {
                   }
                 >
                   Confirme sua senha
-                  <span className="text-error-100 ml-1">
-                    *
-                  </span>
                 </FormLabel>
                 <InputGroup>
                   <Input
@@ -368,19 +325,19 @@ export const ModalRegister = () => {
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors.confirmPassword?.message
+                      errors?.confirmPassword?.message
                         ? "#E64980"
                         : "#353149"
                     }
                     bg="#353149"
                     height="50px"
                     color={
-                      errors.confirmPassword?.message
+                      errors?.confirmPassword?.message
                         ? "#E64980"
                         : "#fff"
                     }
                     focusBorderColor={
-                      errors.confirmPassword?.message
+                      errors?.confirmPassword?.message
                         ? "#E64980"
                         : "#c7c7c7"
                     }
@@ -426,7 +383,7 @@ export const ModalRegister = () => {
               fontSize="14px"
             >
               <Button
-                onClick={onCloseRegister}
+                // onClick={onCloseEditUser}
                 type="submit"
                 bg="#61FFAA"
                 color="#08490e"
@@ -441,25 +398,8 @@ export const ModalRegister = () => {
                 _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
               >
-                Criar
+                Editar
               </Button>
-
-              <p>
-                Já possui conta?{" "}
-                <Button
-                  onClick={() => {
-                    onCloseRegister();
-                    onOpenLogin();
-                  }}
-                  className="underline hover:brightness-90 transition-colors"
-                  variant="link"
-                  fontSize="14px"
-                  fontWeight="medium"
-                  color="#c7c7c7"
-                >
-                  Faça o login
-                </Button>
-              </p>
             </ModalFooter>
           </form>
         </ModalContent>

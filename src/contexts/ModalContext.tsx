@@ -11,7 +11,10 @@ interface iModalContext {
   isOpenLogin: boolean;
   isOpenNewCamp: boolean;
   isOpenInfoUser: boolean;
+
   isOpenDeleteCamp: boolean;
+  isOpenEditUser: boolean;
+
   onOpenRegister: () => void;
   onCloseRegister: () => void;
   onOpenLogin: () => void;
@@ -20,13 +23,22 @@ interface iModalContext {
   onCloseNewCamp: () => void;
   onOpenInfoUser: () => void;
   onCloseInfoUser: () => void;
+
   onOpenDeleteCamp: () => void;
   onCloseDeleteCamp: () => void;
+
+  onOpenEditUser: () => void;
+  onCloseEditUser: () => void;
+
 }
 
-export const ContextModal = createContext<iModalContext>({} as iModalContext);
+export const ContextModal = createContext<iModalContext>(
+  {} as iModalContext
+);
 
-export const ModalProvider = ({ children }: iModalContextProps) => {
+export const ModalProvider = ({
+  children,
+}: iModalContextProps) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -59,9 +71,15 @@ export const ModalProvider = ({ children }: iModalContextProps) => {
   } = useDisclosure();
 
   const {
+
     isOpen: isOpenDeleteCamp,
     onOpen: onOpenDeleteCamp,
     onClose: onCloseDeleteCamp,
+
+    isOpen: isOpenEditUser,
+    onOpen: onOpenEditUser,
+    onClose: onCloseEditUser,
+
   } = useDisclosure();
 
   return (
@@ -79,9 +97,15 @@ export const ModalProvider = ({ children }: iModalContextProps) => {
         isOpenInfoUser,
         onOpenInfoUser,
         onCloseInfoUser,
+
         isOpenDeleteCamp,
         onOpenDeleteCamp,
         onCloseDeleteCamp,
+
+        isOpenEditUser,
+        onOpenEditUser,
+        onCloseEditUser,
+
       }}
     >
       {children}
