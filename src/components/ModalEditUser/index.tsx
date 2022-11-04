@@ -34,9 +34,8 @@ interface IdataEditUser {
   imgUrl?: string;
 }
 
-export const ModalRegister = () => {
-
-  const { isOpenRegister, onCloseRegister} =
+export const ModalEdit = () => {
+  const { isOpenEditUser, onCloseEditUser } =
     useContext(ContextModal);
 
   const [showPass, setShowPass] = useState(false);
@@ -53,34 +52,31 @@ export const ModalRegister = () => {
     setShowConfirmPass(!showConfirmPass);
 
   const formSchema = yup.object().shape({
-    name: yup
-      .string(),
-    email: yup
-      .string()
-      .email("E-mail inválido"),
-    password: yup
-      .string()
-      .min(8, "Deve conter no mínimo 8 caracteres")
-      .matches(
-        /[A-Z]/,
-        "Deve conter ao menos uma letra maiúscula"
-      )
-      .matches(
-        /[a-z]/,
-        "Deve conter ao menos uma letra minúscula"
-      )
-      .matches(/[0-9]/, "Deve conter ao menos um número")
-      .matches(
-        /(\W)|_/,
-        "Deve conter ao menos um caracter especial"
-      ),
-    confirmPassword: yup
-      .string()
-      .required("Confirmação de senha obrigatória")
-      .oneOf(
-        [yup.ref("password")],
-        "As senhas não conferem"
-      ),
+    name: yup.string(),
+    email: yup.string().email("E-mail inválido"),
+    // password: yup
+    //   .string()
+    //   .min(8, "Deve conter no mínimo 8 caracteres")
+    //   .matches(
+    //     /[A-Z]/,
+    //     "Deve conter ao menos uma letra maiúscula"
+    //   )
+    //   .matches(
+    //     /[a-z]/,
+    //     "Deve conter ao menos uma letra minúscula"
+    //   )
+    //   .matches(/[0-9]/, "Deve conter ao menos um número")
+    //   .matches(
+    //     /(\W)|_/,
+    //     "Deve conter ao menos um caracter especial"
+    //   ),
+    // confirmPassword: yup
+    //   .string()
+    //   .required("Confirmação de senha obrigatória")
+    //   .oneOf(
+    //     [yup.ref("password")],
+    //     "As senhas não conferem"
+    //   ),
     imgUrl: yup.string().url("URL inválida"),
   });
 
@@ -95,7 +91,8 @@ export const ModalRegister = () => {
   });
 
   const onSubmit = (data: IdataEditUser) => {
-    EditUser(data);
+    // EditUser(data);
+    console.log(data);
   };
 
   return (
@@ -103,8 +100,8 @@ export const ModalRegister = () => {
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpenRegister}
-        onClose={onCloseRegister}
+        isOpen={isOpenEditUser}
+        onClose={onCloseEditUser}
       >
         <ModalOverlay />
         <ModalContent
@@ -118,7 +115,7 @@ export const ModalRegister = () => {
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
               <h2 className="text-xl tablet:text-2xl">
-                Edite sua conta!
+                Edite sua conta
               </h2>
             </ModalHeader>
 
@@ -151,7 +148,7 @@ export const ModalRegister = () => {
                   fontSize="14px"
                   bg="#353149"
                   height="50px"
-                  color= "#fff"
+                  color="#fff"
                 />
               </FormControl>
 
@@ -246,7 +243,7 @@ export const ModalRegister = () => {
               <FormControl mt={4}>
                 <FormLabel
                   className={
-                    errors.password?.message
+                    errors?.password?.message
                       ? "text-error-100"
                       : "text-green-100"
                   }
@@ -264,19 +261,19 @@ export const ModalRegister = () => {
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors.password?.message
+                      errors?.password?.message
                         ? "#E64980"
                         : "#353149"
                     }
                     bg="#353149"
                     height="50px"
                     color={
-                      errors.password?.message
+                      errors?.password?.message
                         ? "#E64980"
                         : "#fff"
                     }
                     focusBorderColor={
-                      errors.password?.message
+                      errors?.password?.message
                         ? "#E64980"
                         : "#c7c7c7"
                     }
@@ -328,19 +325,19 @@ export const ModalRegister = () => {
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors.confirmPassword?.message
+                      errors?.confirmPassword?.message
                         ? "#E64980"
                         : "#353149"
                     }
                     bg="#353149"
                     height="50px"
                     color={
-                      errors.confirmPassword?.message
+                      errors?.confirmPassword?.message
                         ? "#E64980"
                         : "#fff"
                     }
                     focusBorderColor={
-                      errors.confirmPassword?.message
+                      errors?.confirmPassword?.message
                         ? "#E64980"
                         : "#c7c7c7"
                     }
@@ -386,7 +383,7 @@ export const ModalRegister = () => {
               fontSize="14px"
             >
               <Button
-                onClick={onCloseRegister}
+                // onClick={onCloseEditUser}
                 type="submit"
                 bg="#61FFAA"
                 color="#08490e"

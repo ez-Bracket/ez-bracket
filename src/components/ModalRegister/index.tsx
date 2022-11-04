@@ -26,12 +26,6 @@ import { ContextModal } from "../../contexts/ModalContext";
 // Components
 import { MessageError } from "../MessageError";
 
-interface IModalRegister {
-  title: string;
-  buttonDesc: string;
-  isRegister?: boolean;
-}
-
 interface IdataRegister {
   email: string;
   name: string;
@@ -40,11 +34,7 @@ interface IdataRegister {
   imgUrl?: string;
 }
 
-export const ModalRegister = ({
-  title,
-  buttonDesc,
-  isRegister,
-}: IModalRegister) => {
+export const ModalRegister = () => {
   const { isOpenRegister, onCloseRegister, onOpenLogin } =
     useContext(ContextModal);
 
@@ -130,7 +120,7 @@ export const ModalRegister = ({
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
               <h2 className="text-xl tablet:text-2xl">
-                {title}
+                Crie sua conta
               </h2>
             </ModalHeader>
 
@@ -451,27 +441,25 @@ export const ModalRegister = ({
                 _active={{ bgColor: "#61FFAA" }}
                 transition="0.3s ease"
               >
-                {buttonDesc}
+                Criar
               </Button>
 
-              {isRegister && (
-                <p>
-                  Já possui conta?{" "}
-                  <Button
-                    onClick={() => {
-                      onCloseRegister();
-                      onOpenLogin();
-                    }}
-                    className="underline hover:brightness-90 transition-colors"
-                    variant="link"
-                    fontSize="14px"
-                    fontWeight="medium"
-                    color="#c7c7c7"
-                  >
-                    Faça o login
-                  </Button>
-                </p>
-              )}
+              <p>
+                Já possui conta?{" "}
+                <Button
+                  onClick={() => {
+                    onCloseRegister();
+                    onOpenLogin();
+                  }}
+                  className="underline hover:brightness-90 transition-colors"
+                  variant="link"
+                  fontSize="14px"
+                  fontWeight="medium"
+                  color="#c7c7c7"
+                >
+                  Faça o login
+                </Button>
+              </p>
             </ModalFooter>
           </form>
         </ModalContent>
