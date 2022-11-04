@@ -91,11 +91,13 @@ export const ModalLogin = () => {
             </ModalHeader>
 
             <ModalCloseButton
-              className="mt-3 mr-2 bg-green-100 text-gray-300"
+              className="mt-3 mr-2 text-gray-300"
               borderRadius={50}
               h={6}
               w={6}
-              _hover={{ bg: "#38F892" }}
+              bg="#61FFAA"
+              _hover={{ bg: '#38F892' }}
+
               transition="0.3s ease"
             />
           </div>
