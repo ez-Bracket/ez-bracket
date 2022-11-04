@@ -3,8 +3,15 @@ import AddPlayerForm from '../../components/AddPlayerForm';
 import CampInfo from '../../components/CampInfo';
 import { DashboardMenu } from '../../components/DashboardMenu';
 import PlayersList from '../../components/PlayersList';
+import {useState} from 'react'
+
+interface iPlayerList {
+  player: string;
+  playerImg?: string;
+}
 
 export const AddPlayers = () => {
+  const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
   return (
     <div>
       <div className="bg-gray-300 h-screen">
@@ -20,8 +27,8 @@ export const AddPlayers = () => {
               number_of_players="16"
             />
             <div className="flex justify-between gap-8 laptop:flex-row flex-col w-[80%] mt-12">
-              <AddPlayerForm />
-              <PlayersList />
+              <AddPlayerForm playersList={playersList} setPlayersList={setPlayersList}/>
+              <PlayersList playersList={playersList}/>
             </div>
           </div>
         </section>
