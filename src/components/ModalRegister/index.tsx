@@ -436,6 +436,7 @@ export const ModalRegister = ({
               fontSize="14px"
             >
               <Button
+                onClick={onCloseRegister}
                 type="submit"
                 bg="#61FFAA"
                 color="#08490e"
