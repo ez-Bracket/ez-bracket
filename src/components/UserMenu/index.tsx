@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { ContextModal } from '../../contexts/ModalContext';
 
-export const DashboardMenu = () => {
+export const UserMenu = () => {
   const { Logout } = useContext(UserContext);
 
   const { onOpenInfoUser, onOpenNewCamp } = useContext(ContextModal);

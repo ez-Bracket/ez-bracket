@@ -1,5 +1,8 @@
 import CampInfo from '../../components/CampInfo';
-import { DashboardMenu } from '../../components/DashboardMenu';
+import { ModalEdit } from '../../components/Modals/ModalEditUser';
+import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
+import { NewCampModal } from '../../components/Modals/ModalNewCamp';
+import { UserMenu } from '../../components/UserMenu';
 
 export const Tournament = () => {
   return (
@@ -8,7 +11,7 @@ export const Tournament = () => {
         <div className="bg-dashboard bg-cover h-screen w-full absolute opacity-10 shadow-[0_100px_100px_#070516]"></div>
 
         <section className="py-10 tablet:py-20 bg-gray-300">
-          <DashboardMenu />
+          <UserMenu />
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
               name="Nome do Torneio"
@@ -20,6 +23,9 @@ export const Tournament = () => {
           </div>
         </section>
       </div>
+      <InfoUserModal />
+      <ModalEdit />
+      <NewCampModal />
     </div>
   );
 };

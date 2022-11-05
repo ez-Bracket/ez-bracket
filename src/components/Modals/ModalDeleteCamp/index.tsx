@@ -9,8 +9,9 @@ import {
   ModalCloseButton,
   Button,
 } from '@chakra-ui/react';
-import { ContextModal } from '../../contexts/ModalContext';
-import { CampConext } from '../../contexts/CampContext';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { CampConext } from '../../../contexts/CampContext';
+
 
 export const ModalDeleteCamp = () => {
   const { isOpenDeleteCamp, onCloseDeleteCamp } = useContext(ContextModal);

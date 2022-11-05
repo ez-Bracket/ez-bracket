@@ -7,10 +7,10 @@ import {
   ModalContent,
   ModalOverlay,
 } from "@chakra-ui/modal";
-
 import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { ContextModal } from "../../contexts/ModalContext";
+import { ContextModal } from "../../../contexts/ModalContext";
+import { UserContext } from "../../../contexts/UserContext";
+
 
 export const InfoUserModal = () => {
   const {

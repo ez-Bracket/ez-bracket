@@ -1,8 +1,8 @@
-import { BsFillTrashFill, BsController } from "react-icons/bs";
-import { AiFillCalendar } from "react-icons/ai";
-import { useContext } from "react";
-import { ContextModal } from "../../contexts/ModalContext";
-import { CampConext } from "../../contexts/CampContext";
+import { BsFillTrashFill, BsController } from 'react-icons/bs';
+import { AiFillCalendar } from 'react-icons/ai';
+import { useContext } from 'react';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { CampConext } from '../../../contexts/CampContext';
 
 interface iTournamentProps {
   idUser: number;
@@ -42,12 +42,12 @@ export const DashboardBox = ({ tournament }: iTournament) => {
       <div className="flex flex-col gap-[15px]">
         <h3 className="text-gray-100 flex items-center gap-[10px]">
           <BsController className="text-green-100" />
-          {tournament.players.length}
+          Qtd. de players: {tournament.players.length}
         </h3>
         {tournament.date ? (
           <span className="text-gray-100 flex items-center gap-[10px]">
-            <AiFillCalendar className="text-green-100" />{" "}
-            {tournament.date.split("-").reverse().join("/")}
+            <AiFillCalendar className="text-green-100" />{' '}
+            {tournament.date.split('-').reverse().join('/')}
           </span>
         ) : null}
       </div>

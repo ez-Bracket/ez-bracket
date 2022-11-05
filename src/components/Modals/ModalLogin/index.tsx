@@ -19,12 +19,10 @@ import {
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { UserContext } from '../../contexts/UserContext';
-import { ContextModal } from '../../contexts/ModalContext';
-
-// Components
-import { MessageError } from '../MessageError';
-import { Loading } from '../Loading';
+import { UserContext } from '../../../contexts/UserContext';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { Loading } from '../../Loading';
+import { MessageError } from '../../MessageError';
 
 interface ILoginForm {
   email: string;

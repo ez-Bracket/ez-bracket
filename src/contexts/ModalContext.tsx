@@ -96,11 +96,9 @@ export const ModalProvider = ({
         isOpenInfoUser,
         onOpenInfoUser,
         onCloseInfoUser,
-
         isOpenDeleteCamp,
         onOpenDeleteCamp,
         onCloseDeleteCamp,
-
         isOpenEditUser,
         onOpenEditUser,
         onCloseEditUser,

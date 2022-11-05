@@ -17,16 +17,11 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
-
-// Utilities
-import { UserContext } from "../../contexts/UserContext";
-import { ContextModal } from "../../contexts/ModalContext";
-import { iCampRegister } from "../../contexts/CampContext";
-import { CampConext } from "../../contexts/CampContext";
-
-// Components
-import { MessageError } from "../MessageError";
-import { CustomToast } from "../Toast";
+import { UserContext } from "../../../contexts/UserContext";
+import { CampConext, iCampRegister } from "../../../contexts/CampContext";
+import { ContextModal } from "../../../contexts/ModalContext";
+import { CustomToast } from "../../Toast";
+import { MessageError } from "../../MessageError";
 
 interface INewCampForm {
   competition: string;

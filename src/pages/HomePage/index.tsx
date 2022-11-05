@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { ContentBoxDiv } from '../../components/ContentBoxDiv';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { HomeBrackets } from '../../components/HomeBrackets';
-import { HomeMain } from '../../components/HomeMain';
-import { ModalLogin } from '../../components/ModalLogin';
-import { ModalRegister } from '../../components/ModalRegister';
+import { HomeBrackets } from '../../components/Home Components/HomeBrackets';
+import { HomeMain } from '../../components/Home Components/HomeMain';
+import { ModalLogin } from '../../components/Modals/ModalLogin';
+import { ModalRegister } from '../../components/Modals/ModalRegister';
 import { UserContext } from '../../contexts/UserContext';
 import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
 

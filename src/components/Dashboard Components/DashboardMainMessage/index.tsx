@@ -1,6 +1,6 @@
-import { ButtonDefault } from '../Button';
+import { ButtonDefault } from '../../Button';
 import { useContext } from 'react';
-import { ContextModal } from '../../contexts/ModalContext';
+import { ContextModal } from '../../../contexts/ModalContext';
 
 export const DashboardMainMessage = () => {
   const { onOpenNewCamp } = useContext(ContextModal);

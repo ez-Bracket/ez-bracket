@@ -1,13 +1,9 @@
 import { useContext } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
-
-// Utilities
-import Brackets from '../../assets/brackets.svg';
-
-// Components
-import { ContextModal } from '../../contexts/ModalContext';
-import { ButtonDefault } from '../Button';
+import Brackets from '../../../assets/brackets.svg';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { ButtonDefault } from '../../Button';
 
 export const HomeBrackets = () => {
   const { onOpenRegister } = useContext(ContextModal);

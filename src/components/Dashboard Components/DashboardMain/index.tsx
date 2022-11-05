@@ -1,12 +1,12 @@
-import { useContext, useEffect } from "react";
-import { DashboardBox } from "../DashboardBox";
-import { AddBox } from "../AddBox";
-import { CampConext } from "../../contexts/CampContext";
-import { DashboardMainMessage } from "../DashboardMainMessage";
+import { useContext, useEffect } from 'react';
+import { DashboardBox } from '../DashboardBox';
+import { AddBox } from '../../AddBox';
+import { CampConext } from '../../../contexts/CampContext';
+import { DashboardMainMessage } from '../DashboardMainMessage';
 
 export const DashboardMain = () => {
   const { camp, getCompetition } = useContext(CampConext);
-  const idUser = window.localStorage.getItem("@EZ:USERID");
+  const idUser = window.localStorage.getItem('@EZ:USERID');
 
   useEffect(() => {
     getCompetition(Number(idUser));

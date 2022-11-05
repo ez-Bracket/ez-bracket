@@ -2,9 +2,8 @@ import { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@chakra-ui/react';
 import 'animate.css';
+import { ContextModal } from '../../../contexts/ModalContext';
 
-// Utilities
-import { ContextModal } from '../../contexts/ModalContext';
 
 export const HomeMain = () => {
   const { onOpenRegister } = useContext(ContextModal);
