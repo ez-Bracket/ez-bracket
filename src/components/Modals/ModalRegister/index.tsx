@@ -35,7 +35,6 @@ export const ModalRegister = () => {
     useContext(ContextModal);
 
   const [showPass, setShowPass] = useState(false);
-
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const initialRef = useRef(null);
@@ -69,6 +68,7 @@ export const ModalRegister = () => {
   const handleClick = () => {
     if (isRegisterSuccess) {
       onCloseRegister();
+      onOpenLogin();
     }
     return null;
   };
@@ -76,18 +76,21 @@ export const ModalRegister = () => {
   if (isRegisterSuccess) {
     onCloseRegister();
     setIsRegisterSuccess(!isRegisterSuccess);
+    onOpenLogin();
   }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IdataRegister>({
     resolver: yupResolver(formSchema),
   });
 
   const onSubmit = (data: IdataRegister) => {
     Register(data);
+    reset();
   };
 
   return (
