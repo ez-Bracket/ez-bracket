@@ -1,10 +1,11 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // Components
-import { Dashboard } from '../pages/Dashboard';
-import { HomePage } from '../pages/HomePage';
-import { Tournament } from '../pages/Tournament';
-import { AddPlayers } from '../pages/AddPlayers';
+import { Dashboard } from "../pages/Dashboard";
+import { HomePage } from "../pages/HomePage";
+import { Tournament } from "../pages/Tournament";
+import { AddPlayers } from "../pages/AddPlayers";
+import { PlayersCard } from "../components/PlayersCard/Win and Lose Cards";
 
 export const RoutesApp = () => {
   return (
@@ -13,7 +14,12 @@ export const RoutesApp = () => {
 
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/addplayers" element={<AddPlayers />} />
-      <Route path="/tournament/:id" element={<Tournament />} />
+      <Route
+        path="/tournament/:id"
+        element={<Tournament />}
+      />
+
+      <Route path="/teste" element={<PlayersCard />} />
 
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
