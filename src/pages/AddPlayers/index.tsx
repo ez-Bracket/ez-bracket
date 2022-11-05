@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import AddPlayerForm from '../../components/AddPlayerForm';
 import CampInfo from '../../components/CampInfo';
 import { UserMenu } from '../../components/UserMenu';
-import PlayersList from '../../components/PlayersList';
+import { PlayersList } from '../../components/PlayersList';
 import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
 import { UserContext } from '../../contexts/UserContext';
 import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
@@ -49,11 +49,11 @@ export const AddPlayers = () => {
             <CampInfo
               name="Nome do Torneio"
               status={true}
-              date="-/-/-"
+              date="--/--/--"
               number_of_players="16"
             />
 
-            <div className="flex gap-24 laptop:flex-row flex-col w-full tablet:w-[80%] mt-12">
+            <div className="flex gap-12 tablet:gap-24 laptop:flex-row flex-col w-full tablet:w-[80%] mt-12">
               <AddPlayerForm
                 playersList={playersList}
                 setPlayersList={setPlayersList}

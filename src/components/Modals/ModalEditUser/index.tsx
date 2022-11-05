@@ -30,9 +30,7 @@ interface IdataEditUser {
 
 export const ModalEdit = () => {
   const { isOpenEditUser, onCloseEditUser } = useContext(ContextModal);
-
   const [showPass, setShowPass] = useState(false);
-
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const initialRef = useRef(null);
@@ -48,10 +46,10 @@ export const ModalEdit = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IdataEditUser>();
 
   const onSubmit = (data: any) => {
-    // EditUser(data);
     if (data.name?.length! > 0) {
       EditUser({ name: data.name });
     }
@@ -67,6 +65,7 @@ export const ModalEdit = () => {
     if (data.confirmPassword.length > 0) {
       EditUser({ confirmPassword: data });
     }
+    reset();
   };
 
   return (

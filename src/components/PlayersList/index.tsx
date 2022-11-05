@@ -1,4 +1,5 @@
-import { BiUser } from "react-icons/bi";
+import { BiUser } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 
 interface iPlayerList {
   player: string;
@@ -9,9 +10,15 @@ interface iPlayerListProps {
   playersList: iPlayerList[];
 }
 
-const PlayersList = ({ playersList }: iPlayerListProps) => {
+export const PlayersList = ({ playersList }: iPlayerListProps) => {
   return (
-    <div className="bg-gray-200 w:full tablet:w-[400px] p-8 rounded-[10px] mb-[100px] tablet:mb-0">
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-gray-200 w:full tablet:w-[400px] p-8 rounded-[10px] mb-[100px] tablet:mb-0"
+    >
       <h3 className="text-green-100 text-2xl mb-3">Participantes</h3>
       <ul className="flex flex-col gap-[10px]">
         {playersList.map((player, index) => (
@@ -30,8 +37,6 @@ const PlayersList = ({ playersList }: iPlayerListProps) => {
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
-
-export default PlayersList;
