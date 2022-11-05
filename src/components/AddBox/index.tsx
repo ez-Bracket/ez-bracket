@@ -1,6 +1,8 @@
-import { useContext } from 'react';
-import { IoMdAdd } from 'react-icons/io';
-import { ContextModal } from '../../contexts/ModalContext';
+import { useContext } from "react";
+import { IoMdAdd } from "react-icons/io";
+
+// Components
+import { ContextModal } from "../../contexts/ModalContext";
 
 export const AddBox = () => {
   const { onOpenNewCamp } = useContext(ContextModal);

@@ -8,7 +8,8 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-import { ContextModal } from "../../contexts/ModalContext";
+// Utilities
+import { ContextModal } from "../../../contexts/ModalContext";
 
 export const InfoModal = () => {
   const { isOpenInfoCamp, onCloseInfoCamp } =

@@ -1,5 +1,8 @@
-import { RoutesApp } from './routes';
-import './styles/main.css';
+// Utilities
+import { RoutesApp } from "./routes";
+
+// Styles
+import "./styles/main.css";
 
 export const App = () => {
   return (

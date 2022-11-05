@@ -1,4 +1,3 @@
-
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,10 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Api } from "../services/Api";
 
 // Components
-
-import { CustomToast } from '../components/Toast';
-import { Data } from 'victory';
-import { ContextModal } from './ModalContext';
+import { CustomToast } from "../components/Toast";
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -90,14 +86,18 @@ interface IapiEditResp {
   id: number;
 }
 
-export const UserContext = createContext<IuserContext>({} as IuserContext);
+export const UserContext = createContext<IuserContext>(
+  {} as IuserContext
+);
 
 export const UserProvider = ({
   children,
 }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLogged, setIsLogged] = useState(!!localStorage.getItem('@EZ:TOKEN'));
+  const [isLogged, setIsLogged] = useState(
+    !!localStorage.getItem("@EZ:TOKEN")
+  );
   const navigate = useNavigate();
   const { toastify } = CustomToast();
 
@@ -109,11 +109,12 @@ export const UserProvider = ({
       setIsLoading(true);
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const res = await Api.get<IuserApiGet>(`users/${id}`);
+        const res = await Api.get<IuserApiGet>(
+          `users/${id}`
+        );
 
         setUser([res.data]);
         setIsLogged(true);
-
       } catch (error) {
         console.log(error);
         return error;
@@ -131,22 +132,27 @@ export const UserProvider = ({
     try {
       setIsLoading(true);
 
-      const res = await Api.post<IuserApiLoginResp>('login', data);
+      const res = await Api.post<IuserApiLoginResp>(
+        "login",
+        data
+      );
       localStorage.clear();
-      localStorage.setItem('@EZ:TOKEN', res.data.accessToken);
-      localStorage.setItem('@EZ:USERID', res.data.user.id);
-
+      localStorage.setItem(
+        "@EZ:TOKEN",
+        res.data.accessToken
+      );
+      localStorage.setItem("@EZ:USERID", res.data.user.id);
 
       LoadUser();
-      navigate('/dashboard');
+      navigate("/dashboard");
       toastify({
         description: "Login realizado com sucesso!",
         status: "success",
       });
     } catch (error) {
       toastify({
-
-        description: "E-mail ou senha inválido, tente novamente!",
+        description:
+          "E-mail ou senha inválido, tente novamente!",
 
         status: "error",
       });
@@ -161,13 +167,11 @@ export const UserProvider = ({
 
   const Register = async (data: IuserDataRegister) => {
     try {
-
       await Api.post<IuserApiRegisterResp>(
         "register",
         data
       );
       setIsRegisterSuccess(true);
-
 
       toastify({
         description: "Usuário cadastrado com sucesso!",
@@ -175,7 +179,8 @@ export const UserProvider = ({
       });
     } catch (error) {
       toastify({
-        description: "Ops, algo deu errado tente novamente!",
+        description:
+          "Ops, algo deu errado tente novamente!",
         status: "error",
       });
       setIsRegisterSuccess(false);
@@ -184,17 +189,16 @@ export const UserProvider = ({
   };
 
   const EditUser = async (data: IdataEditUser) => {
-
-    const token = localStorage.getItem('@EZ:TOKEN');
-    const id = localStorage.getItem('@EZ:USERID');
+    const token = localStorage.getItem("@EZ:TOKEN");
+    const id = localStorage.getItem("@EZ:USERID");
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
       await Api.patch<IapiEditResp>(`user/${id}`, data);
     } catch (error) {
       toastify({
-        description: 'Ops, algo deu errado tente novamente!',
-        status: 'error',
-
+        description:
+          "Ops, algo deu errado tente novamente!",
+        status: "error",
       });
       return error;
     }
@@ -204,10 +208,9 @@ export const UserProvider = ({
     setUser([]);
 
     setIsLogged(false);
-    localStorage.removeItem('@EZ:TOKEN');
-    localStorage.removeItem('@EZ:USERID');
-    navigate('/');
-
+    localStorage.removeItem("@EZ:TOKEN");
+    localStorage.removeItem("@EZ:USERID");
+    navigate("/");
   };
 
   return (

@@ -1,3 +1,6 @@
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   FormControl,
   FormLabel,
@@ -5,9 +8,8 @@ import {
   InputGroup,
   Button,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+
+// Components
 import { MessageError } from "../MessageError";
 
 interface iPlayerList {
@@ -21,7 +23,9 @@ interface iAddPlayerFormProps {
 }
 
 const playersSchema = yup.object().shape({
-  player: yup.string().required("Nome do jogador é obrigatório"),
+  player: yup
+    .string()
+    .required("Nome do jogador é obrigatório"),
 });
 
 const AddPlayerForm = ({
@@ -41,15 +45,18 @@ const AddPlayerForm = ({
   };
 
   return (
-
     <div className="w:full tablet:w-[400px]">
-      <form className="w-[100%]" onSubmit={handleSubmit(onSubmit)}>
-
+      <form
+        className="w-[100%]"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <FormControl position="relative">
           <FormLabel
             fontSize={16}
             className={
-              errors.player?.message ? "text-error-100" : "text-green-100"
+              errors.player?.message
+                ? "text-error-100"
+                : "text-green-100"
             }
           >
             Nome do participante
@@ -60,7 +67,9 @@ const AddPlayerForm = ({
               color: "#c7c7c7",
               opacity: "50%",
             }}
-            borderColor={errors.player?.message ? "#E64980" : "#353149"}
+            borderColor={
+              errors.player?.message ? "#E64980" : "#353149"
+            }
             bg="#353149"
             fontSize="14px"
             height="50px"
@@ -69,12 +78,16 @@ const AddPlayerForm = ({
             {...register("player")}
           />
           {errors.player?.message && (
-            <MessageError error={errors.player?.message}></MessageError>
+            <MessageError
+              error={errors.player?.message}
+            ></MessageError>
           )}
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel className="text-green-100">Foto do participante</FormLabel>
+          <FormLabel className="text-green-100">
+            Foto do participante
+          </FormLabel>
           <InputGroup>
             <Input
               placeholder="URL da foto do participante"
