@@ -194,6 +194,11 @@ export const UserProvider = ({
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
       await Api.patch<IapiEditResp>(`users/${id}`, data);
+      LoadUser();
+      toastify({
+        description: "Informações do usuário atualizada(s) com sucesso!",
+        status: "success",
+      });
     } catch (error) {
       toastify({
         description:
