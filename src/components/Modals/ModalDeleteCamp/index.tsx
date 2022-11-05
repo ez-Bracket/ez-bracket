@@ -9,11 +9,14 @@ import {
   ModalCloseButton,
   Button,
 } from "@chakra-ui/react";
-import { ContextModal } from "../../contexts/ModalContext";
-import { CampConext } from "../../contexts/CampContext";
+
+// Utilities
+import { ContextModal } from "../../../contexts/ModalContext";
+import { CampConext } from "../../../contexts/CampContext";
 
 export const ModalDeleteCamp = () => {
-  const { isOpenDeleteCamp, onCloseDeleteCamp } = useContext(ContextModal);
+  const { isOpenDeleteCamp, onCloseDeleteCamp } =
+    useContext(ContextModal);
 
   const { deleteCompetition } = useContext(CampConext);
 
@@ -42,7 +45,9 @@ export const ModalDeleteCamp = () => {
           bg="#221E34"
         >
           <ModalHeader className="text-green-100 mt-9 mb-0">
-            <p className="text-3xl text-center">Deletar torneio</p>
+            <p className="text-3xl text-center">
+              Deletar torneio
+            </p>
           </ModalHeader>
           <ModalCloseButton
             className="mt-6 mr-7 bg-green-100 text-gray-300"
@@ -70,7 +75,9 @@ export const ModalDeleteCamp = () => {
                 }}
                 transition="0.3s ease"
               >
-                <p className="text-gray-300 text-xl font-medium">Sim</p>
+                <p className="text-gray-300 text-xl font-medium">
+                  Sim
+                </p>
               </Button>
               <Button
                 bg="#E64980"
@@ -84,7 +91,9 @@ export const ModalDeleteCamp = () => {
                 }}
                 transition="0.3s ease"
               >
-                <p className="text-gray-300 text-xl font-medium">Não</p>
+                <p className="text-gray-300 text-xl font-medium">
+                  Não
+                </p>
               </Button>
             </div>
           </ModalFooter>

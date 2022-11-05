@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { Button } from "@chakra-ui/button";
 import {
@@ -8,9 +9,9 @@ import {
   ModalOverlay,
 } from "@chakra-ui/modal";
 
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { ContextModal } from "../../contexts/ModalContext";
+// Utilities
+import { UserContext } from "../../../contexts/UserContext";
+import { ContextModal } from "../../../contexts/ModalContext";
 
 export const InfoUserModal = () => {
   const {
@@ -45,10 +46,8 @@ export const InfoUserModal = () => {
                 borderRadius={50}
                 h={6}
                 w={6}
-
                 bg="#61FFAA"
-                _hover={{ bg: '#38F892' }}
-
+                _hover={{ bg: "#38F892" }}
                 transition="0.3s ease"
               />
               <ModalBody className="mt-4 mb-4 flex flex-col items-center gap-5">

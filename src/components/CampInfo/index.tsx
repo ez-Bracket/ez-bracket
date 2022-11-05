@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-
+import { useContext } from "react";
 import { Button } from "@chakra-ui/react";
 import {
   BsController,
   BsCalendarDate,
   BsInfoCircle,
 } from "react-icons/bs";
+
+// Utilities
 import { ContextModal } from "../../contexts/ModalContext";
 
 interface ICampInfoProps {

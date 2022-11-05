@@ -1,14 +1,17 @@
 import { useContext, useState } from "react";
+
+// Utilities
+import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
+import { UserContext } from "../../contexts/UserContext";
+
+// Components
 import AddPlayerForm from "../../components/AddPlayerForm";
 import { CampInfo } from "../../components/CampInfo";
-import { DashboardMenu } from "../../components/DashboardMenu";
-import { ModalEdit } from "../../components/ModalEditUser";
-import { InfoUserModal } from "../../components/ModalInfoUser";
-import { NewCampModal } from "../../components/ModalNewCamp";
+import { DashboardMenu } from "../../components/DashboardComponents/DashboardMenu";
+import { ModalEdit } from "../../components/Modals/ModalEditUser";
+import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
+import { NewCampModal } from "../../components/Modals/ModalNewCamp";
 import PlayersList from "../../components/PlayersList";
-import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
-
-import { UserContext } from "../../contexts/UserContext";
 
 interface iPlayerList {
   player: string;

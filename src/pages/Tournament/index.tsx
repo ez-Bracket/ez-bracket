@@ -1,6 +1,7 @@
+// Components
 import { CampInfo } from "../../components/CampInfo";
-import { DashboardMenu } from "../../components/DashboardMenu";
-import { InfoModal } from "../../components/ModalInfoCamp";
+import { DashboardMenu } from "../../components/DashboardComponents/DashboardMenu";
+import { InfoModal } from "../../components/Modals/ModalInfoCamp";
 
 export const Tournament = () => {
   return (

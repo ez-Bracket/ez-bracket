@@ -7,15 +7,16 @@ import "animate.css";
 
 // Utilities
 import { useMedia } from "../../hooks/useMedia";
+import { ContextModal } from "../../contexts/ModalContext";
 
 // Components
 import { Logo } from "../Logo";
-import { ContextModal } from "../../contexts/ModalContext";
 import { ButtonDefault } from "../Button";
 import { MobileMenu } from "../MobileMenu";
 
 export const Header = () => {
-  const { onOpenLogin, onOpenRegister } = useContext(ContextModal);
+  const { onOpenLogin, onOpenRegister } =
+    useContext(ContextModal);
 
   const mobile = useMedia("(max-width:40rem)");
   const { pathname } = useLocation();
@@ -46,7 +47,10 @@ export const Header = () => {
         </div>
 
         {mobile ? (
-          <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+          <MobileMenu
+            mobileMenu={mobileMenu}
+            setMobileMenu={setMobileMenu}
+          />
         ) : (
           <ButtonGroup gap="10">
             <Button
@@ -58,7 +62,10 @@ export const Header = () => {
             >
               Entrar
             </Button>
-            <ButtonDefault onClick={handleRegister} text="Cadastrar" />
+            <ButtonDefault
+              onClick={handleRegister}
+              text="Cadastrar"
+            />
           </ButtonGroup>
         )}
 
