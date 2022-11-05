@@ -1,4 +1,4 @@
-import CampInfo from '../../components/CampInfo';
+import { CampInfo } from '../../components/CampInfo';
 import { ModalEdit } from '../../components/Modals/ModalEditUser';
 import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
 import { NewCampModal } from '../../components/Modals/ModalNewCamp';
@@ -16,7 +16,7 @@ export const Tournament = () => {
             <CampInfo
               name="Nome do Torneio"
               status={true}
-              date="-/-/-"
+              date="--/--/--"
               number_of_players="16"
             />
             <div className="flex justify-between gap-8 laptop:flex-row flex-col w-[80%] mt-12"></div>
