@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import AddPlayerForm from '../../components/AddPlayerForm';
-import CampInfo from '../../components/CampInfo';
+import { AddPlayerForm } from '../../components/AddPlayerForm';
+import { CampInfo } from '../../components/CampInfo';
 import { UserMenu } from '../../components/UserMenu';
 import { PlayersList } from '../../components/PlayersList';
 import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
@@ -20,24 +20,24 @@ export const AddPlayers = () => {
   const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
 
   const { isLogged } = useContext(UserContext);
-  const { camp, addPlayersCompetition } = useContext(CampConext)
+  const { camp, addPlayersCompetition } = useContext(CampConext);
   useProtectedRoutes(isLogged, true);
 
   const { idCamp } = useParams();
 
-  function startCamp () {
-    const data = playersList.map(element => element.player);
+  function startCamp() {
+    const data = playersList.map((element) => element.player);
     addPlayersCompetition(Number(idCamp), playersList);
   }
 
-  useEffect(()=>{
-    const championship = camp.filter(camp => camp.id === Number(idCamp));
+  useEffect(() => {
+    const championship = camp.filter((camp) => camp.id === Number(idCamp));
     let number_of_players = championship[0].number_of_players;
-    if(Number(playersList.length) === Number(number_of_players)){
-      console.log("Todos os players foram adicionados!");
+    if (Number(playersList.length) === Number(number_of_players)) {
+      console.log('Todos os players foram adicionados!');
       startCamp();
     }
-  },[playersList])
+  }, [playersList]);
 
   return (
     <>
