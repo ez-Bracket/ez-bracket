@@ -13,37 +13,42 @@ interface iCampConext {
   createCompetition: (data: iCampRegister) => void;
   deleteCompetition: (idCamp: number) => void;
 
-  addPlayersCompetition: (idCamp: number, data: string[]) => void;
+  addPlayersCompetition: (idCamp: number, data: iPlayers[]) => void;
 
   winnerPlayerCompetition: (
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: string
+    winnerPlayer: iPlayers
   ) => void;
 
   setIdCamp: (id: number) => void;
   idCamp: number;
 }
 
+interface iPlayers {
+  player: string;
+  playerImg?: string;
+}
+
 interface iCamp {
   id: number;
   idUser: number;
   name: string;
-  players: string[];
+  players: iPlayers[];
   status: boolean;
-  winner: string;
+  winner: iPlayers;
   games: string[][];
+  number_of_players: number;
 }
 
 export interface iCampRegister {
   idUser: number;
   name: string;
   status: boolean;
-  winner: string | null;
+  winner: iPlayers | null;
   games: string[][];
-  players: string[];
-
+  players: iPlayers[];
   number_of_players: string;
   date?: string;
   description?: string;
@@ -85,7 +90,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     }
   };
 
-  const addPlayersCompetition = async (idCamp: number, data: string[]) => {
+  const addPlayersCompetition = async (idCamp: number, data: iPlayers[]) => {
     try {
       if (data.length === 4 || data.length === 8 || data.length === 16) {
         const config = {
@@ -123,7 +128,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: string
+    winnerPlayer: iPlayers
   ) => {
     try {
       const config = {
