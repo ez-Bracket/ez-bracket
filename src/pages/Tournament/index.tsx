@@ -1,8 +1,8 @@
-import { CampInfo } from '../../components/CampInfo';
-import { ModalEdit } from '../../components/Modals/ModalEditUser';
-import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
-import { NewCampModal } from '../../components/Modals/ModalNewCamp';
-import { UserMenu } from '../../components/UserMenu';
+import { CampInfo } from "../../components/CampInfo";
+import { ModalEdit } from "../../components/Modals/ModalEditUser";
+import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
+import { NewCampModal } from "../../components/Modals/ModalNewCamp";
+import { UserMenu } from "../../components/UserMenu";
 
 export const Tournament = () => {
   return (
