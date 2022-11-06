@@ -1,6 +1,8 @@
 import { useContext, useRef, useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Modal,
   ModalOverlay,
@@ -36,6 +38,24 @@ export const ModalEdit = () => {
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
+  const formSchema = yup.object().shape({
+    name: yup.string(),
+    email: yup.string()
+          .email('E-mail inválido'),
+    password: yup
+      .string()
+      .min(8, 'Deve conter no mínimo 8 caracteres')
+      .matches(/[A-Z]/, 'Deve conter ao menos uma letra maiúscula')
+      .matches(/[a-z]/, 'Deve conter ao menos uma letra minúscula')
+      .matches(/[0-9]/, 'Deve conter ao menos um número')
+      .matches(/(\W)|_/, 'Deve conter ao menos um caracter especial'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password')], 'As senhas não conferem'),
+    imgUrl: yup.string().url('URL inválida'),
+  });
+
+
   const handleShowPass = () => setShowPass(!showPass);
 
   const handleShowConfirmPass = () => setShowConfirmPass(!showConfirmPass);
@@ -46,10 +66,13 @@ export const ModalEdit = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm<IdataEditUser>();
 
-  const onSubmit = (data: any) => {
+  } = useForm<IdataEditUser>({
+    resolver: yupResolver(formSchema),
+  });
+  
+   const onSubmit = (data: IdataEditUser) => {
+
     if (data.name?.length! > 0) {
       EditUser({ name: data.name });
     }
@@ -59,11 +82,11 @@ export const ModalEdit = () => {
     if (data.imgUrl?.length! > 0) {
       EditUser({ imgUrl: data.imgUrl });
     }
-    if (data.password.length > 0) {
+    if (data.password?.length! > 0) {
       EditUser({ password: data.password });
     }
-    if (data.confirmPassword.length > 0) {
-      EditUser({ confirmPassword: data });
+    if (data.confirmPassword?.length! > 0) {
+      EditUser({ confirmPassword: data.confirmPassword });
     }
     reset();
   };
