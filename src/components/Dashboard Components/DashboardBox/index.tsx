@@ -65,7 +65,13 @@ export const DashboardBox = ({ tournament }: iTournament) => {
         <h2 className="text-xl text-white font-medium max-w-[30ch] overflow-hidden text-ellipsis whitespace-nowrap">
           {tournament.name}
         </h2>
-        <button ref={btnRef} onClick={() => handleModalDelete(tournament.id)}>
+        <button
+          ref={btnRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleModalDelete(tournament.id);
+          }}
+        >
           <BsFillTrashFill
             role="button"
             className="text-gray-100 text-2xl cursor-pointer hover:scale-110 transition-all"
