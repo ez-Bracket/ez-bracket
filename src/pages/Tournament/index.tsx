@@ -1,5 +1,6 @@
 import { CampInfo } from "../../components/CampInfo";
 import { ModalEdit } from "../../components/Modals/ModalEditUser";
+import { InfoModal } from "../../components/Modals/ModalInfoCamp";
 import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
 import { NewCampModal } from "../../components/Modals/ModalNewCamp";
 import { UserMenu } from "../../components/UserMenu";
@@ -26,6 +27,7 @@ export const Tournament = () => {
       <InfoUserModal />
       <ModalEdit />
       <NewCampModal />
+      <InfoModal />
     </div>
   );
 };
