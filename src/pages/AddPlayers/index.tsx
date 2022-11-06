@@ -8,7 +8,7 @@ import { UserContext } from '../../contexts/UserContext';
 import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
 import { ModalEdit } from '../../components/Modals/ModalEditUser';
 import { NewCampModal } from '../../components/Modals/ModalNewCamp';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CampConext } from '../../contexts/CampContext';
 
 interface iPlayerList {
@@ -23,16 +23,18 @@ export const AddPlayers = () => {
   const { camp, addPlayersCompetition } = useContext(CampConext);
   useProtectedRoutes(isLogged, true);
 
+  const navigate = useNavigate()
+
   const { idCamp } = useParams();
 
   function startCamp() {
-    const data = playersList.map((element) => element.player);
     addPlayersCompetition(Number(idCamp), playersList);
+    navigate(`/tournament/${idCamp}`)
   }
 
   useEffect(() => {
     const championship = camp.filter((camp) => camp.id === Number(idCamp));
-    let number_of_players = championship[0].number_of_players;
+    let number_of_players = championship[0]?.number_of_players;
     if (Number(playersList.length) === Number(number_of_players)) {
       console.log('Todos os players foram adicionados!');
       startCamp();
