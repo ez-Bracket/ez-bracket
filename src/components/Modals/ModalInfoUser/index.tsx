@@ -1,23 +1,19 @@
-import { HiOutlineMail } from "react-icons/hi";
-import { Button } from "@chakra-ui/button";
+import { HiOutlineMail } from 'react-icons/hi';
+import { Button } from '@chakra-ui/button';
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-} from "@chakra-ui/modal";
-import { useContext } from "react";
-import { ContextModal } from "../../../contexts/ModalContext";
-import { UserContext } from "../../../contexts/UserContext";
-
+} from '@chakra-ui/modal';
+import { useContext } from 'react';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { UserContext } from '../../../contexts/UserContext';
 
 export const InfoUserModal = () => {
-  const {
-    isOpenInfoUser,
-    onCloseInfoUser,
-    onOpenEditUser,
-  } = useContext(ContextModal);
+  const { isOpenInfoUser, onCloseInfoUser, onOpenEditUser } =
+    useContext(ContextModal);
 
   const { user } = useContext(UserContext);
 
@@ -45,10 +41,8 @@ export const InfoUserModal = () => {
                 borderRadius={50}
                 h={6}
                 w={6}
-
                 bg="#61FFAA"
                 _hover={{ bg: '#38F892' }}
-
                 transition="0.3s ease"
               />
               <ModalBody className="mt-4 mb-4 flex flex-col items-center gap-5">
@@ -78,8 +72,8 @@ export const InfoUserModal = () => {
                 color="#08490e"
                 fontWeight="500"
                 fontSize="18px"
-                _hover={{ bg: "#38F892" }}
-                _active={{ bg: "#38F892" }}
+                _hover={{ bg: '#38F892' }}
+                _active={{ bg: '#38F892' }}
               >
                 Editar
               </Button>

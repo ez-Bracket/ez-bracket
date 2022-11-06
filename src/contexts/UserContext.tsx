@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, Dispatch, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Utilities
-import { Api } from "../services/Api";
+import { Api } from '../services/Api';
 
 // Components
-import { CustomToast } from "../components/Toast";
+import { CustomToast } from '../components/Toast';
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ interface IuserContext {
   isLoading: boolean;
   isRegisterSuccess: boolean;
   user: IuserApiGet[];
+  setUser: Dispatch<React.SetStateAction<IuserApiGet[]>>;
   isLogged: boolean;
   Login: (data: IuserDataLogin) => void;
   Register: (data: IuserDataRegister) => void;
@@ -22,9 +23,7 @@ interface IuserContext {
   EditUser: (data: IdataEditUser) => void;
 
   LoadUser: () => void;
-  setIsRegisterSuccess: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
+  setIsRegisterSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IuserDataRegister {
@@ -86,32 +85,24 @@ interface IapiEditResp {
   id: number;
 }
 
-export const UserContext = createContext<IuserContext>(
-  {} as IuserContext
-);
+export const UserContext = createContext<IuserContext>({} as IuserContext);
 
-export const UserProvider = ({
-  children,
-}: iUserContextProps) => {
+export const UserProvider = ({ children }: iUserContextProps) => {
   const [user, setUser] = useState<IuserApiGet[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLogged, setIsLogged] = useState(
-    !!localStorage.getItem("@EZ:TOKEN")
-  );
+  const [isLogged, setIsLogged] = useState(!!localStorage.getItem('@EZ:TOKEN'));
   const navigate = useNavigate();
   const { toastify } = CustomToast();
 
   const LoadUser = async () => {
-    const token = localStorage.getItem("@EZ:TOKEN");
-    const id = localStorage.getItem("@EZ:USERID");
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
 
     if (token) {
       setIsLoading(true);
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const res = await Api.get<IuserApiGet>(
-          `users/${id}`
-        );
+        const res = await Api.get<IuserApiGet>(`users/${id}`);
 
         setUser([res.data]);
         setIsLogged(true);
@@ -132,29 +123,21 @@ export const UserProvider = ({
     try {
       setIsLoading(true);
 
-      const res = await Api.post<IuserApiLoginResp>(
-        "login",
-        data
-      );
+      const res = await Api.post<IuserApiLoginResp>('login', data);
       localStorage.clear();
-      localStorage.setItem(
-        "@EZ:TOKEN",
-        res.data.accessToken
-      );
-      localStorage.setItem("@EZ:USERID", res.data.user.id);
+      localStorage.setItem('@EZ:TOKEN', res.data.accessToken);
+      localStorage.setItem('@EZ:USERID', res.data.user.id);
 
       LoadUser();
-      navigate("/dashboard");
+      navigate('/dashboard');
       toastify({
-        description: "Login realizado com sucesso!",
-        status: "success",
+        description: 'Login realizado com sucesso!',
+        status: 'success',
       });
     } catch (error) {
       toastify({
-        description:
-          "E-mail ou senha inválido, tente novamente!",
-
-        status: "error",
+        description: 'E-mail ou senha inválido, tente novamente!',
+        status: 'error',
       });
       return error;
     } finally {
@@ -162,26 +145,21 @@ export const UserProvider = ({
     }
   };
 
-  const [isRegisterSuccess, setIsRegisterSuccess] =
-    useState(false);
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
 
   const Register = async (data: IuserDataRegister) => {
     try {
-      await Api.post<IuserApiRegisterResp>(
-        "register",
-        data
-      );
+      await Api.post<IuserApiRegisterResp>('register', data);
       setIsRegisterSuccess(true);
 
       toastify({
-        description: "Usuário cadastrado com sucesso!",
-        status: "success",
+        description: 'Usuário cadastrado com sucesso!',
+        status: 'success',
       });
     } catch (error) {
       toastify({
-        description:
-          "Ops, algo deu errado tente novamente!",
-        status: "error",
+        description: 'Ops, algo deu errado tente novamente!',
+        status: 'error',
       });
       setIsRegisterSuccess(false);
       return error;
@@ -189,8 +167,8 @@ export const UserProvider = ({
   };
 
   const EditUser = async (data: IdataEditUser) => {
-    const token = localStorage.getItem("@EZ:TOKEN");
-    const id = localStorage.getItem("@EZ:USERID");
+    const token = localStorage.getItem('@EZ:TOKEN');
+    const id = localStorage.getItem('@EZ:USERID');
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
       await Api.patch<IapiEditResp>(`users/${id}`, data);
@@ -201,9 +179,8 @@ export const UserProvider = ({
       });
     } catch (error) {
       toastify({
-        description:
-          "Ops, algo deu errado tente novamente!",
-        status: "error",
+        description: 'Ops, algo deu errado tente novamente!',
+        status: 'error',
       });
       return error;
     }
@@ -213,9 +190,9 @@ export const UserProvider = ({
     setUser([]);
 
     setIsLogged(false);
-    localStorage.removeItem("@EZ:TOKEN");
-    localStorage.removeItem("@EZ:USERID");
-    navigate("/");
+    localStorage.removeItem('@EZ:TOKEN');
+    localStorage.removeItem('@EZ:USERID');
+    navigate('/');
   };
 
   return (
@@ -224,7 +201,7 @@ export const UserProvider = ({
         Login,
         Register,
         Logout,
-
+        setUser,
         LoadUser,
         isLogged,
         user,

@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 // Utilities
-import { Api } from "../services/Api";
+import { Api } from '../services/Api';
 
 export interface iCampProvidertProps {
   children: React.ReactNode;
@@ -13,37 +13,42 @@ interface iCampConext {
   createCompetition: (data: iCampRegister) => void;
   deleteCompetition: (idCamp: number) => void;
 
-  addPlayersCompetition: (idCamp: number, data: string[]) => void;
+  addPlayersCompetition: (idCamp: number, data: iPlayers[]) => void;
 
   winnerPlayerCompetition: (
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: string
+    winnerPlayer: iPlayers
   ) => void;
 
   setIdCamp: (id: number) => void;
   idCamp: number;
 }
 
+interface iPlayers {
+  player: string;
+  playerImg?: string;
+}
+
 interface iCamp {
   id: number;
   idUser: number;
   name: string;
-  players: string[];
+  players: iPlayers[];
   status: boolean;
-  winner: string;
+  winner: iPlayers;
   games: string[][];
+  number_of_players: number;
 }
 
 export interface iCampRegister {
   idUser: number;
   name: string;
   status: boolean;
-  winner: string | null;
+  winner: iPlayers | null;
   games: string[][];
-  players: string[];
-
+  players: iPlayers[];
   number_of_players: string;
   date?: string;
   description?: string;
@@ -59,15 +64,15 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
         },
       };
       const allGames = await Api.get(`deathmatch`, config);
       setCamp(
-        allGames.data.filter((element: iCamp) => element.idUser === idUser)
+        allGames.data.filter((element: iCamp) => element.idUser === idUser),
       );
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -75,7 +80,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
         },
       };
       await Api.post(`deathmatch`, data, config);
@@ -85,12 +90,12 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     }
   };
 
-  const addPlayersCompetition = async (idCamp: number, data: string[]) => {
+  const addPlayersCompetition = async (idCamp: number, data: iPlayers[]) => {
     try {
       if (data.length === 4 || data.length === 8 || data.length === 16) {
         const config = {
           headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+            Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
           },
         };
         const game = await Api.get(`deathmatch/${idCamp}`);
@@ -104,7 +109,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
           createGames.push({
             player1: data[index],
             player2: data[index + 1],
-            winner: "",
+            winner: '',
           });
         }
 
@@ -112,7 +117,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
 
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
-        console.log("Quantidade de jogadores errada! 4 ou 8 ou 16!");
+        console.log('Quantidade de jogadores errada! 4 ou 8 ou 16!');
       }
     } catch (error) {
       console.log(error);
@@ -123,12 +128,12 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: string
+    winnerPlayer: iPlayers
   ) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
         },
       };
       const game = await Api.get(`deathmatch/${idCamp}`);
@@ -139,7 +144,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         game.data.games[round - 1][chave - 1].winner = winnerPlayer;
         if (
           !game.data.games[round - 1].find(
-            (element: { winner: string }) => element.winner === ""
+            (element: { winner: string }) => element.winner === '',
           ) &&
           game.data.games[round - 1].length > 1
         ) {
@@ -154,7 +159,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
             createGames.push({
               player1: game.data.games[round - 1][index].winner,
               player2: game.data.games[round - 1][index + 1].winner,
-              winner: "",
+              winner: '',
             });
           }
           game.data.games.push(createGames);
@@ -179,7 +184,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
         },
       };
       await Api.delete(`deathmatch/${id}`, config);
