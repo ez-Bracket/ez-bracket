@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { AddPlayerForm } from "../../components/AddPlayerForm";
-import { CampInfo } from "../../components/CampInfo";
-import { UserMenu } from "../../components/UserMenu";
-import { PlayersList } from "../../components/PlayersList";
-import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
-import { UserContext } from "../../contexts/UserContext";
-import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
-import { ModalEdit } from "../../components/Modals/ModalEditUser";
-import { NewCampModal } from "../../components/Modals/ModalNewCamp";
-import { useParams } from "react-router-dom";
-import { CampConext } from "../../contexts/CampContext";
+
+import { useContext, useEffect, useState } from 'react';
+import { AddPlayerForm } from '../../components/AddPlayerForm';
+import { CampInfo } from '../../components/CampInfo';
+import { UserMenu } from '../../components/UserMenu';
+import { PlayersList } from '../../components/PlayersList';
+import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
+import { UserContext } from '../../contexts/UserContext';
+import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
+import { ModalEdit } from '../../components/Modals/ModalEditUser';
+import { NewCampModal } from '../../components/Modals/ModalNewCamp';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CampConext } from '../../contexts/CampContext';
 import { InfoModal } from "../../components/Modals/ModalInfoCamp";
 
 interface iPlayerList {
@@ -27,26 +28,22 @@ export const AddPlayers = () => {
     useContext(CampConext);
   useProtectedRoutes(isLogged, true);
 
+  const navigate = useNavigate()
+
   const { idCamp } = useParams();
 
   function startCamp() {
-    const data = playersList.map(
-      (element) => element.player
-    );
+
     addPlayersCompetition(Number(idCamp), playersList);
+    navigate(`/tournament/${idCamp}`)
   }
 
   useEffect(() => {
-    const championship = camp.filter(
-      (camp) => camp.id === Number(idCamp)
-    );
-    let number_of_players =
-      championship[0].number_of_players;
-    if (
-      Number(playersList.length) ===
-      Number(number_of_players)
-    ) {
-      console.log("Todos os players foram adicionados!");
+    const championship = camp.filter((camp) => camp.id === Number(idCamp));
+    let number_of_players = championship[0]?.number_of_players;
+    if (Number(playersList.length) === Number(number_of_players)) {
+      console.log('Todos os players foram adicionados!');
+
       startCamp();
     }
   }, [playersList]);
