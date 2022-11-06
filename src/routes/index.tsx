@@ -5,7 +5,7 @@ import { Dashboard } from "../pages/Dashboard";
 import { HomePage } from "../pages/HomePage";
 import { Tournament } from "../pages/Tournament";
 import { AddPlayers } from "../pages/AddPlayers";
-import { PlayersCard } from "../components/PlayersCard/WinAndLoseCards";
+import { Teste } from "../components/TESTE/teste";
 
 export const RoutesApp = () => {
   return (
@@ -22,7 +22,7 @@ export const RoutesApp = () => {
       />
       <Route path="*" element={<Navigate to="/" />} />
 
-      <Route path="/teste" element={<PlayersCard />} />
+      <Route path="/teste" element={<Teste />} />
     </Routes>
   );
 };
