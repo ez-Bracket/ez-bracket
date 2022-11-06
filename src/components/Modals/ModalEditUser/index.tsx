@@ -45,6 +45,7 @@ export const ModalEdit = () => {
     email: yup.string().email("E-mail inválido"),
     password: yup
       .string()
+      .strip()
       .min(8, "Deve conter no mínimo 8 caracteres")
       .matches(
         /[A-Z]/,
@@ -61,6 +62,7 @@ export const ModalEdit = () => {
       ),
     confirmPassword: yup
       .string()
+      .strip()
       .oneOf(
         [yup.ref("password")],
         "As senhas não conferem"

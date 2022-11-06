@@ -5,18 +5,21 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  Button,
 } from "@chakra-ui/react";
+import { useContext } from "react";
+import { ContextModal } from "../../../contexts/ModalContext";
 
 export const InfoModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpenInfoCamp, onCloseInfoCamp } =
+    useContext(ContextModal);
 
   return (
     <>
-      <Button onClick={onOpen}>Trigger modal</Button>
-
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <Modal
+        onClose={onCloseInfoCamp}
+        isOpen={isOpenInfoCamp}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent
           maxW={573}

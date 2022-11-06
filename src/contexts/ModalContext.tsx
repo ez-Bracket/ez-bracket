@@ -11,10 +11,9 @@ interface iModalContext {
   isOpenLogin: boolean;
   isOpenNewCamp: boolean;
   isOpenInfoUser: boolean;
-
   isOpenDeleteCamp: boolean;
   isOpenEditUser: boolean;
-
+  isOpenInfoCamp: boolean;
   onOpenRegister: () => void;
   onCloseRegister: () => void;
   onOpenLogin: () => void;
@@ -23,12 +22,12 @@ interface iModalContext {
   onCloseNewCamp: () => void;
   onOpenInfoUser: () => void;
   onCloseInfoUser: () => void;
-
   onOpenDeleteCamp: () => void;
   onCloseDeleteCamp: () => void;
-
   onOpenEditUser: () => void;
   onCloseEditUser: () => void;
+  onOpenInfoCamp: () => void;
+  onCloseInfoCamp: () => void;
 }
 
 export const ContextModal = createContext<iModalContext>(
@@ -81,6 +80,12 @@ export const ModalProvider = ({
     onClose: onCloseDeleteCamp,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenInfoCamp,
+    onOpen: onOpenInfoCamp,
+    onClose: onCloseInfoCamp,
+  } = useDisclosure();
+
   return (
     <ContextModal.Provider
       value={{
@@ -102,6 +107,9 @@ export const ModalProvider = ({
         isOpenEditUser,
         onOpenEditUser,
         onCloseEditUser,
+        isOpenInfoCamp,
+        onOpenInfoCamp,
+        onCloseInfoCamp,
       }}
     >
       {children}

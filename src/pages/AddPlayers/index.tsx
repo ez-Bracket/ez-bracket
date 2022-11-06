@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useState } from 'react';
 import { AddPlayerForm } from '../../components/AddPlayerForm';
 import { CampInfo } from '../../components/CampInfo';
@@ -10,6 +11,7 @@ import { ModalEdit } from '../../components/Modals/ModalEditUser';
 import { NewCampModal } from '../../components/Modals/ModalNewCamp';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CampConext } from '../../contexts/CampContext';
+import { InfoModal } from "../../components/Modals/ModalInfoCamp";
 
 interface iPlayerList {
   player: string;
@@ -17,10 +19,13 @@ interface iPlayerList {
 }
 
 export const AddPlayers = () => {
-  const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
+  const [playersList, setPlayersList] = useState<
+    iPlayerList[]
+  >([]);
 
   const { isLogged } = useContext(UserContext);
-  const { camp, addPlayersCompetition } = useContext(CampConext);
+  const { camp, addPlayersCompetition } =
+    useContext(CampConext);
   useProtectedRoutes(isLogged, true);
 
   const navigate = useNavigate()
@@ -28,6 +33,7 @@ export const AddPlayers = () => {
   const { idCamp } = useParams();
 
   function startCamp() {
+
     addPlayersCompetition(Number(idCamp), playersList);
     navigate(`/tournament/${idCamp}`)
   }
@@ -37,6 +43,7 @@ export const AddPlayers = () => {
     let number_of_players = championship[0]?.number_of_players;
     if (Number(playersList.length) === Number(number_of_players)) {
       console.log('Todos os players foram adicionados!');
+
       startCamp();
     }
   }, [playersList]);
@@ -68,6 +75,7 @@ export const AddPlayers = () => {
       <InfoUserModal />
       <ModalEdit />
       <NewCampModal />
+      <InfoModal />
     </>
   );
 };
