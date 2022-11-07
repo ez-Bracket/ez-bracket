@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 // Utilities
-import { Api } from "../services/Api";
+import { Api } from '../services/Api';
 
 export interface iCampProvidertProps {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ interface iCampConext {
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: iPlayers
+    winnerPlayer: iPlayers,
   ) => void;
 
   setIdCamp: (id: number) => void;
@@ -60,17 +60,18 @@ export const CampConext = createContext<iCampConext>({} as iCampConext);
 export const CampProvider = ({ children }: iCampProvidertProps) => {
   const [camp, setCamp] = useState<iCamp[]>([]);
   const [idCamp, setIdCamp] = useState<number>(0);
+  const token = localStorage.getItem(`@EZ:TOKEN`);
 
   const getCompetition = async (idUser: number) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       const allGames = await Api.get(`deathmatch`, config);
       setCamp(
-        allGames.data.filter((element: iCamp) => element.idUser === idUser)
+        allGames.data.filter((element: iCamp) => element.idUser === idUser),
       );
     } catch (error) {
       return error;
@@ -81,7 +82,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       await Api.post(`deathmatch`, data, config);
@@ -96,7 +97,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
       if (data.length === 4 || data.length === 8 || data.length === 16) {
         const config = {
           headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+            Authorization: `Bearer ${token}`,
           },
         };
         const game = await Api.get(`deathmatch/${idCamp}`);
@@ -110,7 +111,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
           createGames.push({
             player1: data[index],
             player2: data[index + 1],
-            winner: "",
+            winner: '',
           });
         }
 
@@ -118,7 +119,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
 
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
-        console.log("Quantidade de jogadores errada! 4 ou 8 ou 16!");
+        console.log('Quantidade de jogadores errada! 4 ou 8 ou 16!');
       }
     } catch (error) {
       console.log(error);
@@ -129,12 +130,12 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: iPlayers
+    winnerPlayer: iPlayers,
   ) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       const game = await Api.get(`deathmatch/${idCamp}`);
@@ -145,7 +146,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         game.data.games[round - 1][chave - 1].winner = winnerPlayer;
         if (
           !game.data.games[round - 1].find(
-            (element: { winner: string }) => element.winner === ""
+            (element: { winner: string }) => element.winner === '',
           ) &&
           game.data.games[round - 1].length > 1
         ) {
@@ -160,7 +161,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
             createGames.push({
               player1: game.data.games[round - 1][index].winner,
               player2: game.data.games[round - 1][index + 1].winner,
-              winner: "",
+              winner: '',
             });
           }
           game.data.games.push(createGames);
@@ -178,21 +179,17 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   };
 
   const deleteCompetition = async (id: number) => {
-    console.log(id);
-    const token = localStorage.getItem(`@EZ:TOKEN`);
-    console.log(token);
-
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@EZ:TOKEN")}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       await Api.delete(`deathmatch/${id}`, config);
       const newListCamp = camp?.filter((e: iCamp) => e.id !== idCamp);
       setCamp(newListCamp);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
