@@ -10,6 +10,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { MessageError } from '../MessageError';
 import { motion } from 'framer-motion';
+import { Dispatch } from 'react';
+import { Colors } from '../../themes/themes';
 
 interface iPlayerList {
   player: string;
@@ -18,7 +20,7 @@ interface iPlayerList {
 
 interface iAddPlayerFormProps {
   playersList: iPlayerList[];
-  setPlayersList: ([]) => void;
+  setPlayersList: Dispatch<React.SetStateAction<iPlayerList[]>>;
 }
 
 const playersSchema = yup.object().shape({
@@ -63,15 +65,17 @@ export const AddPlayerForm = ({
           <Input
             placeholder="Digite o nome do participante"
             _placeholder={{
-              color: '#c7c7c7',
+              color: Colors.gray100,
               opacity: '50%',
             }}
-            borderColor={errors.player?.message ? '#E64980' : '#353149'}
-            bg="#353149"
+            borderColor={
+              errors.player?.message ? Colors.error100 : Colors.gray200
+            }
+            bg={Colors.gray200}
             fontSize="14px"
             height="50px"
-            color="#fff"
-            focusBorderColor="#c7c7c7"
+            color={Colors.white}
+            focusBorderColor={Colors.gray100}
             {...register('player')}
           />
           {errors.player?.message && (
@@ -85,15 +89,15 @@ export const AddPlayerForm = ({
             <Input
               placeholder="URL da foto do participante"
               _placeholder={{
-                color: '#c7c7c7',
+                color: Colors.gray100,
                 opacity: '50%',
               }}
-              borderColor="#353149"
-              bg="#353149"
+              borderColor={Colors.gray200}
+              bg={Colors.gray200}
               fontSize="14px"
               height="50px"
-              color="#fff"
-              focusBorderColor="#c7c7c7"
+              color={Colors.white}
+              focusBorderColor={Colors.gray100}
               marginBottom={6}
               {...register('playerImg')}
             />
@@ -101,17 +105,17 @@ export const AddPlayerForm = ({
         </FormControl>
 
         <Button
-          bg="#61FFAA"
-          color="#08490e"
+          bg={Colors.green100}
+          color={Colors.green200}
           fontWeight="500"
           fontSize="16px"
           w="max-content"
           h="49px"
           mb={5}
           _hover={{
-            bg: '#38F892',
+            bg: Colors.green300,
           }}
-          _active={{ bgColor: '#61FFAA' }}
+          _active={{ bgColor: Colors.green100 }}
           transition="0.3s ease"
           type="submit"
         >

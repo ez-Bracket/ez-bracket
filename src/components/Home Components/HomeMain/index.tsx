@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@chakra-ui/react';
 import 'animate.css';
 import { ContextModal } from '../../../contexts/ModalContext';
-
+import { Colors } from '../../../themes/themes';
 
 export const HomeMain = () => {
   const { onOpenRegister } = useContext(ContextModal);
@@ -37,19 +37,19 @@ export const HomeMain = () => {
         <Button
           className="w-[300px] tablet:w-[350px] text-base tablet:text-2xl"
           variant="outline"
-          borderColor="#61FFAA"
+          borderColor={Colors.green100}
           border="2px solid"
-          textColor="#61FFAA"
+          textColor={Colors.green100}
           height="80px"
           fontWeight="semibold"
           fontSize="18px"
           _hover={{
-            bgColor: '#61FFAA',
-            textColor: '#08490e',
+            bgColor: Colors.green100,
+            textColor: Colors.green200,
             transform: 'scale(1.05)',
           }}
           transition="0.3s ease"
-          _active={{ bgColor: '#61FFAA' }}
+          _active={{ bgColor: Colors.green100 }}
           onClick={onOpenRegister}
         >
           Comece agora!

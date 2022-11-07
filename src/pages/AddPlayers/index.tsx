@@ -25,7 +25,6 @@ export const AddPlayers = () => {
   useProtectedRoutes(isLogged, true);
 
   const navigate = useNavigate();
-
   const { idCamp } = useParams();
 
   function startCamp() {
@@ -37,11 +36,11 @@ export const AddPlayers = () => {
     const championship = camp.filter((camp) => camp.id === Number(idCamp));
     let number_of_players = championship[0]?.number_of_players;
     if (Number(playersList.length) === Number(number_of_players)) {
-      console.log('Todos os players foram adicionados!');
-
       startCamp();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playersList]);
+
   const championship = camp.filter((camp) => camp.id === Number(idCamp));
   return (
     <>

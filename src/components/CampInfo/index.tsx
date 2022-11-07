@@ -3,6 +3,7 @@ import { BsController, BsCalendarDate, BsInfoCircle } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ContextModal } from '../../contexts/ModalContext';
+import { Colors } from '../../themes/themes';
 
 interface ICampInfoProps {
   name: string;
@@ -37,7 +38,10 @@ export const CampInfo = ({
             Encerrado
           </span>
         )}
-        <h1 className="text-2xl desktop:text-4xl text-white font-semibold max-w-[30ch] overflow-hidden text-ellipsis whitespace-nowrap">
+        <h1
+          className="mt-2 desktop:mt-0 text-2xl desktop:text-4xl text-white font-semibold
+        mobile:max-w-[25ch] tablet:max-w-[30ch] overflow-hidden text-ellipsis tablet:whitespace-nowrap"
+        >
           {name}
         </h1>
       </div>
@@ -55,9 +59,9 @@ export const CampInfo = ({
         <Button
           onClick={onOpenInfoCamp}
           fontWeight={400}
-          color="white"
+          color={Colors.white}
           variant="link"
-          _active={{ textColor: 'white' }}
+          _active={{ textColor: Colors.white }}
         >
           <BsInfoCircle className="inline-block text-xl mr-2 text-green-100" />{' '}
           Informações
