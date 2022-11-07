@@ -40,7 +40,7 @@ export const Final = ({ className }: iFinalProps) => {
           L
         </p>
       </div>
-      <LineFinal className="flex justify-start items-center ml-52 -mt-[720px]" />
+      <LineFinal className="flex justify-start items-center ml-52 -mt-[710px]" />
     </div>
   );
 };

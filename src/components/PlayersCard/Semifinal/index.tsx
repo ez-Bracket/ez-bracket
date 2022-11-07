@@ -43,7 +43,7 @@ export const Semifinal = ({
           L
         </p>
       </div>
-      <LineSemifinal className="flex justify-start items-center ml-52 -mt-[325px]" />
+      <LineSemifinal className="flex justify-start items-center ml-52 -mt-[380px] h-[300px]" />
 
       <div className="w-52 h-[70px] flex border-2 bg-gray-400 border-green-100 rounded-md items-center justify-between px-4">
         <img
@@ -74,7 +74,7 @@ export const Semifinal = ({
           L
         </p>
       </div>
-      <LineSemifinal className="flex justify-start items-center ml-52 -mt-[325px]" />
+      <LineSemifinal className="flex justify-start items-center ml-52 -mt-[375px] h-[300px]" />
     </div>
   );
 };

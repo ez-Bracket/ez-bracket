@@ -7,7 +7,7 @@ export const LineSemifinal = ({
 }: IlineSemifinal) => {
   return (
     <div className={className}>
-      <div className="flex justify-start items-start w-[58px] flex-wrap rounded">
+      <div className="flex justify-start items-start w-[58px]  flex-wrap rounded">
         <p className="w-[52px] h-[1.1px] bg-gray-100 mb-[90px]"></p>
         <p className="w-[52px] h-[1.1px] bg-gray-100 mt-[90px]"></p>
       </div>
