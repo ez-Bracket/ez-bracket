@@ -41,6 +41,7 @@ export interface iCamp {
   games: string[][];
   number_of_players: number;
   description: string;
+  date?: string;
 }
 
 export interface iCampRegister {
@@ -67,6 +68,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
+
         },
       };
       const allGames = await Api.get(`deathmatch`, config);

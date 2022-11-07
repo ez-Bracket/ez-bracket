@@ -8,7 +8,7 @@ import { Colors } from '../../themes/themes';
 interface ICampInfoProps {
   name: string;
   number_of_players: string;
-  date: string;
+  date: string | undefined;
   status: boolean;
 }
 
@@ -54,7 +54,7 @@ export const CampInfo = ({
       <div className="flex gap-8">
         <h2 className="text-base text-white leading-[60px] font-normal">
           <BsCalendarDate className="inline-block text-base mr-1 text-green-100" />{' '}
-          {date}
+          {date ? date.split('-').reverse().join('/') : '--/--/--'}
         </h2>
         <Button
           onClick={onOpenInfoCamp}

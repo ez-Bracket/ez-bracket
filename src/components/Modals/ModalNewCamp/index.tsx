@@ -23,13 +23,6 @@ import { ContextModal } from '../../../contexts/ModalContext';
 import { CustomToast } from '../../Toast';
 import { MessageError } from '../../MessageError';
 
-interface INewCampForm {
-  competition: string;
-  number_of_players: string;
-  date?: string;
-  description?: string;
-}
-
 export const NewCampModal = () => {
   const { isOpenNewCamp, onCloseNewCamp } = useContext(ContextModal);
   const { user } = useContext(UserContext);
