@@ -24,21 +24,19 @@ export const Semifinal = ({ className }: iSemiFinalProps) => {
     getCamp(Number(idCamp.idCamp));
   }, [isCreateRound]);
 
-  useEffect(() => {
-    console.log(currentCamp?.games[1])
-  },[currentCamp]);
-
   const winGame = (player: {player: string, playerImg: string}, round:number, chave:number) => {
     const winnerPlayer = player
     winnerPlayerCompetition(Number(idCamp.idCamp), round, chave, winnerPlayer)
-    console.log(player)
   }
 
   return (
     <div className={className}>
-      {currentCamp?.games[1]?.map((game: any) => {
+      {currentCamp?.games[1]?.map((game: any, index: number) => {
+        const round = 2;
+        const chave = index+1;
         return  <>
-                  <div className="w-52 h-[70px] flex border-2 bg-gray-400 border-green-100 rounded-md items-center justify-between px-4">
+                  <div onClick={()=>{winGame(game.player1, round, chave)}}
+                    className="w-52 h-[70px] flex border-2 bg-gray-400 border-green-100 rounded-md items-center justify-between px-4">
                     <img src={imgteste} alt="" className="w-10 h-10 rounded-full" />
                     <h2 className="text-sm text-green-100 leading-3 font-normal">
                       {game.player1.player}
@@ -46,7 +44,8 @@ export const Semifinal = ({ className }: iSemiFinalProps) => {
                     <p className="text-sm text-green-100 leading-3 font-normal">W</p>
                   </div>
 
-                  <div className="w-52 h-[70px] flex border-2 bg-gray-400 border-error-100 rounded-md items-center justify-between px-4">
+                  <div onClick={()=>{winGame(game.player2, round, chave)}}
+                    className="w-52 h-[70px] flex border-2 bg-gray-400 border-error-100 rounded-md items-center justify-between px-4">
                     <img src={imgTeste} alt="" className="w-10 h-10 rounded-full" />
                     <h2 className="text-sm text-error-100 leading-3 font-normal">
                     {game.player2.player}

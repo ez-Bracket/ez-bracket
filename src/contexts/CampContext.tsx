@@ -151,14 +151,14 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
 
       if (game.data.games[round - 1].length >= chave) {
         game.data.games[round - 1][chave - 1].winner = winnerPlayer;
-        if (
+        if ((
           !game.data.games[round - 1].find(
             (element: { winner: string }) => element.winner === '',
           ) &&
-          game.data.games[round - 1].length > 1
+          game.data.games[round - 1].length > 1)
         ) {
           console.log(`Round ${round}° Acabou!`);
-          setIsCreateRound(false);
+          setIsCreateRound(!isCreateRound);
           const createGames = [];
           for (
             let index = 0;
@@ -175,6 +175,8 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         } else if (game.data.games[round - 1].length === 1) {
           game.data.winner = winnerPlayer;
           game.data.status = false;
+          console.log(`Torneio Acabou!`);
+          setIsCreateRound(!isCreateRound);
         }
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
