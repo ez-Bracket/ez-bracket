@@ -40,7 +40,7 @@ export const CampInfo = ({
         )}
         <h1
           className="mt-2 desktop:mt-0 text-2xl desktop:text-4xl text-white font-semibold
-        mobile:max-w-[25ch] tablet:max-w-[30ch] overflow-hidden text-ellipsis tablet:whitespace-nowrap"
+        max-w-[15ch] mobile:max-w-[25ch] tablet:max-w-[30ch] overflow-hidden text-ellipsis tablet:whitespace-nowrap"
         >
           {name}
         </h1>

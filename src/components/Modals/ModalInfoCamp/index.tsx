@@ -11,6 +11,9 @@ import { useParams } from 'react-router-dom';
 import { CampConext } from '../../../contexts/CampContext';
 import { ContextModal } from '../../../contexts/ModalContext';
 
+import { Colors } from '../../../themes/themes';
+
+
 export const InfoModal = () => {
   const { isOpenInfoCamp, onCloseInfoCamp } = useContext(ContextModal);
 
@@ -28,8 +31,8 @@ export const InfoModal = () => {
           mx={4}
           p={3}
           px={[0, 3]}
-          border="2px solid #61FFAA"
-          bg="#221E34"
+          border={`2px solid ${Colors.green100}`}
+          bg={Colors.gray300}
         >
           <ModalHeader className="text-green-100">
             <h2 className="text-xl text-center tablet:text-2xl">Informações</h2>
@@ -39,15 +42,16 @@ export const InfoModal = () => {
             borderRadius={50}
             h={6}
             w={6}
-            bg="#61FFAA"
-            _hover={{ bg: '#38F892' }}
+            bg={Colors.green100}
+            _hover={{ bg: Colors.green300 }}
             transition="0.3s ease"
           />
           <ModalBody>
             <p className="text-white text-base tablet:text-xl p-4 mb-4">
-              {championship[0]?.description === ''
-                ? `Não há descrição no torneio`
-                : championship[0]?.description.toString()}
+
+              {championship[0].description === ''
+                ? `Não há nenhuma descrição do torneio.`
+                : championship[0].description.toString()}
             </p>
           </ModalBody>
         </ModalContent>

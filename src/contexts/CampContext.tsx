@@ -61,12 +61,14 @@ export const CampConext = createContext<iCampConext>({} as iCampConext);
 export const CampProvider = ({ children }: iCampProvidertProps) => {
   const [camp, setCamp] = useState<iCamp[]>([]);
   const [idCamp, setIdCamp] = useState<number>(0);
+  const token = localStorage.getItem(`@EZ:TOKEN`);
 
   const getCompetition = async (idUser: number) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
+          Authorization: `Bearer ${token}`,
+
         },
       };
       const allGames = await Api.get(`deathmatch`, config);
@@ -82,7 +84,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       await Api.post(`deathmatch`, data, config);
@@ -97,7 +99,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
       if (data.length === 4 || data.length === 8 || data.length === 16) {
         const config = {
           headers: {
-            Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
+            Authorization: `Bearer ${token}`,
           },
         };
         const game = await Api.get(`deathmatch/${idCamp}`);
@@ -135,7 +137,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       const game = await Api.get(`deathmatch/${idCamp}`);
@@ -179,21 +181,17 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   };
 
   const deleteCompetition = async (id: number) => {
-    console.log(id);
-    const token = localStorage.getItem(`@EZ:TOKEN`);
-    console.log(token);
-
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem('@EZ:TOKEN')}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       await Api.delete(`deathmatch/${id}`, config);
       const newListCamp = camp?.filter((e: iCamp) => e.id !== idCamp);
       setCamp(newListCamp);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 

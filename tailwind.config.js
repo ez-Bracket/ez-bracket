@@ -12,7 +12,7 @@ module.exports = {
       '5xl': '4rem',
     },
     screens: {
-      mobile: '320px',
+      mobile: '400px',
       tablet: '640px',
       laptop: '1024px',
       desktop: '1280px',
