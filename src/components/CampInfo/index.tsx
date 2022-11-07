@@ -6,8 +6,8 @@ import { ContextModal } from '../../contexts/ModalContext';
 import { Colors } from '../../themes/themes';
 
 interface ICampInfoProps {
-  name: string;
-  number_of_players: string;
+  name: string | undefined;
+  number_of_players: string | undefined;
   date: string | undefined;
   status: boolean;
 }

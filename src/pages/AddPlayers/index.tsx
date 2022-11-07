@@ -11,6 +11,7 @@ import { NewCampModal } from '../../components/Modals/ModalNewCamp';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CampConext, iCamp } from '../../contexts/CampContext';
 import { InfoModal } from '../../components/Modals/ModalInfoCamp';
+import { Api } from '../../services/Api';
 
 interface iPlayerList {
   player: string;
@@ -19,24 +20,29 @@ interface iPlayerList {
 
 export const AddPlayers = () => {
   const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
-  const [currentCamp, setCurrentCamp] = useState<iCamp[] | []>([]);
+  const [currentCamp, setCurrentCamp] = useState<iCamp | null>(null);
 
   const { isLogged } = useContext(UserContext);
-  const { camp, addPlayersCompetition } = useContext(CampConext);
+  const { addPlayersCompetition } = useContext(CampConext);
   useProtectedRoutes(isLogged, true);
 
   const navigate = useNavigate();
-  const { idCamp } = useParams();
+  const idCamp = useParams();
 
   function startCamp() {
-    addPlayersCompetition(Number(idCamp), playersList);
-    navigate(`/tournament/${idCamp}`);
+    addPlayersCompetition(Number(idCamp.idCamp), playersList);
+    navigate(`/tournament/${idCamp.idCamp}`);
   }
 
   useEffect(() => {
-    const championship = camp.filter((camp) => camp.id === Number(idCamp));
-    setCurrentCamp(championship);
-    let number_of_players = championship[0]?.number_of_players;
+    const getCamp = (idCamp: number) => {
+      Api.get(`/deathmatch/${idCamp}`).then((resp) =>
+        setCurrentCamp(resp.data),
+      );
+    };
+    getCamp(Number(idCamp.idCamp));
+
+    let number_of_players = currentCamp?.number_of_players;
     if (Number(playersList.length) === Number(number_of_players)) {
       startCamp();
     }
@@ -51,10 +57,10 @@ export const AddPlayers = () => {
           <UserMenu />
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
-              name={currentCamp[0]?.name}
+              name={currentCamp?.name}
               status={true}
-              date={currentCamp[0]?.date}
-              number_of_players={currentCamp[0]?.number_of_players.toString()}
+              date={currentCamp?.date}
+              number_of_players={currentCamp?.number_of_players.toString()}
             />
 
             <div className="flex gap-12 tablet:gap-24 laptop:flex-row flex-col w-full tablet:w-[80%] mt-12">
@@ -70,7 +76,7 @@ export const AddPlayers = () => {
       <InfoUserModal />
       <ModalEdit />
       <NewCampModal />
-      <InfoModal />
+      <InfoModal currentCamp={currentCamp} />
     </>
   );
 };
