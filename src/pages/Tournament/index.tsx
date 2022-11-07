@@ -39,7 +39,7 @@ export const Tournament = () => {
             <div className="flex justify-between gap-8 laptop:flex-row flex-col w-[80%] mt-12"></div>
           </div>
         </section>
-        <Teste className="flex max-w-[100%] max-h-[80%] overflow-y-scroll ml-48 pb-14" />
+        <Teste className="flex max-w-[100%] max-h-[80%] overflow-x-auto mx-4  pb-14 tablet:ml-48 relative" />
       </div>
       <InfoUserModal />
       <ModalEdit />
