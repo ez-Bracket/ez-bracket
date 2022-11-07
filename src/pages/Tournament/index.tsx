@@ -10,18 +10,17 @@ import { CampConext, iCamp } from '../../contexts/CampContext';
 
 export const Tournament = () => {
   const idCamp = useParams();
-  const { camp, addPlayersCompetition } = useContext(CampConext);
+  const { camp } = useContext(CampConext);
   const [champ, setChamp] = useState<iCamp[] | []>([]);
 
   useEffect(() => {
     setChamp(camp.filter((c) => c.id === Number(idCamp.idCamp)));
-  });
+  }, [camp, idCamp]);
 
   return (
     <div>
       <div className="bg-gray-300 h-screen">
         <div className="bg-dashboard bg-cover h-screen w-full absolute opacity-10 shadow-[0_100px_100px_#070516]"></div>
-
         <section className="py-10 tablet:py-20 bg-gray-300">
           <UserMenu />
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
