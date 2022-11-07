@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { AddPlayerForm } from "../../components/AddPlayerForm";
-import { CampInfo } from "../../components/CampInfo";
-import { UserMenu } from "../../components/UserMenu";
-import { PlayersList } from "../../components/PlayersList";
-import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
-import { UserContext } from "../../contexts/UserContext";
-import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
-import { ModalEdit } from "../../components/Modals/ModalEditUser";
-import { NewCampModal } from "../../components/Modals/ModalNewCamp";
-import { useNavigate, useParams } from "react-router-dom";
-import { CampConext } from "../../contexts/CampContext";
-import { InfoModal } from "../../components/Modals/ModalInfoCamp";
+import { useContext, useEffect, useState } from 'react';
+import { AddPlayerForm } from '../../components/AddPlayerForm';
+import { CampInfo } from '../../components/CampInfo';
+import { UserMenu } from '../../components/UserMenu';
+import { PlayersList } from '../../components/PlayersList';
+import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
+import { UserContext } from '../../contexts/UserContext';
+import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
+import { ModalEdit } from '../../components/Modals/ModalEditUser';
+import { NewCampModal } from '../../components/Modals/ModalNewCamp';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CampConext, iCamp } from '../../contexts/CampContext';
+import { InfoModal } from '../../components/Modals/ModalInfoCamp';
 
 interface iPlayerList {
   player: string;
@@ -19,6 +19,7 @@ interface iPlayerList {
 
 export const AddPlayers = () => {
   const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
+  const [currentCamp, setCurrentCamp] = useState<iCamp[] | []>([]);
 
   const { isLogged } = useContext(UserContext);
   const { camp, addPlayersCompetition } = useContext(CampConext);
@@ -34,14 +35,14 @@ export const AddPlayers = () => {
 
   useEffect(() => {
     const championship = camp.filter((camp) => camp.id === Number(idCamp));
+    setCurrentCamp(championship);
     let number_of_players = championship[0]?.number_of_players;
     if (Number(playersList.length) === Number(number_of_players)) {
       startCamp();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playersList]);
 
-  const championship = camp.filter((camp) => camp.id === Number(idCamp));
   return (
     <>
       <div className="bg-gray-300 h-screen">
@@ -50,10 +51,10 @@ export const AddPlayers = () => {
           <UserMenu />
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
-              name={championship[0].name}
+              name={currentCamp[0]?.name}
               status={true}
-              date="--/--/--"
-              number_of_players={championship[0].number_of_players.toString()}
+              date={currentCamp[0]?.date}
+              number_of_players={currentCamp[0]?.number_of_players.toString()}
             />
 
             <div className="flex gap-12 tablet:gap-24 laptop:flex-row flex-col w-full tablet:w-[80%] mt-12">
