@@ -5,7 +5,7 @@ import { ModalEdit } from '../../components/Modals/ModalEditUser';
 import { InfoModal } from '../../components/Modals/ModalInfoCamp';
 import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
 import { NewCampModal } from '../../components/Modals/ModalNewCamp';
-import { Teste } from '../../components/TESTE/teste';
+import { BracketGame } from '../../components/BracketGame';
 import { UserMenu } from '../../components/UserMenu';
 import { CampConext, iCamp } from '../../contexts/CampContext';
 
@@ -31,10 +31,11 @@ export const Tournament = () => {
               date={currentCamp[0]?.date}
               number_of_players={currentCamp[0]?.number_of_players.toString()}
             />
-            <div className="flex justify-between gap-8 laptop:flex-row flex-col w-[80%] mt-12"></div>
           </div>
         </section>
-        <Teste className="flex max-w-[100%] max-h-[80%] overflow-x-auto mx-4  pb-14 tablet:ml-48 relative" />
+        <div className="bg-gray-300">
+          <BracketGame className="flex pb-14 mt-8 max-w-[100%]  overflow-auto mx-4 tablet:ml-48 relative" />
+        </div>
       </div>
       <InfoUserModal />
       <ModalEdit />
