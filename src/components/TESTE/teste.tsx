@@ -12,7 +12,7 @@ export const Teste = ({ className }: iTesteProps) => {
     <div className={className}>
       <PlayersCard className="flex flex-col gap-[70px]" />
       <Semifinal className="flex flex-col gap-[120px] mt-10" />
-      <Final className="flex flex-col gap-[300px] mt-32" />
+      <Final className="flex flex-col gap-[310px] mt-[135px]" />
       <WinnerCard className="flex flex-col mt-36" />
     </div>
   );
