@@ -2,16 +2,22 @@ import { BsTrophy } from "react-icons/bs";
 
 import imgTeste from "../../../assets/teste foto time 2.jpg";
 
-export const WinnerCard = () => {
+interface iWinnerCardProps {
+  className: string;
+}
+
+export const WinnerCard = ({
+  className,
+}: iWinnerCardProps) => {
   return (
-    <>
+    <div className={className}>
       <div className="flex w-[230px] h-9 items-center justify-center gap-4">
         <h2 className="text-3xl text-yellow-100 font-winner leading-8">
           VENCEDOR
         </h2>
         <BsTrophy size={25} color="#FACD35" />
       </div>
-      <div className="h-[340px] w-[230px] flex flex-col items-center justify-start pt-8 gap-5 border-2 border-yellow-100 rounded-lg bg-gray-400">
+      <div className="h-[300px] w-[230px] flex flex-col items-center justify-start pt-8 gap-5 border-2 border-yellow-100 rounded-lg bg-gray-400">
         <img
           src={imgTeste}
           alt=""
@@ -32,6 +38,6 @@ export const WinnerCard = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
