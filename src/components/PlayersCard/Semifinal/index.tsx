@@ -1,15 +1,10 @@
 import { LineSemifinal } from "../../BracketsLine/Semifinal";
-
 import imgteste from "../../../assets/Teste foto time 1.jpg";
 import imgTeste from "../../../assets/teste foto time 2.jpg";
 
-interface iSemiFinalProps {
-  className?: string;
-}
-
-export const Semifinal = ({ className }: iSemiFinalProps) => {
+export const Semifinal = () => {
   return (
-    <div className={className}>
+    <div className="flex flex-col gap-[104px] mt-10">
       {/* Se status for win, chamar este card */}
 
       <div className="w-52 h-[70px] flex border-2 bg-gray-400 border-green-100 rounded-md items-center justify-between px-4">

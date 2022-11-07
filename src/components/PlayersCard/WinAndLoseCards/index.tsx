@@ -3,13 +3,9 @@ import imgTeste from '../../../assets/teste foto time 2.jpg';
 import { BracketsLine } from '../../BracketsLine/Default';
 import { WinnerCard } from '../WinnerCard';
 
-interface iPlayersCardProps {
-  className?: string;
-}
-
-export const PlayersCard = ({ className }: iPlayersCardProps) => {
+export const PlayersCard = () => {
   return (
-    <div className={className}>
+    <div className="flex flex-col gap-[70px]">
       {/* Se status for win, chamar este card */}
 
       <div>
