@@ -1,4 +1,5 @@
 import { Button } from '@chakra-ui/react';
+import { Colors } from '../../themes/themes';
 
 interface IButtonDefaultProps {
   onClick: () => void;
@@ -22,10 +23,10 @@ export const ButtonDefault = ({
       fontWeight="medium"
       minWidth="150px"
       height={height}
-      bgColor="#61FFAA"
-      color="#08490e"
-      _hover={{ bg: '#38F892' }}
-      _active={{ bg: '#38F892' }}
+      bgColor={Colors.green100}
+      color={Colors.green200}
+      _hover={{ bg: Colors.green300 }}
+      _active={{ bg: Colors.green300 }}
       onClick={onClick}
       isLoading={isLoading}
     >

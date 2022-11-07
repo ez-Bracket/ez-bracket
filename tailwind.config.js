@@ -12,6 +12,7 @@ module.exports = {
       '5xl': '4rem',
     },
     screens: {
+      mobile: '320px',
       tablet: '640px',
       laptop: '1024px',
       desktop: '1280px',
@@ -29,6 +30,7 @@ module.exports = {
         100: '#C7C7C7',
       },
       green: {
+        300: '#38F892',
         200: '#08490e',
         100: '#61FFAA',
       },

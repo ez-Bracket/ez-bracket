@@ -1,23 +1,24 @@
-import { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { FiLogIn } from "react-icons/fi";
-import { HiOutlinePencilAlt } from "react-icons/hi";
-import "animate.css";
+import { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import { FiLogIn } from 'react-icons/fi';
+import { HiOutlinePencilAlt } from 'react-icons/hi';
+import { Colors } from '../../themes/themes';
+import 'animate.css';
 
 // Utilities
-import { useMedia } from "../../hooks/useMedia";
+import { useMedia } from '../../hooks/useMedia';
 
 // Components
-import { Logo } from "../Logo";
-import { ContextModal } from "../../contexts/ModalContext";
-import { ButtonDefault } from "../Button";
-import { MobileMenu } from "../MobileMenu";
+import { Logo } from '../Logo';
+import { ContextModal } from '../../contexts/ModalContext';
+import { ButtonDefault } from '../Button';
+import { MobileMenu } from '../MobileMenu';
 
 export const Header = () => {
   const { onOpenLogin, onOpenRegister } = useContext(ContextModal);
 
-  const mobile = useMedia("(max-width:40rem)");
+  const mobile = useMedia('(max-width:40rem)');
   const { pathname } = useLocation();
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -52,7 +53,7 @@ export const Header = () => {
             <Button
               fontSize="l"
               fontWeight="medium"
-              textColor="white"
+              textColor={Colors.white}
               variant="link"
               onClick={handleLogin}
             >

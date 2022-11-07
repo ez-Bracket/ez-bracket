@@ -27,7 +27,7 @@ export const PlayersList = ({ playersList }: iPlayerListProps) => {
               <img
                 className="w-[30px] h-[30px] rounded-full mr-2"
                 src={player.playerImg}
-                alt=""
+                alt="Imagem do player"
               />
             ) : (
               <BiUser className="w-[30px] h-[30px] rounded-full text-green-100 border-2 border-solid border-green-100 mr-2" />
