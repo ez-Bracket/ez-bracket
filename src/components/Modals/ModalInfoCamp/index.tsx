@@ -7,19 +7,18 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { CampConext } from '../../../contexts/CampContext';
+
+import { iCamp } from '../../../contexts/CampContext';
 import { ContextModal } from '../../../contexts/ModalContext';
 
 import { Colors } from '../../../themes/themes';
 
-export const InfoModal = () => {
+interface IInfoModalProps {
+  currentCamp: iCamp | null;
+}
+
+export const InfoModal = ({ currentCamp }: IInfoModalProps) => {
   const { isOpenInfoCamp, onCloseInfoCamp } = useContext(ContextModal);
-
-  const { camp } = useContext(CampConext);
-  const { idCamp } = useParams();
-
-  const championship = camp.filter((camp) => camp.id === Number(idCamp));
 
   return (
     <>
@@ -47,9 +46,9 @@ export const InfoModal = () => {
           />
           <ModalBody>
             <p className="text-white text-base tablet:text-xl p-4 mb-4">
-              {championship[0]?.description === ''
+              {currentCamp?.description === ''
                 ? `Não há nenhuma descrição do torneio.`
-                : championship[0]?.description.toString()}
+                : currentCamp?.description.toString()}
             </p>
           </ModalBody>
         </ModalContent>

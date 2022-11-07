@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CampInfo } from '../../components/CampInfo';
 import { ModalEdit } from '../../components/Modals/ModalEditUser';
@@ -7,16 +7,21 @@ import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
 import { NewCampModal } from '../../components/Modals/ModalNewCamp';
 import { Teste } from '../../components/TESTE/teste';
 import { UserMenu } from '../../components/UserMenu';
-import { CampConext, iCamp } from '../../contexts/CampContext';
+import { iCamp } from '../../contexts/CampContext';
+import { Api } from '../../services/Api';
 
 export const Tournament = () => {
-  const { idCamp } = useParams();
-  const { camp } = useContext(CampConext);
-  const [currentCamp, setCurrentCamp] = useState<iCamp[] | []>([]);
+  const idCamp = useParams();
+  const [currentCamp, setCurrentCamp] = useState<iCamp | null>(null);
 
   useEffect(() => {
-    setCurrentCamp(camp.filter((c) => c.id === Number(idCamp)));
-  }, [camp, idCamp]);
+    const getCamp = (idCamp: number) => {
+      Api.get(`/deathmatch/${idCamp}`).then((resp) =>
+        setCurrentCamp(resp.data),
+      );
+    };
+    getCamp(Number(idCamp.idCamp));
+  }, [idCamp]);
 
   return (
     <div>
@@ -26,10 +31,10 @@ export const Tournament = () => {
           <UserMenu />
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
-              name={currentCamp[0]?.name}
+              name={currentCamp?.name}
               status={true}
-              date={currentCamp[0]?.date}
-              number_of_players={currentCamp[0]?.number_of_players.toString()}
+              date={currentCamp?.date}
+              number_of_players={currentCamp?.number_of_players.toString()}
             />
             <div className="flex justify-between gap-8 laptop:flex-row flex-col w-[80%] mt-12"></div>
           </div>
@@ -39,7 +44,7 @@ export const Tournament = () => {
       <InfoUserModal />
       <ModalEdit />
       <NewCampModal />
-      <InfoModal />
+      <InfoModal currentCamp={currentCamp} />
     </div>
   );
 };
