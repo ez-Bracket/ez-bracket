@@ -5,11 +5,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-} from "@chakra-ui/react";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { CampConext } from "../../../contexts/CampContext";
-import { ContextModal } from "../../../contexts/ModalContext";
+} from '@chakra-ui/react';
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { CampConext } from '../../../contexts/CampContext';
+import { ContextModal } from '../../../contexts/ModalContext';
 
 export const InfoModal = () => {
   const { isOpenInfoCamp, onCloseInfoCamp } = useContext(ContextModal);
@@ -40,14 +40,14 @@ export const InfoModal = () => {
             h={6}
             w={6}
             bg="#61FFAA"
-            _hover={{ bg: "#38F892" }}
+            _hover={{ bg: '#38F892' }}
             transition="0.3s ease"
           />
           <ModalBody>
             <p className="text-white text-base tablet:text-xl p-4 mb-4">
-              {championship[0].description === ""
+              {championship[0]?.description === ''
                 ? `Não há descrição no torneio`
-                : championship[0].description.toString()}
+                : championship[0]?.description.toString()}
             </p>
           </ModalBody>
         </ModalContent>
