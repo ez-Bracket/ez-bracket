@@ -10,12 +10,12 @@ import { UserMenu } from '../../components/UserMenu';
 import { CampConext, iCamp } from '../../contexts/CampContext';
 
 export const Tournament = () => {
-  const idCamp = useParams();
+  const { idCamp } = useParams();
   const { camp } = useContext(CampConext);
   const [currentCamp, setCurrentCamp] = useState<iCamp[] | []>([]);
 
   useEffect(() => {
-    setCurrentCamp(camp.filter((c) => c.id === Number(idCamp.idCamp)));
+    setCurrentCamp(camp.filter((c) => c.id === Number(idCamp)));
   }, [camp, idCamp]);
 
   return (

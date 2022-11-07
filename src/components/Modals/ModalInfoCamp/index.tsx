@@ -13,7 +13,6 @@ import { ContextModal } from '../../../contexts/ModalContext';
 
 import { Colors } from '../../../themes/themes';
 
-
 export const InfoModal = () => {
   const { isOpenInfoCamp, onCloseInfoCamp } = useContext(ContextModal);
 
@@ -48,10 +47,9 @@ export const InfoModal = () => {
           />
           <ModalBody>
             <p className="text-white text-base tablet:text-xl p-4 mb-4">
-
-              {championship[0].description === ''
+              {championship[0]?.description === ''
                 ? `Não há nenhuma descrição do torneio.`
-                : championship[0].description.toString()}
+                : championship[0]?.description.toString()}
             </p>
           </ModalBody>
         </ModalContent>
