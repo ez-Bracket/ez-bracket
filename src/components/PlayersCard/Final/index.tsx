@@ -45,8 +45,6 @@ export const Final = ({ className }: iFinalProps) => {
                     <p className="text-sm text-green-100 leading-3 font-normal">W</p>
                   </div>
 
-                  {/* Se status for lose, chamar este card */}
-
                   <div onClick={()=>{winGame(game.player2, round, chave)}}
                     className="w-52 h-[70px] flex border-2 bg-gray-400 border-error-100 rounded-md items-center justify-between px-4">
                     <img src={game.player2.playerImg ? game.player2.playerImg : imgteste} alt="" className="w-10 h-10 rounded-full" />

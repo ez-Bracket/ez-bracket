@@ -24,7 +24,7 @@ export const Tournament = () => {
   }, [idCamp]);
 
   return (
-    <div>
+    <>
       <div className="bg-gray-300 h-screen">
         <div className="bg-dashboard bg-cover h-screen w-full absolute opacity-10 shadow-[0_100px_100px_#070516]"></div>
         <section className="pt-10 tablet:pt-20 bg-gray-300">
@@ -39,13 +39,13 @@ export const Tournament = () => {
           </div>
         </section>
         <div className="bg-gray-300">
-          <BracketGame className="flex pb-14 mt-8 max-w-[100%]  overflow-auto mx-4 tablet:ml-48 relative" />
+          <BracketGame />
         </div>
       </div>
       <InfoUserModal />
       <ModalEdit />
       <NewCampModal />
       <InfoModal currentCamp={currentCamp} />
-    </div>
+    </>
   );
 };
