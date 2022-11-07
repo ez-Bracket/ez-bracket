@@ -1,15 +1,15 @@
-import { HiOutlineMail } from 'react-icons/hi';
-import { Button } from '@chakra-ui/button';
+import { HiOutlineMail } from "react-icons/hi";
+import { Button } from "@chakra-ui/button";
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-} from '@chakra-ui/modal';
-import { useContext } from 'react';
-import { ContextModal } from '../../../contexts/ModalContext';
-import { UserContext } from '../../../contexts/UserContext';
+} from "@chakra-ui/modal";
+import { useContext } from "react";
+import { ContextModal } from "../../../contexts/ModalContext";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const InfoUserModal = () => {
   const { isOpenInfoUser, onCloseInfoUser, onOpenEditUser } =
@@ -42,7 +42,7 @@ export const InfoUserModal = () => {
                 h={6}
                 w={6}
                 bg="#61FFAA"
-                _hover={{ bg: '#38F892' }}
+                _hover={{ bg: "#38F892" }}
                 transition="0.3s ease"
               />
               <ModalBody className="mt-4 mb-4 flex flex-col items-center gap-5">
@@ -52,7 +52,7 @@ export const InfoUserModal = () => {
                   className="w-40 h-40 rounded-full"
                 />
                 <div className="flex flex-col items-center gap-4">
-                  <h2 className="text-white text-xl tablet:text-3xl">
+                  <h2 className="text-white text-xl tablet:text-3xl max-w-[25ch] overflow-hidden text-ellipsis whitespace-nowrap">
                     {profile.name}
                   </h2>
                   <div className="flex items-center gap-2">
@@ -72,8 +72,8 @@ export const InfoUserModal = () => {
                 color="#08490e"
                 fontWeight="500"
                 fontSize="18px"
-                _hover={{ bg: '#38F892' }}
-                _active={{ bg: '#38F892' }}
+                _hover={{ bg: "#38F892" }}
+                _active={{ bg: "#38F892" }}
               >
                 Editar
               </Button>

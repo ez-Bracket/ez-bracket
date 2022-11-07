@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
-import { AddPlayerForm } from '../../components/AddPlayerForm';
-import { CampInfo } from '../../components/CampInfo';
-import { UserMenu } from '../../components/UserMenu';
-import { PlayersList } from '../../components/PlayersList';
-import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
-import { UserContext } from '../../contexts/UserContext';
-import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
-import { ModalEdit } from '../../components/Modals/ModalEditUser';
-import { NewCampModal } from '../../components/Modals/ModalNewCamp';
-import { useNavigate, useParams } from 'react-router-dom';
-import { CampConext } from '../../contexts/CampContext';
-import { InfoModal } from '../../components/Modals/ModalInfoCamp';
+import { useContext, useEffect, useState } from "react";
+import { AddPlayerForm } from "../../components/AddPlayerForm";
+import { CampInfo } from "../../components/CampInfo";
+import { UserMenu } from "../../components/UserMenu";
+import { PlayersList } from "../../components/PlayersList";
+import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
+import { UserContext } from "../../contexts/UserContext";
+import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
+import { ModalEdit } from "../../components/Modals/ModalEditUser";
+import { NewCampModal } from "../../components/Modals/ModalNewCamp";
+import { useNavigate, useParams } from "react-router-dom";
+import { CampConext } from "../../contexts/CampContext";
+import { InfoModal } from "../../components/Modals/ModalInfoCamp";
 
 interface iPlayerList {
   player: string;
