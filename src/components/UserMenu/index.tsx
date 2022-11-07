@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
-import { IoMdAdd } from 'react-icons/io';
-import { BiUser } from 'react-icons/bi';
-import { FiLogOut } from 'react-icons/fi';
-import { ButtonNav } from '../ButtonNav';
-import { Logo } from '../Logo';
-import { useContext } from 'react';
-import { UserContext } from '../../contexts/UserContext';
-import { ContextModal } from '../../contexts/ModalContext';
+import { Link } from "react-router-dom";
+import { IoMdAdd } from "react-icons/io";
+import { BiUser } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
+import { ButtonNav } from "../ButtonNav";
+import { Logo } from "../Logo";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import { ContextModal } from "../../contexts/ModalContext";
 
 export const UserMenu = () => {
   const { Logout } = useContext(UserContext);
