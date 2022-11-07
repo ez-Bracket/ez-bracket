@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from 'react';
 import { AddPlayerForm } from '../../components/AddPlayerForm';
 import { CampInfo } from '../../components/CampInfo';
@@ -11,7 +10,7 @@ import { ModalEdit } from '../../components/Modals/ModalEditUser';
 import { NewCampModal } from '../../components/Modals/ModalNewCamp';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CampConext } from '../../contexts/CampContext';
-import { InfoModal } from "../../components/Modals/ModalInfoCamp";
+import { InfoModal } from '../../components/Modals/ModalInfoCamp';
 
 interface iPlayerList {
   player: string;
@@ -19,23 +18,19 @@ interface iPlayerList {
 }
 
 export const AddPlayers = () => {
-  const [playersList, setPlayersList] = useState<
-    iPlayerList[]
-  >([]);
+  const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
 
   const { isLogged } = useContext(UserContext);
-  const { camp, addPlayersCompetition } =
-    useContext(CampConext);
+  const { camp, addPlayersCompetition } = useContext(CampConext);
   useProtectedRoutes(isLogged, true);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { idCamp } = useParams();
 
   function startCamp() {
-
     addPlayersCompetition(Number(idCamp), playersList);
-    navigate(`/tournament/${idCamp}`)
+    navigate(`/tournament/${idCamp}`);
   }
 
   useEffect(() => {
@@ -47,7 +42,7 @@ export const AddPlayers = () => {
       startCamp();
     }
   }, [playersList]);
-
+  const championship = camp.filter((camp) => camp.id === Number(idCamp));
   return (
     <>
       <div className="bg-gray-300 h-screen">
@@ -56,10 +51,10 @@ export const AddPlayers = () => {
           <UserMenu />
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
-              name="Nome do Torneio"
+              name={championship[0].name}
               status={true}
               date="--/--/--"
-              number_of_players="16"
+              number_of_players={championship[0].number_of_players.toString()}
             />
 
             <div className="flex gap-12 tablet:gap-24 laptop:flex-row flex-col w-full tablet:w-[80%] mt-12">
