@@ -29,14 +29,14 @@ export const AddPlayers = () => {
   const navigate = useNavigate();
   const idCamp = useParams();
 
-  function startCamp() {
-    addPlayersCompetition(Number(idCamp.idCamp), playersList);
+  async function startCamp() {
+    await addPlayersCompetition(Number(idCamp.idCamp), playersList);
     navigate(`/tournament/${idCamp.idCamp}`);
   }
 
   useEffect(() => {
-    const getCamp = (idCamp: number) => {
-      Api.get(`/deathmatch/${idCamp}`).then((resp) =>
+    const getCamp = async (idCamp: number) => {
+      await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
         setCurrentCamp(resp.data),
       );
     };
