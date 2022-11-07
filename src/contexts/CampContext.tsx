@@ -20,10 +20,12 @@ interface iCampConext {
     round: number,
     chave: number,
     winnerPlayer: iPlayers,
+    
   ) => void;
 
   setIdCamp: (id: number) => void;
   idCamp: number;
+  isCreateRound: boolean;
 }
 
 interface iPlayers {
@@ -61,6 +63,7 @@ export const CampConext = createContext<iCampConext>({} as iCampConext);
 export const CampProvider = ({ children }: iCampProvidertProps) => {
   const [camp, setCamp] = useState<iCamp[]>([]);
   const [idCamp, setIdCamp] = useState<number>(0);
+  const [isCreateRound, setIsCreateRound] = useState(false);
   const token = localStorage.getItem(`@EZ:TOKEN`);
 
   const getCompetition = async (idUser: number) => {
@@ -116,7 +119,6 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
             winner: '',
           });
         }
-
         game.data.games[0] = createGames;
 
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
@@ -143,7 +145,10 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
       const game = await Api.get(`deathmatch/${idCamp}`);
 
       console.log(game.data.games[round - 1].length);
+      console.log(round);
+
       console.log(chave);
+
       if (game.data.games[round - 1].length >= chave) {
         game.data.games[round - 1][chave - 1].winner = winnerPlayer;
         if (
@@ -153,7 +158,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
           game.data.games[round - 1].length > 1
         ) {
           console.log(`Round ${round}° Acabou!`);
-
+          setIsCreateRound(false);
           const createGames = [];
           for (
             let index = 0;
@@ -206,6 +211,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         winnerPlayerCompetition,
         setIdCamp,
         idCamp,
+        isCreateRound
       }}
     >
       {children}
