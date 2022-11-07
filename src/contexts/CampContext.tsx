@@ -19,7 +19,7 @@ interface iCampConext {
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: iPlayers
+    winnerPlayer: iPlayers,
   ) => void;
 
   setIdCamp: (id: number) => void;
@@ -31,7 +31,7 @@ interface iPlayers {
   playerImg?: string;
 }
 
-interface iCamp {
+export interface iCamp {
   id: number;
   idUser: number;
   name: string;
@@ -128,7 +128,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     idCamp: number,
     round: number,
     chave: number,
-    winnerPlayer: iPlayers
+    winnerPlayer: iPlayers,
   ) => {
     try {
       const config = {
