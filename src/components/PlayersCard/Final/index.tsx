@@ -1,14 +1,10 @@
-import { LineFinal } from "../../BracketsLine/Final";
-import imgteste from "../../../assets/Teste foto time 1.jpg";
-import imgTeste from "../../../assets/teste foto time 2.jpg";
+import { LineFinal } from '../../BracketsLine/Final';
+import imgteste from '../../../assets/Teste foto time 1.jpg';
+import imgTeste from '../../../assets/teste foto time 2.jpg';
 
-interface iFinalProps {
-  className?: string;
-}
-
-export const Final = ({ className }: iFinalProps) => {
+export const Final = () => {
   return (
-    <div className={className}>
+    <div className="flex flex-col gap-[281px] mt-[135px]">
       {/* Se status for win, chamar este card */}
 
       <div className="w-52 h-[70px] flex border-2 bg-gray-400 border-green-100 rounded-md items-center justify-between px-4">
@@ -28,7 +24,7 @@ export const Final = ({ className }: iFinalProps) => {
         </h2>
         <p className="text-sm text-error-100 leading-3 font-normal">L</p>
       </div>
-      <LineFinal className="flex justify-start items-center ml-52 -mt-[681px] " />
+      <LineFinal />
     </div>
   );
 };

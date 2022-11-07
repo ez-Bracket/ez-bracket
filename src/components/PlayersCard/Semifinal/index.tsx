@@ -1,5 +1,4 @@
 import { LineSemifinal } from "../../BracketsLine/Semifinal";
-
 import imgteste from "../../../assets/Teste foto time 1.jpg";
 import imgTeste from "../../../assets/teste foto time 2.jpg";
 import { useContext, useEffect, useState } from "react";
@@ -57,6 +56,7 @@ export const Semifinal = ({ className }: iSemiFinalProps) => {
                   <LineSemifinal className="flex justify-start items-center ml-52 -mt-[380px] h-[300px] mobile:pt-[25px]" />
                 </>
       })}    
+
     </div>
   );
 };

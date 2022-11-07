@@ -16,6 +16,7 @@ export const PlayersCard = ({ className }: iPlayersCardProps) => {
   const idCamp = useParams();
   const [currentCamp, setCurrentCamp] = useState<iCamp | null>(null);
 
+
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
       await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
