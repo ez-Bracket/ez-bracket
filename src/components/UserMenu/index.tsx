@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import { IoMdAdd } from "react-icons/io";
-import { BiUser } from "react-icons/bi";
-import { FiLogOut } from "react-icons/fi";
-import { ButtonNav } from "../ButtonNav";
-import { Logo } from "../Logo";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { ContextModal } from "../../contexts/ModalContext";
+import { Link } from 'react-router-dom';
+import { IoMdAdd } from 'react-icons/io';
+import { BiUser } from 'react-icons/bi';
+import { FiLogOut } from 'react-icons/fi';
+import { ButtonNav } from '../ButtonNav';
+import { Logo } from '../Logo';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
+import { ContextModal } from '../../contexts/ModalContext';
 
 export const UserMenu = () => {
   const { Logout } = useContext(UserContext);
@@ -17,7 +17,7 @@ export const UserMenu = () => {
     <nav className="fixed z-20 bottom-0 flex tablet:justify-center py-4 tablet:py-10 bg-gray-500 tablet:bg-transparent border-t-2 tablet:border-t-0 tablet:border-r-2 border-green-100 tablet:h-screen w-full tablet:w-32">
       <div className="mx-4 flex tablet:flex-col tablet:items-center tablet:gap-0 justify-between w-full">
         <div className="flex tablet:flex-col tablet:items-center tablet:gap-16 w-[50%] justify-around">
-          <Link to="/dashboard">
+          <Link to="/dashboard" aria-label="Dashboard">
             <Logo className="w-10 tablet:w-20 hover:scale-110 transition-transform" />
           </Link>
           <ButtonNav onCLick={onOpenNewCamp}>
