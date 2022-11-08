@@ -21,6 +21,7 @@ import {
 import { ContextModal } from '../../../contexts/ModalContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { MessageError } from '../../MessageError';
+import { Colors } from '../../../themes/themes';
 
 interface IdataEditUser {
   email?: string | undefined;
@@ -105,8 +106,8 @@ export const ModalEdit = () => {
           mx={4}
           p={3}
           px={[0, 3]}
-          border="2px solid #61FFAA"
-          bg="#221E34"
+          border={`2px solid ${Colors.green100}`}
+          bg={Colors.gray300}
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
@@ -118,8 +119,8 @@ export const ModalEdit = () => {
               borderRadius={50}
               h={6}
               w={6}
-              bg="#61FFAA"
-              _hover={{ bg: '#38F892' }}
+              bg={Colors.green100}
+              _hover={{ bg: Colors.green300 }}
               transition="0.3s ease"
             />
           </div>
@@ -134,14 +135,14 @@ export const ModalEdit = () => {
                   placeholder="Digite o nome de usuário"
                   {...register('name')}
                   _placeholder={{
-                    color: '#c7c7c7',
+                    color: Colors.gray100,
                     opacity: '50%',
                   }}
-                  borderColor="#353149"
+                  borderColor={Colors.gray200}
                   fontSize="14px"
-                  bg="#353149"
+                  bg={Colors.gray200}
                   height="50px"
-                  color="#fff"
+                  color={Colors.white}
                 />
               </FormControl>
 
@@ -158,16 +159,18 @@ export const ModalEdit = () => {
                   placeholder="Digite o seu e-mail"
                   {...register('email')}
                   _placeholder={{
-                    color: '#c7c7c7',
+                    color: Colors.gray100,
                     opacity: '50%',
                   }}
                   fontSize="14px"
-                  borderColor={errors.email?.message ? '#E64980' : '#353149'}
-                  bg="#353149"
+                  borderColor={
+                    errors.email?.message ? Colors.error100 : Colors.gray200
+                  }
+                  bg={Colors.gray200}
                   height="50px"
-                  color={errors.email?.message ? '#E64980' : '#fff'}
+                  color={errors.email?.message ? Colors.error100 : Colors.white}
                   focusBorderColor={
-                    errors.email?.message ? '#E64980' : '#c7c7c7'
+                    errors.email?.message ? Colors.error100 : Colors.gray200
                   }
                 />
                 {errors.email?.message && (
@@ -188,16 +191,20 @@ export const ModalEdit = () => {
                   placeholder="URL da foto de perfil"
                   {...register('imgUrl')}
                   _placeholder={{
-                    color: '#c7c7c7',
+                    color: Colors.gray100,
                     opacity: '50%',
                   }}
                   fontSize="14px"
-                  borderColor={errors.imgUrl?.message ? '#E64980' : '#353149'}
-                  bg="#353149"
+                  borderColor={
+                    errors.imgUrl?.message ? Colors.error100 : Colors.gray200
+                  }
+                  bg={Colors.gray200}
                   height="50px"
-                  color={errors.imgUrl?.message ? '#E64980' : '#fff'}
+                  color={
+                    errors.imgUrl?.message ? Colors.error100 : Colors.white
+                  }
                   focusBorderColor={
-                    errors.imgUrl?.message ? '#E64980' : '#c7c7c7'
+                    errors.imgUrl?.message ? Colors.error100 : Colors.gray200
                   }
                 />
                 {errors.imgUrl?.message && (
@@ -221,18 +228,24 @@ export const ModalEdit = () => {
                     placeholder="Digite sua senha"
                     {...register('password')}
                     _placeholder={{
-                      color: '#c7c7c7',
+                      color: Colors.gray100,
                       opacity: '50%',
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors?.password?.message ? '#E64980' : '#353149'
+                      errors?.password?.message
+                        ? Colors.error100
+                        : Colors.gray200
                     }
-                    bg="#353149"
+                    bg={Colors.gray200}
                     height="50px"
-                    color={errors?.password?.message ? '#E64980' : '#fff'}
+                    color={
+                      errors?.password?.message ? Colors.error100 : Colors.white
+                    }
                     focusBorderColor={
-                      errors?.password?.message ? '#E64980' : '#c7c7c7'
+                      errors?.password?.message
+                        ? Colors.error100
+                        : Colors.gray200
                     }
                     type={showPass ? 'text' : 'password'}
                   />
@@ -275,20 +288,26 @@ export const ModalEdit = () => {
                     placeholder="Confirme sua senha"
                     {...register('confirmPassword')}
                     _placeholder={{
-                      color: '#c7c7c7',
+                      color: Colors.gray100,
                       opacity: '50%',
                     }}
                     fontSize="14px"
                     borderColor={
-                      errors?.confirmPassword?.message ? '#E64980' : '#353149'
+                      errors?.confirmPassword?.message
+                        ? Colors.error100
+                        : Colors.gray200
                     }
-                    bg="#353149"
+                    bg={Colors.gray200}
                     height="50px"
                     color={
-                      errors?.confirmPassword?.message ? '#E64980' : '#fff'
+                      errors?.confirmPassword?.message
+                        ? Colors.error100
+                        : Colors.white
                     }
                     focusBorderColor={
-                      errors?.confirmPassword?.message ? '#E64980' : '#c7c7c7'
+                      errors?.confirmPassword?.message
+                        ? Colors.error100
+                        : Colors.gray100
                     }
                     type={showConfirmPass ? 'text' : 'password'}
                   />
@@ -323,22 +342,22 @@ export const ModalEdit = () => {
               flexDirection="column"
               justifyContent="space-evenly"
               w="100%"
-              color="#c7c7c7"
+              color={Colors.gray100}
               fontSize="14px"
             >
               <Button
                 type="submit"
-                bg="#61FFAA"
-                color="#08490e"
+                bg={Colors.green100}
+                color={Colors.green200}
                 fontWeight="500"
                 fontSize="18px"
                 w="100%"
                 h="49px"
                 mb={5}
                 _hover={{
-                  bg: '#38F892',
+                  bg: Colors.green300,
                 }}
-                _active={{ bgColor: '#61FFAA' }}
+                _active={{ bgColor: Colors.green100 }}
                 transition="0.3s ease"
               >
                 Editar
