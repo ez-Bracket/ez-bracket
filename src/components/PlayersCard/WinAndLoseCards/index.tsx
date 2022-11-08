@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import imgDefault from "../../../assets/default.jpg";
-import { CampConext, iCamp } from "../../../contexts/CampContext";
-import { Api } from "../../../services/Api";
-import { BracketsLine } from "../../BracketsLine/Default";
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import imgDefault from '../../../assets/default.jpg';
+import { CampConext, iCamp } from '../../../contexts/CampContext';
+import { Api } from '../../../services/Api';
+import { BracketsLine } from '../../BracketsLine/Default';
 
 export const PlayersCard = () => {
   const { winnerPlayerCompetition } = useContext(CampConext);
@@ -13,7 +13,7 @@ export const PlayersCard = () => {
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
       await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data)
+        setCurrentCamp(resp.data),
       );
     };
     getCamp(Number(idCamp.idCamp));
@@ -23,7 +23,7 @@ export const PlayersCard = () => {
   const winGame = (
     player: { player: string; playerImg: string },
     round: number,
-    key: number
+    key: number,
   ) => {
     const winnerPlayer = player;
     winnerPlayerCompetition(Number(idCamp.idCamp), round, key, winnerPlayer);

@@ -1,11 +1,11 @@
-import { createContext, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 import { CustomToast } from '../components/Toast';
 
 // Utilities
 import { Api } from '../services/Api';
 
 export interface iCampProvidertProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 interface iCampConext {
@@ -17,7 +17,7 @@ interface iCampConext {
   winnerPlayerCompetition: (
     idCamp: number,
     round: number,
-    chave: number,
+    key: number,
     winnerPlayer: iPlayers,
   ) => void;
 
@@ -130,14 +130,14 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   const winnerPlayerCompetition = async (
     idCamp: number,
     round: number,
-    chave: number,
+    key: number,
     winnerPlayer: iPlayers,
   ) => {
     try {
       const game = await Api.get(`deathmatch/${idCamp}`);
 
-      if (game.data.games[round - 1].length >= chave) {
-        game.data.games[round - 1][chave - 1].winner = winnerPlayer;
+      if (game.data.games[round - 1].length >= key) {
+        game.data.games[round - 1][key - 1].winner = winnerPlayer;
         if (
           !game.data.games[round - 1].find(
             (element: { winner: string }) => element.winner === '',
@@ -174,7 +174,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
         toastify({
-          description: `Essa chave ${chave} não existe no ${round}° round!`,
+          description: `Essa key ${key} não existe no ${round}° round!`,
           status: 'error',
         });
       }
