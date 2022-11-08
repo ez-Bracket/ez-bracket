@@ -47,6 +47,12 @@ export const AddPlayers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playersList]);
 
+  useEffect(() => {
+    if (!!currentCamp?.players[0]) {
+      navigate('/dashboard');
+    }
+  }, [currentCamp, navigate]);
+
   return (
     <>
       <div className="bg-gray-300 h-screen">
