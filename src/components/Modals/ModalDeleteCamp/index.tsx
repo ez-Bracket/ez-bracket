@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { ContextModal } from '../../../contexts/ModalContext';
 import { CampConext } from '../../../contexts/CampContext';
-
+import { Colors } from '../../../themes/themes';
 
 export const ModalDeleteCamp = () => {
   const { isOpenDeleteCamp, onCloseDeleteCamp } = useContext(ContextModal);
@@ -37,8 +37,8 @@ export const ModalDeleteCamp = () => {
           mx={4}
           p={3}
           px={[0, 3]}
-          border="2px solid #61FFAA"
-          bg="#221E34"
+          border={`2px solid ${Colors.green100}`}
+          bg={Colors.gray300}
         >
           <ModalHeader className="text-green-100 mt-9 mb-0">
             <h2 className="text-2xl tablet:text-3xl text-center">
@@ -48,8 +48,8 @@ export const ModalDeleteCamp = () => {
           <ModalCloseButton
             className="mt-3 mr-2 bg-green-100 text-gray-300"
             borderRadius={50}
-            bg="#61FFAA"
-            _hover={{ bg: '#38F892' }}
+            bg={Colors.green100}
+            _hover={{ bg: Colors.green300 }}
             transition="0.3s ease"
           />
           <ModalBody>
@@ -61,7 +61,7 @@ export const ModalDeleteCamp = () => {
           <ModalFooter w="100%">
             <div className="flex w-[90%] justify-between mx-auto pb-9 gap-3">
               <Button
-                bg="#61FFAA"
+                bg={Colors.green100}
                 w="50%"
                 h="55px"
                 mr={3}
@@ -75,7 +75,7 @@ export const ModalDeleteCamp = () => {
                 <p className="text-gray-300 text-xl font-medium">Sim</p>
               </Button>
               <Button
-                bg="#E64980"
+                bg={Colors.error100}
                 w="50%"
                 h="55px"
                 mr={3}

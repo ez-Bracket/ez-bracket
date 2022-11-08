@@ -23,6 +23,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import { ContextModal } from '../../../contexts/ModalContext';
 import { Loading } from '../../Loading';
 import { MessageError } from '../../MessageError';
+import { Colors } from '../../../themes/themes';
 
 interface ILoginForm {
   email: string;
@@ -78,8 +79,8 @@ export const ModalLogin = () => {
           mx={4}
           p={3}
           px={[0, 3]}
-          border="2px solid #61FFAA"
-          bg="#221E34"
+          border={`2px solid ${Colors.green100}`}
+          bg={Colors.gray300}
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
@@ -91,8 +92,8 @@ export const ModalLogin = () => {
               borderRadius={50}
               h={6}
               w={6}
-              bg="#61FFAA"
-              _hover={{ bg: '#38F892' }}
+              bg={Colors.green100}
+              _hover={{ bg: Colors.green300 }}
               transition="0.3s ease"
             />
           </div>
@@ -109,16 +110,18 @@ export const ModalLogin = () => {
                 <Input
                   placeholder="Digite o e-mail do usuário"
                   _placeholder={{
-                    color: '#c7c7c7',
+                    color: Colors.gray100,
                     opacity: '50%',
                   }}
-                  borderColor={errors.email?.message ? '#E64980' : '#353149'}
-                  bg="#353149"
+                  borderColor={
+                    errors.email?.message ? Colors.error100 : Colors.gray200
+                  }
+                  bg={Colors.gray200}
                   fontSize="14px"
                   height="50px"
-                  color={errors.email?.message ? '#E64980' : '#fff'}
+                  color={errors.email?.message ? Colors.error100 : Colors.white}
                   focusBorderColor={
-                    errors.email?.message ? '#E64980' : '#c7c7c7'
+                    errors.email?.message ? Colors.error100 : Colors.gray100
                   }
                   {...register('email')}
                 />
@@ -139,18 +142,22 @@ export const ModalLogin = () => {
                   <Input
                     placeholder="Digite sua senha"
                     _placeholder={{
-                      color: '#c7c7c7',
+                      color: Colors.gray100,
                       opacity: '50%',
                     }}
                     borderColor={
-                      errors.password?.message ? '#E64980' : '#353149'
+                      errors.password?.message
+                        ? Colors.error100
+                        : Colors.gray200
                     }
-                    bg="#353149"
+                    bg={Colors.gray200}
                     fontSize="14px"
                     height="50px"
-                    color={errors.email?.message ? '#E64980' : '#fff'}
+                    color={
+                      errors.email?.message ? Colors.error100 : Colors.white
+                    }
                     focusBorderColor={
-                      errors.email?.message ? '#E64980' : '#c7c7c7'
+                      errors.email?.message ? Colors.error100 : Colors.gray100
                     }
                     type={showPass ? 'text' : 'password'}
                     {...register('password')}
@@ -184,22 +191,22 @@ export const ModalLogin = () => {
               flexDirection="column"
               justifyContent="space-evenly"
               w="100%"
-              color="#c7c7c7"
+              color={Colors.gray100}
               fontSize="14px"
             >
               <Button
                 type="submit"
-                bg="#61FFAA"
-                color="#08490e"
+                bg={Colors.green100}
+                color={Colors.green200}
                 fontWeight="500"
                 fontSize="18px"
                 w="100%"
                 h="49px"
                 mb={5}
                 _hover={{
-                  bg: '#38F892',
+                  bg: Colors.green300,
                 }}
-                _active={{ bgColor: '#61FFAA' }}
+                _active={{ bgColor: Colors.green100 }}
                 transition="0.3s ease"
               >
                 Entrar
@@ -215,7 +222,7 @@ export const ModalLogin = () => {
                   variant="link"
                   fontSize="14px"
                   fontWeight="medium"
-                  color="#c7c7c7"
+                  color={Colors.gray100}
                 >
                   Clique aqui
                 </Button>

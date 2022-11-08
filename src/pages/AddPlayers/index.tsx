@@ -21,18 +21,16 @@ interface iPlayerList {
 export const AddPlayers = () => {
   const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
   const [currentCamp, setCurrentCamp] = useState<iCamp | null>(null);
-
-  const { isLogged } = useContext(UserContext);
-  const { addPlayersCompetition } = useContext(CampConext);
-  useProtectedRoutes(isLogged, true);
-
   const navigate = useNavigate();
   const idCamp = useParams();
+  const { addPlayersCompetition } = useContext(CampConext);
+  const { isLogged } = useContext(UserContext);
+  useProtectedRoutes(isLogged, true);
 
-  async function startCamp() {
+  const startCamp = async () => {
     await addPlayersCompetition(Number(idCamp.idCamp), playersList);
     navigate(`/tournament/${idCamp.idCamp}`);
-  }
+  };
 
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
@@ -58,7 +56,7 @@ export const AddPlayers = () => {
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
               name={currentCamp?.name}
-              status={true}
+              status={currentCamp?.status}
               date={currentCamp?.date}
               number_of_players={currentCamp?.number_of_players.toString()}
             />

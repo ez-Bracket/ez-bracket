@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CampInfo } from '../../components/CampInfo';
 import { ModalEdit } from '../../components/Modals/ModalEditUser';
@@ -9,10 +9,14 @@ import { BracketGame } from '../../components/BracketGame';
 import { UserMenu } from '../../components/UserMenu';
 import { iCamp } from '../../contexts/CampContext';
 import { Api } from '../../services/Api';
+import { UserContext } from '../../contexts/UserContext';
+import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
 
 export const Tournament = () => {
   const idCamp = useParams();
   const [currentCamp, setCurrentCamp] = useState<iCamp | null>(null);
+  const { isLogged } = useContext(UserContext);
+  useProtectedRoutes(isLogged, true);
 
   useEffect(() => {
     const getCamp = (idCamp: number) => {
@@ -32,10 +36,14 @@ export const Tournament = () => {
           <div className="mx-4 tablet:mr-8 tablet:ml-44">
             <CampInfo
               name={currentCamp?.name}
-              status={true}
               date={currentCamp?.date}
+              status={currentCamp?.status}
               number_of_players={currentCamp?.number_of_players.toString()}
             />
+            <p className="text-gray-100 italic mt-4">
+              É necessário escolher todos os vencedores antes de prosseguir para
+              o próximo round.
+            </p>
           </div>
         </section>
         <div className="bg-gray-300">

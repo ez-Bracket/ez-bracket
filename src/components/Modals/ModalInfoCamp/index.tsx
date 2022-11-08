@@ -7,10 +7,8 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
-
 import { iCamp } from '../../../contexts/CampContext';
 import { ContextModal } from '../../../contexts/ModalContext';
-
 import { Colors } from '../../../themes/themes';
 
 interface IInfoModalProps {

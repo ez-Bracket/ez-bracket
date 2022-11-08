@@ -118,7 +118,6 @@ export const UserProvider = ({
         const res = await Api.get<IuserApiGet>(
           `users/${id}`
         );
-
         setUser([res.data]);
         setIsLogged(true);
       } catch (error) {
@@ -137,7 +136,6 @@ export const UserProvider = ({
   const Login = async (data: IuserDataLogin) => {
     try {
       setIsLoading(true);
-
       const res = await Api.post<IuserApiLoginResp>(
         "login",
         data

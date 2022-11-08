@@ -22,6 +22,7 @@ import { CampConext, iCampRegister } from '../../../contexts/CampContext';
 import { ContextModal } from '../../../contexts/ModalContext';
 import { CustomToast } from '../../Toast';
 import { MessageError } from '../../MessageError';
+import { Colors } from '../../../themes/themes';
 
 export const NewCampModal = () => {
   const { isOpenNewCamp, onCloseNewCamp } = useContext(ContextModal);
@@ -86,8 +87,8 @@ export const NewCampModal = () => {
           mx={4}
           p={3}
           px={[0, 3]}
-          border="2px solid #61FFAA"
-          bg="#221E34"
+          border={`2px solid ${Colors.green100}`}
+          bg={Colors.gray300}
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
@@ -99,8 +100,8 @@ export const NewCampModal = () => {
               borderRadius={50}
               h={6}
               w={6}
-              bg="#61FFAA"
-              _hover={{ bg: '#38F892' }}
+              bg={Colors.green100}
+              _hover={{ bg: Colors.green300 }}
               transition="0.3s ease"
             />
           </div>
@@ -120,17 +121,19 @@ export const NewCampModal = () => {
                 <Input
                   placeholder="Digite o nome do torneio"
                   _placeholder={{
-                    color: '#c7c7c7',
+                    color: Colors.gray100,
                     opacity: '50%',
                   }}
-                  bg="#353149"
+                  bg={Colors.gray200}
                   fontSize="14px"
                   height="50px"
-                  color="#c7c7c7"
+                  color={Colors.gray100}
                   focusBorderColor={
-                    errors.name?.message ? '#E64980' : '#c7c7c7'
+                    errors.name?.message ? Colors.error100 : Colors.gray100
                   }
-                  borderColor={errors.name?.message ? '#E64980' : '#353149'}
+                  borderColor={
+                    errors.name?.message ? Colors.error100 : Colors.gray200
+                  }
                   {...register('name')}
                 />
                 {errors.name?.message && (
@@ -158,25 +161,38 @@ export const NewCampModal = () => {
                     Participantes
                   </FormLabel>
                   <Select
-                    color="#c7c7c7"
-                    bg="#353149"
+                    color={Colors.gray100}
+                    bg={Colors.gray200}
                     h="60px"
                     w="100%"
                     focusBorderColor={
-                      errors.number_of_players?.message ? '#E64980' : '#c7c7c7'
+                      errors.number_of_players?.message
+                        ? Colors.error100
+                        : Colors.gray100
                     }
                     borderColor={
-                      errors.number_of_players?.message ? '#E64980' : '#353149'
+                      errors.number_of_players?.message
+                        ? Colors.error100
+                        : Colors.gray200
                     }
                     {...register('number_of_players')}
                   >
-                    <option style={{ backgroundColor: '#353149' }} value="4">
+                    <option
+                      style={{ backgroundColor: Colors.gray200 }}
+                      value="4"
+                    >
                       4
                     </option>
-                    <option style={{ backgroundColor: '#353149' }} value="8">
+                    <option
+                      style={{ backgroundColor: Colors.gray200 }}
+                      value="8"
+                    >
                       8
                     </option>
-                    <option style={{ backgroundColor: '#353149' }} value="16">
+                    <option
+                      style={{ backgroundColor: Colors.gray200 }}
+                      value="16"
+                    >
                       16
                     </option>
                   </Select>
@@ -194,15 +210,15 @@ export const NewCampModal = () => {
 
                   <Input
                     type="date"
-                    bg="#353149"
-                    borderColor="#353149"
-                    color="#c7c7c7"
+                    bg={Colors.gray200}
+                    borderColor={Colors.gray200}
+                    color={Colors.gray100}
                     h="60px"
                     w="100%"
                     css={{
                       '::-webkit-calendar-picker-indicator': {
                         cursor: 'pointer',
-                        color: '#c7c7c7',
+                        color: Colors.gray100,
                         background: `url(https://cdn1.iconfinder.com/data/icons/time-and-date-ii/24/Material_icons-03-70-256.png)center/100% no-repeat `,
                       },
                     }}
@@ -217,14 +233,14 @@ export const NewCampModal = () => {
                 <Textarea
                   placeholder="Adicione uma descrição do torneio"
                   _placeholder={{
-                    color: '#c7c7c7',
+                    color: Colors.gray100,
                     opacity: '50%',
                   }}
-                  borderColor="#353149"
-                  bg="#353149"
+                  borderColor={Colors.gray200}
+                  bg={Colors.gray200}
                   height="120px"
                   paddingTop={4}
-                  color="#c7c7c7"
+                  color={Colors.gray100}
                   resize="none"
                   {...register('description')}
                 />
@@ -233,16 +249,16 @@ export const NewCampModal = () => {
 
             <ModalFooter mb={5} paddingBottom="">
               <Button
-                bg="#61FFAA"
-                color="#08490e"
+                bg={Colors.green100}
+                color={Colors.green200}
                 fontWeight="500"
                 fontSize="18px"
                 w="100%"
                 h="49px"
                 _hover={{
-                  bg: '#38F892',
+                  bg: Colors.green300,
                 }}
-                _active={{ bgColor: '#61FFAA' }}
+                _active={{ bgColor: Colors.green100 }}
                 transition="0.3s ease"
                 type="submit"
               >
