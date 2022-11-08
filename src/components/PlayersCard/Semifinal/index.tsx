@@ -20,7 +20,7 @@ export const Semifinal = () => {
   }, [isCreateRound, idCamp]);
 
   const winGame = (
-    player: { player: string; playerImg: string },
+    player: { player: string; playerImg: string; winner: boolean },
     round: number,
     key: number,
   ) => {
@@ -33,13 +33,16 @@ export const Semifinal = () => {
       {currentCamp?.games[1]?.map((game: any, index: number) => {
         const round = 2;
         const key = index + 1;
+
         return (
           <Fragment key={key}>
             <div
               onClick={() => {
-                winGame(game.player1, round, key);
+                game.winGame(game.player1, round, key);
               }}
-              className="w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center gap-5 px-4 hover:bg-gray-500 transition-colors cursor-pointer"
+              className={`w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer ${
+                game.player1.winner ? 'border-green-200' : 'border-gray-200'
+              }`}
             >
               <img
                 src={
@@ -55,9 +58,12 @@ export const Semifinal = () => {
 
             <div
               onClick={() => {
+                game.player2.winner = false;
                 winGame(game.player2, round, key);
               }}
-              className="w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center gap-5 px-4 hover:bg-gray-500 transition-colors cursor-pointer"
+              className={`w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer ${
+                game.player2.winner ? 'border-green-200' : 'border-gray-200'
+              }`}
             >
               <img
                 src={

@@ -38,7 +38,7 @@ export interface iCamp {
   players: iPlayers[];
   status: boolean;
   winner: iPlayers;
-  games: string[][];
+  games: string[][] | any;
   number_of_players: number;
   description: string;
   date?: string;
