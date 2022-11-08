@@ -7,12 +7,11 @@ import { motion } from 'framer-motion';
 
 export const DashboardMain = () => {
   const { camp, getCompetition } = useContext(CampConext);
-  const idUser = window.localStorage.getItem('@EZ:USERID');
+  const idUser = localStorage.getItem('@EZ:USERID');
 
   useEffect(() => {
     getCompetition(Number(idUser));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [camp]);
+  }, [getCompetition, idUser]);
 
   return camp.length ? (
     <motion.div
