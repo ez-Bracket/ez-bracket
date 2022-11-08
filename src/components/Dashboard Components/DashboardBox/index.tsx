@@ -1,6 +1,6 @@
 import { BsFillTrashFill, BsController } from 'react-icons/bs';
 import { AiFillCalendar } from 'react-icons/ai';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { ContextModal } from '../../../contexts/ModalContext';
 import { CampConext } from '../../../contexts/CampContext';
 import { motion } from 'framer-motion';
@@ -30,16 +30,9 @@ interface iTournament {
 
 export const DashboardBox = ({ tournament }: iTournament) => {
   const { onOpenDeleteCamp } = useContext(ContextModal);
-  const { setIdCamp, getCompetition, camp} = useContext(CampConext);
+  const { setIdCamp } = useContext(CampConext);
   const btnRef: any = useRef();
   const navigate = useNavigate();
-
-  const idUser = window.localStorage.getItem('@EZ:USERID');
-
-  useEffect(() => {
-    getCompetition(Number(idUser));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [camp]);
 
   const handleModalDelete = (id: number) => {
     onOpenDeleteCamp();
