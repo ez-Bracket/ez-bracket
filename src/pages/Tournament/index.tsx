@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { CampInfo } from '../../components/CampInfo';
-import { ModalEdit } from '../../components/Modals/ModalEditUser';
-import { InfoModal } from '../../components/Modals/ModalInfoCamp';
-import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
-import { NewCampModal } from '../../components/Modals/ModalNewCamp';
-import { BracketGame } from '../../components/BracketGame';
-import { UserMenu } from '../../components/UserMenu';
-import { iCamp } from '../../contexts/CampContext';
-import { Api } from '../../services/Api';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { CampInfo } from "../../components/CampInfo";
+import { ModalEdit } from "../../components/Modals/ModalEditUser";
+import { InfoModal } from "../../components/Modals/ModalInfoCamp";
+import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
+import { NewCampModal } from "../../components/Modals/ModalNewCamp";
+import { BracketGame } from "../../components/BracketGame";
+import { UserMenu } from "../../components/UserMenu";
+import { iCamp } from "../../contexts/CampContext";
+import { Api } from "../../services/Api";
 
 export const Tournament = () => {
   const idCamp = useParams();
@@ -17,7 +17,7 @@ export const Tournament = () => {
   useEffect(() => {
     const getCamp = (idCamp: number) => {
       Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data),
+        setCurrentCamp(resp.data)
       );
     };
     getCamp(Number(idCamp.idCamp));
