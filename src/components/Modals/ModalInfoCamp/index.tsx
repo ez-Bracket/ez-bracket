@@ -5,11 +5,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-} from '@chakra-ui/react';
-import { useContext } from 'react';
-import { iCamp } from '../../../contexts/CampContext';
-import { ContextModal } from '../../../contexts/ModalContext';
-import { Colors } from '../../../themes/themes';
+} from "@chakra-ui/react";
+import { useContext } from "react";
+import { iCamp } from "../../../contexts/CampContext";
+import { ContextModal } from "../../../contexts/ModalContext";
+import { Colors } from "../../../themes/themes";
 
 interface IInfoModalProps {
   currentCamp: iCamp | null;
@@ -20,7 +20,12 @@ export const InfoModal = ({ currentCamp }: IInfoModalProps) => {
 
   return (
     <>
-      <Modal onClose={onCloseInfoCamp} isOpen={isOpenInfoCamp} isCentered>
+      <Modal
+        onClose={onCloseInfoCamp}
+        isOpen={isOpenInfoCamp}
+        isCentered
+        scrollBehavior="inside"
+      >
         <ModalOverlay />
         <ModalContent
           maxW={550}
@@ -44,7 +49,7 @@ export const InfoModal = ({ currentCamp }: IInfoModalProps) => {
           />
           <ModalBody>
             <p className="text-white text-base tablet:text-xl p-4 mb-4">
-              {currentCamp?.description === ''
+              {currentCamp?.description === ""
                 ? `Não há nenhuma descrição do torneio.`
                 : currentCamp?.description.toString()}
             </p>
