@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CampInfo } from '../../components/CampInfo';
@@ -21,7 +22,7 @@ export const Tournament = () => {
   useEffect(() => {
     const getCamp = (idCamp: number) => {
       Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data),
+        setCurrentCamp(resp.data)
       );
     };
     getCamp(Number(idCamp.idCamp));
