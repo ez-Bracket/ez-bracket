@@ -1,9 +1,9 @@
-import { Fragment, useContext, useEffect, useState } from "react";
-import { BsTrophy } from "react-icons/bs";
-import { useParams } from "react-router-dom";
-import imgDefault from "../../../assets/default.jpg";
-import { CampConext, iCamp } from "../../../contexts/CampContext";
-import { Api } from "../../../services/Api";
+import { Fragment, useContext, useEffect, useState } from 'react';
+import { BsTrophy } from 'react-icons/bs';
+import { useParams } from 'react-router-dom';
+import imgDefault from '../../../assets/default.jpg';
+import { CampConext, iCamp } from '../../../contexts/CampContext';
+import { Api } from '../../../services/Api';
 
 export const WinnerCard = () => {
   const { isCreateRound } = useContext(CampConext);
@@ -26,8 +26,6 @@ export const WinnerCard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCamp]);
 
-  const numberOfPlayers = currentCamp?.number_of_players;
-
   const renderIndex = () => {
     if (currentCamp?.games[0].length === 8) {
       return setIsIndex(3);
@@ -41,7 +39,11 @@ export const WinnerCard = () => {
   };
 
   return (
-    <div className={`flex flex-col mt-${numberOfPlayers == 8 ? "36" : "1"}`}>
+    <div
+      className={`flex flex-col ${
+        currentCamp?.games[0].length === 4 ? 'mt-36' : 'mt-0'
+      }`}
+    >
       {currentCamp?.games[isIndex]?.map((game: any, index: number) => {
         return currentCamp?.winner ? (
           <Fragment key={index + 1}>
