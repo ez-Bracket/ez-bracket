@@ -28,6 +28,20 @@ export const Semifinal = () => {
     winnerPlayerCompetition(Number(idCamp.idCamp), round, key, winnerPlayer);
   };
 
+  const borderColorNext = (currentTarget: HTMLDivElement) => {
+    currentTarget.classList.add('pointer-events-none');
+    currentTarget.classList.add('border-green-100');
+    currentTarget.nextElementSibling?.classList.add('pointer-events-none');
+    currentTarget.nextElementSibling?.classList.add('border-error-100');
+  };
+
+  const borderColorPrevious = (currentTarget: HTMLDivElement) => {
+    currentTarget.classList.add('pointer-events-none');
+    currentTarget.classList.add('border-green-100');
+    currentTarget.previousElementSibling?.classList.add('pointer-events-none');
+    currentTarget.previousElementSibling?.classList.add('border-error-100');
+  };
+
   return (
     <div className="flex flex-col gap-[104px] mt-10">
       {currentCamp?.games[1]?.map((game: any, index: number) => {
@@ -37,12 +51,11 @@ export const Semifinal = () => {
         return (
           <Fragment key={key}>
             <div
-              onClick={() => {
-                game.winGame(game.player1, round, key);
+              onClick={({ currentTarget }) => {
+                borderColorNext(currentTarget);
+                winGame(game.player1, round, key);
               }}
-              className={`w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer ${
-                game.player1.winner ? 'border-green-200' : 'border-gray-200'
-              }`}
+              className={`w-52 h-[70px] flex border-[1px] bg-gray-400 rounded-md items-center gap-5 px-4 hover:bg-gray-500 transition-colors cursor-pointer`}
             >
               <img
                 src={
@@ -57,13 +70,11 @@ export const Semifinal = () => {
             </div>
 
             <div
-              onClick={() => {
-                game.player2.winner = false;
+              onClick={({ currentTarget }) => {
+                borderColorPrevious(currentTarget);
                 winGame(game.player2, round, key);
               }}
-              className={`w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer ${
-                game.player2.winner ? 'border-green-200' : 'border-gray-200'
-              }`}
+              className={`w-52 h-[70px] flex border-[1px] bg-gray-400 rounded-md items-center gap-5 px-4 hover:bg-gray-500 transition-colors cursor-pointer`}
             >
               <img
                 src={
