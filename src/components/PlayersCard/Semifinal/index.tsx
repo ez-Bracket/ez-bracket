@@ -1,9 +1,9 @@
-import { LineSemifinal } from "../../BracketsLine/Semifinal";
-import imgDefault from "../../../assets/default.jpg";
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import { CampConext, iCamp } from "../../../contexts/CampContext";
-import { useParams } from "react-router-dom";
-import { Api } from "../../../services/Api";
+import { LineSemifinal } from '../../BracketsLine/Semifinal';
+import imgDefault from '../../../assets/default.jpg';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { CampConext, iCamp } from '../../../contexts/CampContext';
+import { useParams } from 'react-router-dom';
+import { Api } from '../../../services/Api';
 
 export const Semifinal = () => {
   const { winnerPlayerCompetition, isCreateRound } = useContext(CampConext);
@@ -13,7 +13,7 @@ export const Semifinal = () => {
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
       await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data)
+        setCurrentCamp(resp.data),
       );
     };
     getCamp(Number(idCamp.idCamp));
@@ -21,9 +21,9 @@ export const Semifinal = () => {
   }, [isCreateRound]);
 
   const winGame = (
-    player: { player: string; playerImg: string },
+    player: { player: string; playerImg: string; winner: boolean },
     round: number,
-    key: number
+    key: number,
   ) => {
     const winnerPlayer = player;
     winnerPlayerCompetition(Number(idCamp.idCamp), round, key, winnerPlayer);
@@ -34,13 +34,16 @@ export const Semifinal = () => {
       {currentCamp?.games[1]?.map((game: any, index: number) => {
         const round = 2;
         const key = index + 1;
+
         return (
           <Fragment key={key}>
             <div
               onClick={() => {
-                winGame(game.player1, round, key);
+                game.winGame(game.player1, round, key);
               }}
-              className="w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer"
+              className={`w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer ${
+                game.player1.winner ? 'border-green-200' : 'border-gray-200'
+              }`}
             >
               <img
                 src={
@@ -57,9 +60,12 @@ export const Semifinal = () => {
 
             <div
               onClick={() => {
+                game.player2.winner = false;
                 winGame(game.player2, round, key);
               }}
-              className="w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer"
+              className={`w-52 h-[70px] flex border-2 bg-gray-400 border-gray-200 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer ${
+                game.player2.winner ? 'border-green-200' : 'border-gray-200'
+              }`}
             >
               <img
                 src={
