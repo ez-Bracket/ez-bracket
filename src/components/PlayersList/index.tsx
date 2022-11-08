@@ -1,5 +1,5 @@
-import { BiUser } from 'react-icons/bi';
-import { motion } from 'framer-motion';
+import { BiUser } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 interface iPlayerList {
   player: string;
@@ -33,7 +33,9 @@ export const PlayersList = ({ playersList }: iPlayerListProps) => {
               <BiUser className="w-[30px] h-[30px] rounded-full text-green-100 border-2 border-solid border-green-100 mr-2" />
             )}
 
-            <span className="font-base text-gray-100">{player.player}</span>
+            <span className="font-base text-gray-100 max-w-[30ch] overflow-hidden text-ellipsis whitespace-nowrap">
+              {player.player}
+            </span>
           </li>
         ))}
       </ul>

@@ -6,10 +6,10 @@ import { ContextModal } from '../../contexts/ModalContext';
 import { Colors } from '../../themes/themes';
 
 interface ICampInfoProps {
-  name: string | undefined;
-  number_of_players: string | undefined;
-  date: string | undefined;
-  status: boolean;
+  name?: string;
+  number_of_players?: string;
+  date?: string;
+  status?: boolean;
 }
 
 export const CampInfo = ({
@@ -26,7 +26,7 @@ export const CampInfo = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full flex laptop:flex-row flex-col flex-wrap laptop:justify-start laptop:gap-8 laptop:items-center relative"
+      className="w-full flex laptop:flex-row flex-col flex-wrap laptop:justify-start gap-1 laptop:gap-8 laptop:items-center relative"
     >
       <div>
         {status ? (

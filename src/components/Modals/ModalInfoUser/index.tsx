@@ -1,15 +1,17 @@
-import { HiOutlineMail } from "react-icons/hi";
-import { Button } from "@chakra-ui/button";
+import { HiOutlineMail } from 'react-icons/hi';
+import { Button } from '@chakra-ui/button';
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-} from "@chakra-ui/modal";
-import { useContext } from "react";
-import { ContextModal } from "../../../contexts/ModalContext";
-import { UserContext } from "../../../contexts/UserContext";
+} from '@chakra-ui/modal';
+import { useContext } from 'react';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { UserContext } from '../../../contexts/UserContext';
+import imgDefault from '../../../assets/default.jpg';
+import { Colors } from '../../../themes/themes';
 
 export const InfoUserModal = () => {
   const { isOpenInfoUser, onCloseInfoUser, onOpenEditUser } =
@@ -34,20 +36,20 @@ export const InfoUserModal = () => {
             <ModalOverlay />
             <ModalContent
               className="flex items-center mx-4 p-3 border-2 border-green-100"
-              bg="#221E34"
+              bg={Colors.gray300}
             >
               <ModalCloseButton
                 className="mt-5 mr-5 text-gray-300"
                 borderRadius={50}
                 h={6}
                 w={6}
-                bg="#61FFAA"
-                _hover={{ bg: "#38F892" }}
+                bg={Colors.green100}
+                _hover={{ bg: Colors.green300 }}
                 transition="0.3s ease"
               />
               <ModalBody className="mt-4 mb-4 flex flex-col items-center gap-5">
                 <img
-                  src={profile.imgUrl}
+                  src={profile.imgUrl ? profile.imgUrl : imgDefault}
                   alt="Imagem de Perfil"
                   className="w-40 h-40 rounded-full"
                 />
@@ -66,14 +68,14 @@ export const InfoUserModal = () => {
 
               <Button
                 className="w-[200px] tablet:max-w-[250px]"
-                bg="#61FFAA"
+                bg={Colors.green100}
                 onClick={handleClick}
                 mb={5}
-                color="#08490e"
+                color={Colors.green200}
                 fontWeight="500"
                 fontSize="18px"
-                _hover={{ bg: "#38F892" }}
-                _active={{ bg: "#38F892" }}
+                _hover={{ bg: Colors.green300 }}
+                _active={{ bg: Colors.green300 }}
               >
                 Editar
               </Button>

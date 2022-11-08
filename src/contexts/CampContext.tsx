@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { CustomToast } from '../components/Toast';
 
 // Utilities
 import { Api } from '../services/Api';
@@ -12,15 +13,12 @@ interface iCampConext {
   camp: iCamp[];
   createCompetition: (data: iCampRegister) => void;
   deleteCompetition: (idCamp: number) => void;
-
   addPlayersCompetition: (idCamp: number, data: iPlayers[]) => void;
-
   winnerPlayerCompetition: (
     idCamp: number,
     round: number,
     chave: number,
     winnerPlayer: iPlayers,
-    
   ) => void;
 
   setIdCamp: (id: number) => void;
@@ -64,16 +62,16 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   const [camp, setCamp] = useState<iCamp[]>([]);
   const [idCamp, setIdCamp] = useState<number>(0);
   const [isCreateRound, setIsCreateRound] = useState(false);
+  const { toastify } = CustomToast();
   const token = localStorage.getItem(`@EZ:TOKEN`);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   const getCompetition = async (idUser: number) => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-
-        },
-      };
       const allGames = await Api.get(`deathmatch`, config);
       setCamp(
         allGames.data.filter((element: iCamp) => element.idUser === idUser),
@@ -85,14 +83,12 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
 
   const createCompetition = async (data: iCampRegister) => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
       await Api.post(`deathmatch`, data, config);
     } catch (error) {
-      console.log(error);
+      toastify({
+        description: 'Alguma coisa deu errado!',
+        status: 'error',
+      });
       return error;
     }
   };
@@ -100,17 +96,11 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   const addPlayersCompetition = async (idCamp: number, data: iPlayers[]) => {
     try {
       if (data.length === 4 || data.length === 8 || data.length === 16) {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
         const game = await Api.get(`deathmatch/${idCamp}`);
         game.data.players = data;
 
         const createGames = [];
-
-        data.sort((a, b) => Math.random() - 0.5);
+        data.sort(() => Math.random() - 0.5);
 
         for (let index = 0; index < data.length; index = index + 2) {
           createGames.push({
@@ -123,10 +113,17 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
 
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
-        console.log('Quantidade de jogadores errada! 4 ou 8 ou 16!');
+        toastify({
+          description: 'Quantidade de jogadores errada! 4 ou 8 ou 16!',
+          status: 'error',
+        });
       }
     } catch (error) {
-      console.log(error);
+      toastify({
+        description: 'Alguma coisa deu errado!',
+        status: 'error',
+      });
+      return error;
     }
   };
 
@@ -137,27 +134,20 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     winnerPlayer: iPlayers,
   ) => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
       const game = await Api.get(`deathmatch/${idCamp}`);
-
-      console.log(game.data.games[round - 1].length);
-      console.log(round);
-
-      console.log(chave);
 
       if (game.data.games[round - 1].length >= chave) {
         game.data.games[round - 1][chave - 1].winner = winnerPlayer;
-        if ((
+        if (
           !game.data.games[round - 1].find(
             (element: { winner: string }) => element.winner === '',
           ) &&
-          game.data.games[round - 1].length > 1)
+          game.data.games[round - 1].length > 1
         ) {
-          console.log(`Round ${round}° Acabou!`);
+          toastify({
+            description: `Round ${round}° acabou!`,
+            status: 'success',
+          });
           setIsCreateRound(!isCreateRound);
           const createGames = [];
           for (
@@ -175,29 +165,38 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         } else if (game.data.games[round - 1].length === 1) {
           game.data.winner = winnerPlayer;
           game.data.status = false;
-          console.log(`Torneio Acabou!`);
+          toastify({
+            description: `Torneio Acabou!`,
+            status: 'success',
+          });
           setIsCreateRound(!isCreateRound);
         }
         await Api.put(`deathmatch/${idCamp}`, game.data, config);
       } else {
-        console.log(`Essa chave ${chave} não existe no ${round}° round !`);
+        toastify({
+          description: `Essa chave ${chave} não existe no ${round}° round!`,
+          status: 'error',
+        });
       }
     } catch (error) {
-      console.log(error);
+      toastify({
+        description: 'Alguma coisa deu errado!',
+        status: 'error',
+      });
+      return error;
     }
   };
 
   const deleteCompetition = async (id: number) => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
       await Api.delete(`deathmatch/${id}`, config);
       const newListCamp = camp?.filter((e: iCamp) => e.id !== idCamp);
       setCamp(newListCamp);
     } catch (error) {
+      toastify({
+        description: 'Alguma coisa deu errado!',
+        status: 'error',
+      });
       return error;
     }
   };
@@ -213,7 +212,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
         winnerPlayerCompetition,
         setIdCamp,
         idCamp,
-        isCreateRound
+        isCreateRound,
       }}
     >
       {children}

@@ -12,6 +12,7 @@ import { MessageError } from '../MessageError';
 import { motion } from 'framer-motion';
 import { Dispatch } from 'react';
 import { Colors } from '../../themes/themes';
+import { CustomToast } from '../Toast';
 
 interface iPlayerList {
   player: string;
@@ -31,16 +32,31 @@ export const AddPlayerForm = ({
   playersList,
   setPlayersList,
 }: iAddPlayerFormProps) => {
+  const { toastify } = CustomToast();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<iPlayerList>({
     resolver: yupResolver(playersSchema),
   });
 
   const onSubmit = (data: iPlayerList) => {
-    setPlayersList([...playersList, data]);
+    const some = playersList.some(
+      (elem) => elem.player.toLowerCase() === data.player.toLowerCase(),
+    );
+
+    if (!some) {
+      setPlayersList([...playersList, data]);
+      reset();
+    } else {
+      toastify({
+        description: 'Esse jogador já existe!',
+        status: 'error',
+      });
+    }
   };
 
   return (
