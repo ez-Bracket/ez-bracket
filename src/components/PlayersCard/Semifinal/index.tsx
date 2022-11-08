@@ -17,8 +17,7 @@ export const Semifinal = () => {
       );
     };
     getCamp(Number(idCamp.idCamp));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCreateRound]);
+  }, [isCreateRound, idCamp]);
 
   const winGame = (
     player: { player: string; playerImg: string; winner: boolean },
@@ -55,7 +54,6 @@ export const Semifinal = () => {
               <h2 className="text-sm text-gray-100 leading-3 font-normal max-w-[15ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.player1.player}
               </h2>
-              <p className="text-sm text-gray-100 leading-3 font-normal">W</p>
             </div>
 
             <div
@@ -77,7 +75,6 @@ export const Semifinal = () => {
               <h2 className="text-sm text-gray-100 leading-3 font-normal max-w-[15ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.player2.player}
               </h2>
-              <p className="text-sm text-gray-100 leading-3 font-normal">L</p>
             </div>
             <LineSemifinal className="flex justify-start items-center ml-52 -mt-[380px] h-[300px] mobile:pt-[25px]" />
           </Fragment>

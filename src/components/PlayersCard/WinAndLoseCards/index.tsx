@@ -17,8 +17,7 @@ export const PlayersCard = () => {
       );
     };
     getCamp(Number(idCamp.idCamp));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [idCamp]);
 
   const winGame = (
     player: { player: string; playerImg: string; winner: boolean },
@@ -58,7 +57,6 @@ export const PlayersCard = () => {
               <h2 className="text-sm text-gray-100 leading-3 font-normal">
                 {game.player1.player}
               </h2>
-              <p className="text-sm text-gray-100 leading-3 font-normal">W</p>
             </div>
 
             <div
@@ -83,7 +81,6 @@ export const PlayersCard = () => {
               <h2 className="text-sm text-gray-100 leading-3 font-normal">
                 {game.player2.player}
               </h2>
-              <p className="text-sm text-gray-100 leading-3 font-normal">L</p>
             </div>
             <BracketsLine />
           </div>
