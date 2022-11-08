@@ -18,8 +18,7 @@ export const WinnerCard = () => {
       });
     };
     getCamp(Number(idCamp.idCamp));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCreateRound]);
+  }, [isCreateRound, idCamp]);
 
   useEffect(() => {
     renderIndex();

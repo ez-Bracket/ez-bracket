@@ -17,8 +17,7 @@ export const PlayersCard = () => {
       );
     };
     getCamp(Number(idCamp.idCamp));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [idCamp]);
 
   const winGame = (
     player: { player: string; playerImg: string },
@@ -40,7 +39,7 @@ export const PlayersCard = () => {
               onClick={() => {
                 winGame(game.player1, round, key);
               }}
-              className={`w-52 h-[70px] flex border-2 bg-gray-400 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer border-gray-200`}
+              className={`w-52 h-[70px] flex border-2 bg-gray-400 rounded-md items-center gap-5 px-4 hover:bg-gray-500 transition-colors cursor-pointer border-gray-200`}
             >
               <img
                 src={
@@ -52,14 +51,13 @@ export const PlayersCard = () => {
               <h2 className="text-sm text-gray-100 leading-3 font-normal max-w-[15ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.player1.player}
               </h2>
-              <p className="text-sm text-gray-100 leading-3 font-normal">W</p>
             </div>
 
             <div
               onClick={() => {
                 winGame(game.player2, round, key);
               }}
-              className={`w-52 h-[70px] flex border-2 bg-gray-400 rounded-md items-center justify-between px-4 hover:bg-gray-500 transition-colors cursor-pointer border-gray-200`}
+              className={`w-52 h-[70px] flex border-2 bg-gray-400 rounded-md items-center gap-5 px-4 hover:bg-gray-500 transition-colors cursor-pointer border-gray-200`}
             >
               <img
                 src={
@@ -71,7 +69,6 @@ export const PlayersCard = () => {
               <h2 className="text-sm text-gray-100 leading-3 font-normal max-w-[15ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.player2.player}
               </h2>
-              <p className="text-sm text-gray-100 leading-3 font-normal">L</p>
             </div>
             <BracketsLine />
           </div>
