@@ -64,6 +64,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   const [isCreateRound, setIsCreateRound] = useState(false);
   const { toastify } = CustomToast();
   const token = localStorage.getItem(`@EZ:TOKEN`);
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

@@ -192,8 +192,9 @@ export const NewCampModal = () => {
                     <option
                       style={{ backgroundColor: Colors.gray200 }}
                       value="16"
+                      disabled
                     >
-                      16
+                      16 (em desenvolvimento)
                     </option>
                   </Select>
                   {errors.number_of_players?.message && (
