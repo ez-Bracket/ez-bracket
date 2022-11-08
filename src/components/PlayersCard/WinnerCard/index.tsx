@@ -1,9 +1,9 @@
-import { Fragment, useContext, useEffect, useState } from 'react';
-import { BsTrophy } from 'react-icons/bs';
-import { useParams } from 'react-router-dom';
-import imgDefault from '../../../assets/default.jpg';
-import { CampConext, iCamp } from '../../../contexts/CampContext';
-import { Api } from '../../../services/Api';
+import { Fragment, useContext, useEffect, useState } from "react";
+import { BsTrophy } from "react-icons/bs";
+import { useParams } from "react-router-dom";
+import imgDefault from "../../../assets/default.jpg";
+import { CampConext, iCamp } from "../../../contexts/CampContext";
+import { Api } from "../../../services/Api";
 
 export const WinnerCard = () => {
   const { isCreateRound } = useContext(CampConext);
@@ -13,7 +13,7 @@ export const WinnerCard = () => {
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
       await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data),
+        setCurrentCamp(resp.data)
       );
     };
     getCamp(Number(idCamp.idCamp));
@@ -37,7 +37,7 @@ export const WinnerCard = () => {
                 alt="Foto do usuário"
                 className="w-24 h-24 rounded-full mt-3"
               />
-              <h2 className="text-xl leading-6 text-yellow-100 mt-3">
+              <h2 className="text-xl leading-6 text-yellow-100 mt-3 max-w-[18ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.winner.player}
               </h2>
             </div>

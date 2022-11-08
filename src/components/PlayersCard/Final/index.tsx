@@ -1,9 +1,9 @@
-import { LineFinal } from '../../BracketsLine/Final';
-import imgDefault from '../../../assets/default.jpg';
-import { Fragment, useContext, useEffect, useState } from 'react';
-import { CampConext, iCamp } from '../../../contexts/CampContext';
-import { useParams } from 'react-router-dom';
-import { Api } from '../../../services/Api';
+import { LineFinal } from "../../BracketsLine/Final";
+import imgDefault from "../../../assets/default.jpg";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { CampConext, iCamp } from "../../../contexts/CampContext";
+import { useParams } from "react-router-dom";
+import { Api } from "../../../services/Api";
 
 export const Final = () => {
   const { winnerPlayerCompetition, isCreateRound } = useContext(CampConext);
@@ -13,7 +13,7 @@ export const Final = () => {
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
       await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data),
+        setCurrentCamp(resp.data)
       );
     };
     getCamp(Number(idCamp.idCamp));
@@ -23,7 +23,7 @@ export const Final = () => {
   const winGame = (
     player: { player: string; playerImg: string },
     round: number,
-    key: number,
+    key: number
   ) => {
     const winnerPlayer = player;
     winnerPlayerCompetition(Number(idCamp.idCamp), round, key, winnerPlayer);
@@ -49,7 +49,7 @@ export const Final = () => {
                 alt="Foto do usuário"
                 className="w-10 h-10 rounded-full"
               />
-              <h2 className="text-sm text-gray-100 leading-3 font-normal">
+              <h2 className="text-sm text-gray-100 leading-3 font-normal max-w-[15ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.player1.player}
               </h2>
               <p className="text-sm text-gray-100 leading-3 font-normal">W</p>
@@ -68,7 +68,7 @@ export const Final = () => {
                 alt="Foto do usuário"
                 className="w-10 h-10 rounded-full"
               />
-              <h2 className="text-sm text-gray-100 leading-3 font-normal">
+              <h2 className="text-sm text-gray-100 leading-3 font-normal max-w-[15ch] overflow-hidden text-ellipsis whitespace-nowrap">
                 {game.player2.player}
               </h2>
               <p className="text-sm text-gray-100 leading-3 font-normal">L</p>
