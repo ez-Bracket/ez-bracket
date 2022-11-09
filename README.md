@@ -93,7 +93,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
             <a href="https://github.com/hideo651" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
                 <a href="https://www.linkedin.com/in/ayrton-hideo-hirata-29aa4367/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
         </sub>
-    </td>
+    </td> 
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
     <td align="center">
         <img src="https://avatars.githubusercontent.com/u/106822915?v=4" width="100px;" alt="Foto do Enrico"/><br>          
         <sub>
@@ -106,7 +111,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
     <td align="center">
         <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFebRQHqQaWxw/profile-displayphoto-shrink_800_800/0/1578356668381?e=1673481600&v=beta&t=qEaDh8enl0t2v9nUpQOpfkpFDALkxq8JoiGfTJT1EG0" width="100px;" alt="Foto do Fred"/><br>          
         <sub>
-          <b>Fred Almeida</b>  <br/>
+          <b>Frederico Almeida</b>  <br/>
           <b>Quality Assurance</b> <br/>
             <a href="https://github.com/almeidafrederico" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
                 <a href="https://www.linkedin.com/in/almeidaafrederico/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
@@ -120,6 +125,6 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
             <a href="https://github.com/VictorHugo110199" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
                 <a href="https://www.linkedin.com/in/victor-hugo-santos-silva-b5ab7a144/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
         </sub>
-    </td>  
+    </td> 
   </tr>
 </table>
