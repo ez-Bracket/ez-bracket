@@ -47,10 +47,18 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
 
 <br/>
 
-### ✅ Links da aplicação
+## ✅ Links da aplicação
 - [Figma do projeto](https://www.figma.com/file/d2n7tYjuddD4Ckli6VbPXA/ezBracket?node-id=0%3A1)
 - [Deploy](https://ez-bracket.vercel.app/)
 - [Documentação do JSON Server](https://github.com/ez-Bracket/server)
+
+<br/>
+
+## 📄 Próximas implementações
+- [ ] Implementação de um back-end com NodeJS e API RESTful.
+- [ ] Chaveamento de 16 e 32 players.
+- [ ] Sistema de ranking e estatísticas.
+- [ ] Criação de equipes dentro da plataforma.
 
 <br/>
 
