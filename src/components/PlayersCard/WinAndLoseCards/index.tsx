@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // Utilities
 import {
   CampConext,
-  iCamp,
+  ICamp,
 } from "../../../contexts/CampContext";
 import { Api } from "../../../services/Api";
 
@@ -17,7 +17,7 @@ export const PlayersCard = () => {
     useContext(CampConext);
   const idCamp = useParams();
   const [currentCamp, setCurrentCamp] =
-    useState<iCamp | null>(null);
+    useState<ICamp | null>(null);
 
   useEffect(() => {
     const getCamp = async (idCamp: number) => {

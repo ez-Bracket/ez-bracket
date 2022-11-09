@@ -1,24 +1,21 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Utilities
-import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
-import { UserContext } from "../../contexts/UserContext";
-import {
-  CampConext,
-  iCamp,
-} from "../../contexts/CampContext";
-import { Api } from "../../services/Api";
+import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
+import { UserContext } from '../../contexts/UserContext';
+import { CampConext, ICamp } from '../../contexts/CampContext';
+import { Api } from '../../services/Api';
 
 // Components
-import { AddPlayerForm } from "../../components/AddPlayerForm";
-import { CampInfo } from "../../components/CampInfo";
-import { UserMenu } from "../../components/UserMenu";
-import { PlayersList } from "../../components/PlayersList";
-import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
-import { ModalEdit } from "../../components/Modals/ModalEditUser";
-import { NewCampModal } from "../../components/Modals/ModalNewCamp";
-import { InfoModal } from "../../components/Modals/ModalInfoCamp";
+import { AddPlayerForm } from '../../components/AddPlayerForm';
+import { CampInfo } from '../../components/CampInfo';
+import { UserMenu } from '../../components/UserMenu';
+import { PlayersList } from '../../components/PlayersList';
+import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
+import { ModalEdit } from '../../components/Modals/ModalEditUser';
+import { NewCampModal } from '../../components/Modals/ModalNewCamp';
+import { InfoModal } from '../../components/Modals/ModalInfoCamp';
 
 interface iPlayerList {
   player: string;
@@ -26,11 +23,8 @@ interface iPlayerList {
 }
 
 export const AddPlayers = () => {
-  const [playersList, setPlayersList] = useState<
-    iPlayerList[]
-  >([]);
-  const [currentCamp, setCurrentCamp] =
-    useState<iCamp | null>(null);
+  const [playersList, setPlayersList] = useState<iPlayerList[]>([]);
+  const [currentCamp, setCurrentCamp] = useState<ICamp | null>(null);
   const navigate = useNavigate();
   const idCamp = useParams();
   const { addPlayersCompetition } = useContext(CampConext);
@@ -38,26 +32,20 @@ export const AddPlayers = () => {
   useProtectedRoutes(isLogged, true);
 
   const startCamp = async () => {
-    await addPlayersCompetition(
-      Number(idCamp.idCamp),
-      playersList
-    );
+    await addPlayersCompetition(Number(idCamp.idCamp), playersList);
     navigate(`/tournament/${idCamp.idCamp}`);
   };
 
   useEffect(() => {
     const getCamp = async (idCamp: number) => {
       await Api.get(`/deathmatch/${idCamp}`).then((resp) =>
-        setCurrentCamp(resp.data)
+        setCurrentCamp(resp.data),
       );
     };
     getCamp(Number(idCamp.idCamp));
 
     let number_of_players = currentCamp?.number_of_players;
-    if (
-      Number(playersList.length) ===
-      Number(number_of_players)
-    ) {
+    if (Number(playersList.length) === Number(number_of_players)) {
       startCamp();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +53,7 @@ export const AddPlayers = () => {
 
   useEffect(() => {
     if (!!currentCamp?.players[0]) {
-      navigate("/dashboard");
+      navigate('/dashboard');
     }
   }, [currentCamp, navigate]);
 

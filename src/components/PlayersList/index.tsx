@@ -1,16 +1,16 @@
-import { BiUser } from "react-icons/bi";
-import { motion } from "framer-motion";
+import { BiUser } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 
-interface iPlayerList {
+interface IPlayerList {
   player: string;
   playerImg?: string;
 }
 
-interface iPlayerListProps {
-  playersList: iPlayerList[];
+interface IPlayerListProps {
+  playersList: IPlayerList[];
 }
 
-export const PlayersList = ({ playersList }: iPlayerListProps) => {
+export const PlayersList = ({ playersList }: IPlayerListProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}

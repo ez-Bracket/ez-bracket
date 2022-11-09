@@ -9,12 +9,12 @@ import {
 } from "@chakra-ui/react";
 
 // Utilities
-import { iCamp } from "../../../contexts/CampContext";
+import { ICamp } from "../../../contexts/CampContext";
 import { ContextModal } from "../../../contexts/ModalContext";
 import { Colors } from "../../../themes/themes";
 
 interface IInfoModalProps {
-  currentCamp: iCamp | null;
+  currentCamp: ICamp | null;
 }
 
 export const InfoModal = ({

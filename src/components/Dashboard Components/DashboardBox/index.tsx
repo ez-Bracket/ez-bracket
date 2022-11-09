@@ -1,44 +1,38 @@
-import { useContext, useRef } from "react";
-import {
-  BsFillTrashFill,
-  BsController,
-} from "react-icons/bs";
-import { AiFillCalendar } from "react-icons/ai";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { BsFillTrashFill, BsController } from 'react-icons/bs';
+import { AiFillCalendar } from 'react-icons/ai';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 // Utilities
-import { ContextModal } from "../../../contexts/ModalContext";
-import { CampConext } from "../../../contexts/CampContext";
+import { ContextModal } from '../../../contexts/ModalContext';
+import { CampConext } from '../../../contexts/CampContext';
 
-interface iPlayers {
+interface IPlayers {
   player: string;
   playerImg?: string;
 }
 
-interface iTournamentProps {
+interface ITournamentProps {
   idUser: number;
   name: string;
   status: boolean;
-  winner: iPlayers | null;
+  winner: IPlayers | null;
   games: string[][];
-  players: iPlayers[];
+  players: IPlayers[];
   date?: string;
   description?: string;
   id: number;
   number_of_players: number;
 }
 
-interface iTournament {
-  tournament: iTournamentProps;
+interface ITournament {
+  tournament: ITournamentProps;
 }
 
-export const DashboardBox = ({
-  tournament,
-}: iTournament) => {
+export const DashboardBox = ({ tournament }: ITournament) => {
   const { onOpenDeleteCamp } = useContext(ContextModal);
   const { setIdCamp } = useContext(CampConext);
-  const btnRef: any = useRef();
   const navigate = useNavigate();
 
   const handleModalDelete = (id: number) => {
@@ -46,11 +40,10 @@ export const DashboardBox = ({
     setIdCamp(id);
   };
 
-  const handlePageCamp = (tournament: iTournamentProps) => {
+  const handlePageCamp = (tournament: ITournamentProps) => {
     navigate(`/addplayers/${tournament.id}`);
     if (
-      Number(tournament.number_of_players) ===
-      Number(tournament.players.length)
+      Number(tournament.number_of_players) === Number(tournament.players.length)
     ) {
       navigate(`/tournament/${tournament.id}`);
     } else {
@@ -66,9 +59,7 @@ export const DashboardBox = ({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className={`${
-        tournament.status
-          ? "border-green-100"
-          : "border-error-100"
+        tournament.status ? 'border-green-100' : 'border-error-100'
       } relative h-[225px] w-full laptop:w-[380px] desktop:w-[450px] p-8 border-2 rounded-xl bg-gray-500 bg-opacity-40 flex flex-col justify-center gap-5 shadow-[0_25px_30px_-15px_rgba(0,0,0,0.3)] cursor-pointer hover:bg-gray-300 hover:scale-[1.01] transition-all`}
     >
       <header className="flex justify-between">
@@ -76,7 +67,6 @@ export const DashboardBox = ({
           {tournament.name}
         </h2>
         <button
-          ref={btnRef}
           onClick={(e) => {
             e.stopPropagation();
             handleModalDelete(tournament.id);
@@ -91,36 +81,24 @@ export const DashboardBox = ({
       <div className="flex flex-col gap-[15px]">
         <span className="text-gray-100 flex items-center gap-[10px]">
           <BsController
-            className={
-              tournament.status
-                ? "text-green-100"
-                : "text-error-100"
-            }
+            className={tournament.status ? 'text-green-100' : 'text-error-100'}
           />
           Qtd. de players: {tournament.players.length}
         </span>
 
         <span className="text-gray-100 flex items-center gap-[10px]">
           <AiFillCalendar
-            className={
-              tournament.status
-                ? "text-green-100"
-                : "text-error-100"
-            }
-          />{" "}
+            className={tournament.status ? 'text-green-100' : 'text-error-100'}
+          />{' '}
           {tournament.date
-            ? tournament.date.split("-").reverse().join("/")
-            : "--/--/--"}
+            ? tournament.date.split('-').reverse().join('/')
+            : '--/--/--'}
         </span>
       </div>
       {tournament.status ? (
-        <span className="text-green-100 self-end">
-          Em andamento
-        </span>
+        <span className="text-green-100 self-end">Em andamento</span>
       ) : (
-        <span className="text-error-100 self-end">
-          Encerrado
-        </span>
+        <span className="text-error-100 self-end">Encerrado</span>
       )}
     </motion.div>
   );

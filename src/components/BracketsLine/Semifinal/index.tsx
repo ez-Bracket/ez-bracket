@@ -1,8 +1,8 @@
-interface IlineSemifinal {
+interface ILineSemifinal {
   className?: string;
 }
 
-export const LineSemifinal = ({ className }: IlineSemifinal) => {
+export const LineSemifinal = ({ className }: ILineSemifinal) => {
   return (
     <div className={className}>
       <div className="flex justify-start items-start w-[58px]  flex-wrap rounded">

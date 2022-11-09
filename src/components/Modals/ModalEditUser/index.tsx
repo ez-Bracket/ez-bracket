@@ -27,7 +27,7 @@ import { Colors } from "../../../themes/themes";
 // Components
 import { MessageError } from "../../MessageError";
 
-interface IdataEditUser {
+interface IDataEditUser {
   email?: string | undefined;
   name?: string | undefined;
   password?: string | undefined;
@@ -87,11 +87,11 @@ export const ModalEdit = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IdataEditUser>({
+  } = useForm<IDataEditUser>({
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data: IdataEditUser) => {
+  const onSubmit = (data: IDataEditUser) => {
     if (data.name?.length! > 0) {
       EditUser({ name: data.name });
     }
