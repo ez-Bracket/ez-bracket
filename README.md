@@ -106,7 +106,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
     <td align="center">
         <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFebRQHqQaWxw/profile-displayphoto-shrink_800_800/0/1578356668381?e=1673481600&v=beta&t=qEaDh8enl0t2v9nUpQOpfkpFDALkxq8JoiGfTJT1EG0" width="100px;" alt="Foto do Fred"/><br>          
         <sub>
-          <b>Frederico Almeida</b>  <br/>
+          <b>Fred Almeida</b>  <br/>
           <b>Quality Assurance</b> <br/>
             <a href="https://github.com/almeidafrederico" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
                 <a href="https://www.linkedin.com/in/almeidaafrederico/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
