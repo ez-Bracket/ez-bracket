@@ -63,8 +63,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
           <b>Matheus Felipe</b> <br/>
           <b>Scrum Master</b> <br/>
+          <div align="center">
             <a href="https://github.com/matheusfelipetp" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+          </div>
+           <div align="center">
             <a href="https://www.linkedin.com/in/matheusfelipetp/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+           </div>
         </sub>
     </td>
     <td align="center">
@@ -72,8 +76,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
             <b>Gustavo Ferreira</b> <br/>
             <b>Tech Lead</b> <br/>
+             <div align="center">
             <a href="https://github.com/guferreira1" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+            </div>
+            <div align="center">
                 <a href="https://www.linkedin.com/in/gus-ferreira/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+            </div>
         </sub>
     </td>   
     <td align="center">
@@ -81,8 +89,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
           <b>Pedro Silva</b> <br/>
           <b>Product Owner</b> <br/>
+           <div align="center">
             <a href="https://github.com/Pedrosilvacwb" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
-                <a href="https://www.linkedin.com/in/pedrosilvacwb/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+           </div>
+            <div align="center">
+              <a href="https://www.linkedin.com/in/pedrosilvacwb/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+             </div>
         </sub>
     </td>
       <td align="center">
@@ -90,8 +102,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
           <b>Ayrton Hideo</b>  <br/>
           <b>Quality Assurance</b> <br/>
+           <div align="center">
             <a href="https://github.com/hideo651" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+            </div>
+             <div align="center">
                 <a href="https://www.linkedin.com/in/ayrton-hideo-hirata-29aa4367/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+             </div>
         </sub>
     </td> 
   </tr>
@@ -104,8 +120,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
           <b>Enrico Vieira</b>  <br/>
             <b>Quality Assurance</b> <br/>
+             <div align="center">
             <a href="https://github.com/enricovieira" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+            </div>
+             <div align="center">
                 <a href="https://www.linkedin.com/in/enricovieira/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+             </div>
         </sub>
     </td>    
     <td align="center">
@@ -113,8 +133,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
           <b>Frederico Almeida</b>  <br/>
           <b>Quality Assurance</b> <br/>
+           <div align="center">
             <a href="https://github.com/almeidafrederico" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+           </div>
+            <div align="center">
                 <a href="https://www.linkedin.com/in/almeidaafrederico/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+            </div>
         </sub>
     </td>    
     <td align="center">
@@ -122,8 +146,12 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         <sub>
           <b>Victor Silva</b>  <br/>
           <b>Quality Assurance</b> <br/>
+          <div align="center">
             <a href="https://github.com/VictorHugo110199" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
-                <a href="https://www.linkedin.com/in/victor-hugo-santos-silva-b5ab7a144/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+          </div>
+          <div align="center">
+            <a href="https://www.linkedin.com/in/victor-hugo-santos-silva-b5ab7a144/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+           </div> 
         </sub>
     </td> 
   </tr>
