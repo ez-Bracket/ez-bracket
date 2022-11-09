@@ -1,5 +1,7 @@
-import { Button } from '@chakra-ui/react';
-import { Colors } from '../../themes/themes';
+import { Button } from "@chakra-ui/react";
+
+// Utilities
+import { Colors } from "../../themes/themes";
 
 interface IButtonDefaultProps {
   onClick: () => void;

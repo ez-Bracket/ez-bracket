@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useContext, useRef } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -8,13 +8,16 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from '@chakra-ui/react';
-import { ContextModal } from '../../../contexts/ModalContext';
-import { CampConext } from '../../../contexts/CampContext';
-import { Colors } from '../../../themes/themes';
+} from "@chakra-ui/react";
+
+// Utilities
+import { ContextModal } from "../../../contexts/ModalContext";
+import { CampConext } from "../../../contexts/CampContext";
+import { Colors } from "../../../themes/themes";
 
 export const ModalDeleteCamp = () => {
-  const { isOpenDeleteCamp, onCloseDeleteCamp } = useContext(ContextModal);
+  const { isOpenDeleteCamp, onCloseDeleteCamp } =
+    useContext(ContextModal);
   const { deleteCompetition } = useContext(CampConext);
   const { idCamp } = useContext(CampConext);
   const finalRef = useRef(null);
@@ -67,12 +70,14 @@ export const ModalDeleteCamp = () => {
                 mr={3}
                 onClick={onSubmitDelete}
                 _hover={{
-                  filter: 'auto',
-                  brightness: '70%',
+                  filter: "auto",
+                  brightness: "70%",
                 }}
                 transition="0.3s ease"
               >
-                <p className="text-gray-300 text-xl font-medium">Sim</p>
+                <p className="text-gray-300 text-xl font-medium">
+                  Sim
+                </p>
               </Button>
               <Button
                 bg={Colors.error100}
@@ -81,12 +86,14 @@ export const ModalDeleteCamp = () => {
                 mr={3}
                 onClick={onCloseDeleteCamp}
                 _hover={{
-                  filter: 'auto',
-                  brightness: '80%',
+                  filter: "auto",
+                  brightness: "80%",
                 }}
                 transition="0.3s ease"
               >
-                <p className="text-gray-300 text-xl font-medium">Não</p>
+                <p className="text-gray-300 text-xl font-medium">
+                  Não
+                </p>
               </Button>
             </div>
           </ModalFooter>

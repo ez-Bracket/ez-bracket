@@ -1,8 +1,10 @@
-import { Final } from '../PlayersCard/Final';
-import { Semifinal } from '../PlayersCard/Semifinal';
-import { PlayersCard } from '../PlayersCard/WinAndLoseCards';
-import { WinnerCard } from '../PlayersCard/WinnerCard';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+
+// Components
+import { Final } from "../PlayersCard/Final";
+import { Semifinal } from "../PlayersCard/Semifinal";
+import { PlayersCard } from "../PlayersCard/WinAndLoseCards";
+import { WinnerCard } from "../PlayersCard/WinnerCard";
 
 export const BracketGame = () => {
   return (

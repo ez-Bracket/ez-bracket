@@ -1,9 +1,13 @@
-import { useContext } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
-import Brackets from '../../../assets/brackets.svg';
-import { ContextModal } from '../../../contexts/ModalContext';
-import { ButtonDefault } from '../../Button';
+import { useContext } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+
+// Utilities
+import { ContextModal } from "../../../contexts/ModalContext";
+
+// Components
+import { ButtonDefault } from "../../Button";
+import Brackets from "../../../assets/brackets.svg";
 
 export const HomeBrackets = () => {
   const { onOpenRegister } = useContext(ContextModal);
@@ -30,14 +34,18 @@ export const HomeBrackets = () => {
           </h1>
           <div className="tablet:my-[60px] flex gap-20 laptop:gap-[120px] laptop:items-center justify-between flex-col laptop:flex-row items-start">
             <div className="hidden tablet:flex w-full">
-              <img src={Brackets} alt="Exemplo de chaveamento" />
+              <img
+                src={Brackets}
+                alt="Exemplo de chaveamento"
+              />
             </div>
             <div className="flex flex-col gap-5">
               <p className="text-gray-100 text-2xl">
                 Nosso objetivo é simplificar a sua diversão.
               </p>
               <p className="text-gray-100 mb-5 text-2xl">
-                Chega de reunir seus amigos e organizar tudo com papel e caneta.
+                Chega de reunir seus amigos e organizar tudo
+                com papel e caneta.
               </p>
               <ButtonDefault
                 className="w-max hover:scale-105"

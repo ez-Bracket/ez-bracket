@@ -1,18 +1,22 @@
+import { Dispatch } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { motion } from "framer-motion";
 import {
   FormControl,
   FormLabel,
   Input,
   InputGroup,
   Button,
-} from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { MessageError } from '../MessageError';
-import { motion } from 'framer-motion';
-import { Dispatch } from 'react';
-import { Colors } from '../../themes/themes';
-import { CustomToast } from '../Toast';
+} from "@chakra-ui/react";
+
+// Utilities
+import { Colors } from "../../themes/themes";
+
+// Components
+import { MessageError } from "../MessageError";
+import { CustomToast } from "../Toast";
 
 interface iPlayerList {
   player: string;
@@ -21,11 +25,15 @@ interface iPlayerList {
 
 interface iAddPlayerFormProps {
   playersList: iPlayerList[];
-  setPlayersList: Dispatch<React.SetStateAction<iPlayerList[]>>;
+  setPlayersList: Dispatch<
+    React.SetStateAction<iPlayerList[]>
+  >;
 }
 
 const playersSchema = yup.object().shape({
-  player: yup.string().required('Nome do jogador é obrigatório'),
+  player: yup
+    .string()
+    .required("Nome do jogador é obrigatório"),
 });
 
 export const AddPlayerForm = ({
@@ -45,7 +53,9 @@ export const AddPlayerForm = ({
 
   const onSubmit = (data: iPlayerList) => {
     const some = playersList.some(
-      (elem) => elem.player.toLowerCase() === data.player.toLowerCase(),
+      (elem) =>
+        elem.player.toLowerCase() ===
+        data.player.toLowerCase()
     );
 
     if (!some) {
@@ -53,8 +63,8 @@ export const AddPlayerForm = ({
       reset();
     } else {
       toastify({
-        description: 'Esse jogador já existe!',
-        status: 'error',
+        description: "Esse jogador já existe!",
+        status: "error",
       });
     }
   };
@@ -67,12 +77,17 @@ export const AddPlayerForm = ({
       transition={{ duration: 0.6 }}
       className="w:full tablet:w-[400px]"
     >
-      <form className="w-[100%]" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="w-[100%]"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <FormControl position="relative">
           <FormLabel
             fontSize={16}
             className={
-              errors.player?.message ? 'text-error-100' : 'text-green-100'
+              errors.player?.message
+                ? "text-error-100"
+                : "text-green-100"
             }
           >
             Nome do participante
@@ -82,31 +97,37 @@ export const AddPlayerForm = ({
             placeholder="Digite o nome do participante"
             _placeholder={{
               color: Colors.gray100,
-              opacity: '50%',
+              opacity: "50%",
             }}
             borderColor={
-              errors.player?.message ? Colors.error100 : Colors.gray200
+              errors.player?.message
+                ? Colors.error100
+                : Colors.gray200
             }
             bg={Colors.gray200}
             fontSize="14px"
             height="50px"
             color={Colors.white}
             focusBorderColor={Colors.gray100}
-            {...register('player')}
+            {...register("player")}
           />
           {errors.player?.message && (
-            <MessageError error={errors.player?.message}></MessageError>
+            <MessageError
+              error={errors.player?.message}
+            ></MessageError>
           )}
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel className="text-green-100">Foto do participante</FormLabel>
+          <FormLabel className="text-green-100">
+            Foto do participante
+          </FormLabel>
           <InputGroup>
             <Input
               placeholder="URL da foto do participante"
               _placeholder={{
                 color: Colors.gray100,
-                opacity: '50%',
+                opacity: "50%",
               }}
               borderColor={Colors.gray200}
               bg={Colors.gray200}
@@ -115,7 +136,7 @@ export const AddPlayerForm = ({
               color={Colors.white}
               focusBorderColor={Colors.gray100}
               marginBottom={6}
-              {...register('playerImg')}
+              {...register("playerImg")}
             />
           </InputGroup>
         </FormControl>

@@ -1,9 +1,11 @@
-import { useContext } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@chakra-ui/react';
-import 'animate.css';
-import { ContextModal } from '../../../contexts/ModalContext';
-import { Colors } from '../../../themes/themes';
+import { useContext } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@chakra-ui/react";
+import "animate.css";
+
+// Utilities
+import { ContextModal } from "../../../contexts/ModalContext";
+import { Colors } from "../../../themes/themes";
 
 export const HomeMain = () => {
   const { onOpenRegister } = useContext(ContextModal);
@@ -17,7 +19,8 @@ export const HomeMain = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Gerencie os seus torneios de forma rápida e gratuita!
+        Gerencie os seus torneios de forma rápida e
+        gratuita!
       </motion.h1>
       <motion.p
         className="mt-4 mb-16 text-center text-xl tablet:text-xl text-gray-100 relative mx-3"
@@ -26,7 +29,8 @@ export const HomeMain = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Crie os seus campeonatos, convide os seus amigos e se divirta!
+        Crie os seus campeonatos, convide os seus amigos e
+        se divirta!
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -46,7 +50,7 @@ export const HomeMain = () => {
           _hover={{
             bgColor: Colors.green100,
             textColor: Colors.green200,
-            transform: 'scale(1.05)',
+            transform: "scale(1.05)",
           }}
           transition="0.3s ease"
           _active={{ bgColor: Colors.green100 }}

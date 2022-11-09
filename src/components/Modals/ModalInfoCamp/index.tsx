@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -6,7 +7,8 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useContext } from "react";
+
+// Utilities
 import { iCamp } from "../../../contexts/CampContext";
 import { ContextModal } from "../../../contexts/ModalContext";
 import { Colors } from "../../../themes/themes";
@@ -15,8 +17,11 @@ interface IInfoModalProps {
   currentCamp: iCamp | null;
 }
 
-export const InfoModal = ({ currentCamp }: IInfoModalProps) => {
-  const { isOpenInfoCamp, onCloseInfoCamp } = useContext(ContextModal);
+export const InfoModal = ({
+  currentCamp,
+}: IInfoModalProps) => {
+  const { isOpenInfoCamp, onCloseInfoCamp } =
+    useContext(ContextModal);
 
   return (
     <>
@@ -36,7 +41,9 @@ export const InfoModal = ({ currentCamp }: IInfoModalProps) => {
           bg={Colors.gray300}
         >
           <ModalHeader className="text-green-100">
-            <h2 className="text-xl text-center tablet:text-2xl">Informações</h2>
+            <h2 className="text-xl text-center tablet:text-2xl">
+              Informações
+            </h2>
           </ModalHeader>
           <ModalCloseButton
             className="mt-5 mr-5 bg-green-100 text-gray-300"

@@ -1,4 +1,5 @@
-import { Colors } from '../../themes/themes';
+// Utilities
+import { Colors } from "../../themes/themes";
 
 interface ILogo {
   className?: string;

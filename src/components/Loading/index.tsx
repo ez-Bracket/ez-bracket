@@ -1,5 +1,7 @@
-import { Spinner } from '@chakra-ui/react';
-import { Colors } from '../../themes/themes';
+import { Spinner } from "@chakra-ui/react";
+
+// Utilities
+import { Colors } from "../../themes/themes";
 
 export const Loading = () => {
   return (

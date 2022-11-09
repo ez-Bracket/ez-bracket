@@ -1,21 +1,28 @@
-import { HiOutlineMail } from 'react-icons/hi';
-import { Button } from '@chakra-ui/button';
+import { useContext } from "react";
+import { HiOutlineMail } from "react-icons/hi";
+import { Button } from "@chakra-ui/button";
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-} from '@chakra-ui/modal';
-import { useContext } from 'react';
-import { ContextModal } from '../../../contexts/ModalContext';
-import { UserContext } from '../../../contexts/UserContext';
-import imgDefault from '../../../assets/default.jpg';
-import { Colors } from '../../../themes/themes';
+} from "@chakra-ui/modal";
+
+// Utilities
+import { ContextModal } from "../../../contexts/ModalContext";
+import { UserContext } from "../../../contexts/UserContext";
+import { Colors } from "../../../themes/themes";
+
+// Components
+import imgDefault from "../../../assets/default.jpg";
 
 export const InfoUserModal = () => {
-  const { isOpenInfoUser, onCloseInfoUser, onOpenEditUser } =
-    useContext(ContextModal);
+  const {
+    isOpenInfoUser,
+    onCloseInfoUser,
+    onOpenEditUser,
+  } = useContext(ContextModal);
 
   const { user } = useContext(UserContext);
 
@@ -49,7 +56,11 @@ export const InfoUserModal = () => {
               />
               <ModalBody className="mt-4 mb-4 flex flex-col items-center gap-5">
                 <img
-                  src={profile.imgUrl ? profile.imgUrl : imgDefault}
+                  src={
+                    profile.imgUrl
+                      ? profile.imgUrl
+                      : imgDefault
+                  }
                   alt="Imagem de Perfil"
                   className="w-40 h-40 rounded-full"
                 />

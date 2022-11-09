@@ -1,13 +1,17 @@
-import { useContext, useEffect } from 'react';
-import { DashboardBox } from '../DashboardBox';
-import { AddBox } from '../../AddBox';
-import { CampConext } from '../../../contexts/CampContext';
-import { DashboardMainMessage } from '../DashboardMainMessage';
-import { motion } from 'framer-motion';
+import { useContext, useEffect } from "react";
+import { motion } from "framer-motion";
+
+// Utilities
+import { CampConext } from "../../../contexts/CampContext";
+
+// Components
+import { AddBox } from "../../AddBox";
+import { DashboardMainMessage } from "../DashboardMainMessage";
+import { DashboardBox } from "../DashboardBox";
 
 export const DashboardMain = () => {
   const { camp, getCompetition } = useContext(CampConext);
-  const idUser = localStorage.getItem('@EZ:USERID');
+  const idUser = localStorage.getItem("@EZ:USERID");
 
   useEffect(() => {
     getCompetition(Number(idUser));
@@ -22,7 +26,10 @@ export const DashboardMain = () => {
       className="flex justify-center tablet:justify-start flex-wrap mx-4 tablet:mr-8 tablet:ml-44 gap-10"
     >
       {camp.map((tournament) => (
-        <DashboardBox tournament={tournament} key={tournament.id} />
+        <DashboardBox
+          tournament={tournament}
+          key={tournament.id}
+        />
       ))}
       <AddBox />
     </motion.div>

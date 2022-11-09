@@ -1,13 +1,17 @@
-import { UserMenu } from '../../components/UserMenu';
-import { DashboardMain } from '../../components/Dashboard Components/DashboardMain';
-import { useContext } from 'react';
-import { UserContext } from '../../contexts/UserContext';
-import { useProtectedRoutes } from '../../hooks/useProtectedRoutes';
-import { InfoUserModal } from '../../components/Modals/ModalInfoUser';
-import { ModalRegister } from '../../components/Modals/ModalRegister';
-import { ModalEdit } from '../../components/Modals/ModalEditUser';
-import { NewCampModal } from '../../components/Modals/ModalNewCamp';
-import { ModalDeleteCamp } from '../../components/Modals/ModalDeleteCamp';
+import { useContext } from "react";
+
+// Utilities
+import { UserContext } from "../../contexts/UserContext";
+import { useProtectedRoutes } from "../../hooks/useProtectedRoutes";
+
+// Components
+import { UserMenu } from "../../components/UserMenu";
+import { DashboardMain } from "../../components/Dashboard Components/DashboardMain";
+import { InfoUserModal } from "../../components/Modals/ModalInfoUser";
+import { ModalRegister } from "../../components/Modals/ModalRegister";
+import { ModalEdit } from "../../components/Modals/ModalEditUser";
+import { NewCampModal } from "../../components/Modals/ModalNewCamp";
+import { ModalDeleteCamp } from "../../components/Modals/ModalDeleteCamp";
 
 export const Dashboard = () => {
   const { isLogged } = useContext(UserContext);

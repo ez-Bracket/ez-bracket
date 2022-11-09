@@ -1,9 +1,15 @@
-import { Button } from '@chakra-ui/react';
-import { BsController, BsCalendarDate, BsInfoCircle } from 'react-icons/bs';
-import { motion } from 'framer-motion';
-import { useContext } from 'react';
-import { ContextModal } from '../../contexts/ModalContext';
-import { Colors } from '../../themes/themes';
+import { useContext } from "react";
+import { Button } from "@chakra-ui/react";
+import {
+  BsController,
+  BsCalendarDate,
+  BsInfoCircle,
+} from "react-icons/bs";
+import { motion } from "framer-motion";
+
+// Utilities
+import { ContextModal } from "../../contexts/ModalContext";
+import { Colors } from "../../themes/themes";
 
 interface ICampInfoProps {
   name?: string;
@@ -47,14 +53,16 @@ export const CampInfo = ({
       </div>
       <div className="mt-4 laptop:mt-0">
         <h2 className="text-base text-white font-normal">
-          <BsController className="inline-block text-xl mr-1 text-green-100" />{' '}
+          <BsController className="inline-block text-xl mr-1 text-green-100" />{" "}
           Qtd. de participantes: {number_of_players}
         </h2>
       </div>
       <div className="flex gap-8">
         <h2 className="text-base text-white leading-[60px] font-normal">
-          <BsCalendarDate className="inline-block text-base mr-1 text-green-100" />{' '}
-          {date ? date.split('-').reverse().join('/') : '--/--/--'}
+          <BsCalendarDate className="inline-block text-base mr-1 text-green-100" />{" "}
+          {date
+            ? date.split("-").reverse().join("/")
+            : "--/--/--"}
         </h2>
         <Button
           onClick={onOpenInfoCamp}
@@ -63,7 +71,7 @@ export const CampInfo = ({
           variant="link"
           _active={{ textColor: Colors.white }}
         >
-          <BsInfoCircle className="inline-block text-xl mr-2 text-green-100" />{' '}
+          <BsInfoCircle className="inline-block text-xl mr-2 text-green-100" />{" "}
           Informações
         </Button>
       </div>
