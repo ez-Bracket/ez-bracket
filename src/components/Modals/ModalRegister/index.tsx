@@ -27,7 +27,7 @@ import { Colors } from "../../../themes/themes";
 // Components
 import { MessageError } from "../../MessageError";
 
-interface IdataRegister {
+interface IDataRegister {
   email: string;
   name: string;
   password: string;
@@ -111,11 +111,11 @@ export const ModalRegister = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IdataRegister>({
+  } = useForm<IDataRegister>({
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data: IdataRegister) => {
+  const onSubmit = (data: IDataRegister) => {
     Register(data);
     reset();
   };

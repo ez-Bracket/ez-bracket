@@ -8,10 +8,10 @@ import "animate.css";
 // Utilities
 import { useMedia } from "../../hooks/useMedia";
 import { Colors } from "../../themes/themes";
+import { ContextModal } from "../../contexts/ModalContext";
 
 // Components
 import { Logo } from "../Logo";
-import { ContextModal } from "../../contexts/ModalContext";
 import { ButtonDefault } from "../Button";
 import { MobileMenu } from "../MobileMenu";
 

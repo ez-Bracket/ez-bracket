@@ -18,15 +18,15 @@ import { Colors } from "../../themes/themes";
 import { MessageError } from "../MessageError";
 import { CustomToast } from "../Toast";
 
-interface iPlayerList {
+interface IPlayerList {
   player: string;
   playerImg?: string;
 }
 
-interface iAddPlayerFormProps {
-  playersList: iPlayerList[];
+interface IAddPlayerFormProps {
+  playersList: IPlayerList[];
   setPlayersList: Dispatch<
-    React.SetStateAction<iPlayerList[]>
+    React.SetStateAction<IPlayerList[]>
   >;
 }
 
@@ -39,7 +39,7 @@ const playersSchema = yup.object().shape({
 export const AddPlayerForm = ({
   playersList,
   setPlayersList,
-}: iAddPlayerFormProps) => {
+}: IAddPlayerFormProps) => {
   const { toastify } = CustomToast();
 
   const {
@@ -47,11 +47,11 @@ export const AddPlayerForm = ({
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<iPlayerList>({
+  } = useForm<IPlayerList>({
     resolver: yupResolver(playersSchema),
   });
 
-  const onSubmit = (data: iPlayerList) => {
+  const onSubmit = (data: IPlayerList) => {
     const some = playersList.some(
       (elem) =>
         elem.player.toLowerCase() ===

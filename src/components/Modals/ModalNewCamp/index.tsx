@@ -1,7 +1,7 @@
-import { useContext, useRef } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Modal,
   ModalOverlay,
@@ -16,24 +16,20 @@ import {
   Input,
   Select,
   Textarea,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 // Utilities
-import { UserContext } from "../../../contexts/UserContext";
-import {
-  CampConext,
-  iCampRegister,
-} from "../../../contexts/CampContext";
-import { ContextModal } from "../../../contexts/ModalContext";
-import { Colors } from "../../../themes/themes";
+import { UserContext } from '../../../contexts/UserContext';
+import { CampConext, ICampRegister } from '../../../contexts/CampContext';
+import { ContextModal } from '../../../contexts/ModalContext';
+import { Colors } from '../../../themes/themes';
 
 // Components
-import { CustomToast } from "../../Toast";
-import { MessageError } from "../../MessageError";
+import { CustomToast } from '../../Toast';
+import { MessageError } from '../../MessageError';
 
 export const NewCampModal = () => {
-  const { isOpenNewCamp, onCloseNewCamp } =
-    useContext(ContextModal);
+  const { isOpenNewCamp, onCloseNewCamp } = useContext(ContextModal);
   const { user } = useContext(UserContext);
   const { createCompetition } = useContext(CampConext);
   const { toastify } = CustomToast();
@@ -42,15 +38,13 @@ export const NewCampModal = () => {
   const finalRef = useRef(null);
 
   const newCampSchema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório"),
-    number_of_players: yup
-      .string()
-      .required("Campo obrigatório"),
+    name: yup.string().required('Campo obrigatório'),
+    number_of_players: yup.string().required('Campo obrigatório'),
     date: yup.string(),
     description: yup.string(),
     status: yup.boolean().default(true),
     idUser: yup.number().default(user[0]?.id),
-    winner: yup.string().default(""),
+    winner: yup.string().default(''),
     games: yup.array().default([]),
     players: yup.array().default([]),
   });
@@ -60,26 +54,24 @@ export const NewCampModal = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<iCampRegister>({
+  } = useForm<ICampRegister>({
     resolver: yupResolver(newCampSchema),
   });
 
-  const onSubmit = (data: iCampRegister) => {
+  const onSubmit = (data: ICampRegister) => {
     try {
       createCompetition(data);
-      const res = {
-        description: "Torneio criado com sucesso",
-        status: "success",
-      };
-      toastify(res);
+      toastify({
+        description: 'Torneio criado com sucesso',
+        status: 'success',
+      });
       onCloseNewCamp();
       reset();
     } catch (error) {
-      const res = {
-        description: "Ops, algo deu errado!!",
-        status: "error",
-      };
-      toastify(res);
+      toastify({
+        description: 'Ops, algo deu errado!!',
+        status: 'error',
+      });
     }
   };
 
@@ -102,9 +94,7 @@ export const NewCampModal = () => {
         >
           <div className="m-auto text-xl">
             <ModalHeader className="text-green-100">
-              <h2 className="text-xl tablet:text-2xl">
-                Crie um novo torneio
-              </h2>
+              <h2 className="text-xl tablet:text-2xl">Crie um novo torneio</h2>
             </ModalHeader>
 
             <ModalCloseButton
@@ -118,18 +108,13 @@ export const NewCampModal = () => {
             />
           </div>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-[100%]"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
             <ModalBody className="mt-1 laptop:mt-4 mb-4">
               <FormControl>
                 <FormLabel
                   fontSize={16}
                   className={
-                    errors.name?.message
-                      ? "text-error-100"
-                      : "text-green-100"
+                    errors.name?.message ? 'text-error-100' : 'text-green-100'
                   }
                 >
                   Nome do torneio
@@ -139,28 +124,22 @@ export const NewCampModal = () => {
                   placeholder="Digite o nome do torneio"
                   _placeholder={{
                     color: Colors.gray100,
-                    opacity: "50%",
+                    opacity: '50%',
                   }}
                   bg={Colors.gray200}
                   fontSize="14px"
                   height="50px"
                   color={Colors.gray100}
                   focusBorderColor={
-                    errors.name?.message
-                      ? Colors.error100
-                      : Colors.gray100
+                    errors.name?.message ? Colors.error100 : Colors.gray100
                   }
                   borderColor={
-                    errors.name?.message
-                      ? Colors.error100
-                      : Colors.gray200
+                    errors.name?.message ? Colors.error100 : Colors.gray200
                   }
-                  {...register("name")}
+                  {...register('name')}
                 />
                 {errors.name?.message && (
-                  <MessageError
-                    error={errors.name.message}
-                  ></MessageError>
+                  <MessageError error={errors.name.message}></MessageError>
                 )}
               </FormControl>
 
@@ -177,8 +156,8 @@ export const NewCampModal = () => {
                     fontSize={16}
                     className={
                       errors.number_of_players?.message
-                        ? "text-error-100"
-                        : "text-green-100"
+                        ? 'text-error-100'
+                        : 'text-green-100'
                     }
                   >
                     Participantes
@@ -198,7 +177,7 @@ export const NewCampModal = () => {
                         ? Colors.error100
                         : Colors.gray200
                     }
-                    {...register("number_of_players")}
+                    {...register('number_of_players')}
                   >
                     <option
                       style={{
@@ -228,18 +207,13 @@ export const NewCampModal = () => {
                   </Select>
                   {errors.number_of_players?.message && (
                     <MessageError
-                      error={
-                        errors.number_of_players?.message
-                      }
+                      error={errors.number_of_players?.message}
                     ></MessageError>
                   )}
                 </div>
 
                 <div className="tablet:w-[50%]">
-                  <FormLabel
-                    fontSize={16}
-                    className="text-green-100"
-                  >
+                  <FormLabel fontSize={16} className="text-green-100">
                     Data de início
                   </FormLabel>
 
@@ -251,28 +225,25 @@ export const NewCampModal = () => {
                     h="60px"
                     w="100%"
                     css={{
-                      "::-webkit-calendar-picker-indicator":
-                        {
-                          cursor: "pointer",
-                          color: Colors.gray100,
-                          background: `url(https://cdn1.iconfinder.com/data/icons/time-and-date-ii/24/Material_icons-03-70-256.png)center/100% no-repeat `,
-                        },
+                      '::-webkit-calendar-picker-indicator': {
+                        cursor: 'pointer',
+                        color: Colors.gray100,
+                        background: `url(https://cdn1.iconfinder.com/data/icons/time-and-date-ii/24/Material_icons-03-70-256.png)center/100% no-repeat `,
+                      },
                     }}
-                    {...register("date")}
+                    {...register('date')}
                   />
                 </div>
               </FormControl>
 
               <FormControl mt={4}>
-                <FormLabel className="text-green-100">
-                  Descrição
-                </FormLabel>
+                <FormLabel className="text-green-100">Descrição</FormLabel>
 
                 <Textarea
                   placeholder="Adicione uma descrição do torneio"
                   _placeholder={{
                     color: Colors.gray100,
-                    opacity: "50%",
+                    opacity: '50%',
                   }}
                   borderColor={Colors.gray200}
                   bg={Colors.gray200}
@@ -280,7 +251,7 @@ export const NewCampModal = () => {
                   paddingTop={4}
                   color={Colors.gray100}
                   resize="none"
-                  {...register("description")}
+                  {...register('description')}
                 />
               </FormControl>
             </ModalBody>

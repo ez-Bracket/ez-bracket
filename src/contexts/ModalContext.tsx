@@ -2,11 +2,11 @@ import { createContext, useEffect } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 
-interface iModalContextProps {
+interface IModalContextProps {
   children: React.ReactNode;
 }
 
-interface iModalContext {
+interface IModalContext {
   isOpenRegister: boolean;
   isOpenLogin: boolean;
   isOpenNewCamp: boolean;
@@ -30,13 +30,13 @@ interface iModalContext {
   onCloseInfoCamp: () => void;
 }
 
-export const ContextModal = createContext<iModalContext>(
-  {} as iModalContext
+export const ContextModal = createContext<IModalContext>(
+  {} as IModalContext
 );
 
 export const ModalProvider = ({
   children,
-}: iModalContextProps) => {
+}: IModalContextProps) => {
   const { pathname } = useLocation();
 
   useEffect(() => {

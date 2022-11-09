@@ -4,21 +4,21 @@ import { CustomToast } from '../components/Toast';
 // Utilities
 import { Api } from '../services/Api';
 
-export interface iCampProvidertProps {
+export interface ICampProvidertProps {
   children: ReactNode;
 }
 
-interface iCampConext {
+interface ICampConext {
   getCompetition: (idUser: number) => void;
-  camp: iCamp[];
-  createCompetition: (data: iCampRegister) => void;
+  camp: ICamp[];
+  createCompetition: (data: ICampRegister) => void;
   deleteCompetition: (idCamp: number) => void;
-  addPlayersCompetition: (idCamp: number, data: iPlayers[]) => void;
+  addPlayersCompetition: (idCamp: number, data: IPlayers[]) => void;
   winnerPlayerCompetition: (
     idCamp: number,
     round: number,
     key: number,
-    winnerPlayer: iPlayers,
+    winnerPlayer: IPlayers,
   ) => void;
 
   setIdCamp: (id: number) => void;
@@ -26,40 +26,40 @@ interface iCampConext {
   isCreateRound: boolean;
 }
 
-interface iPlayers {
+interface IPlayers {
   player: string;
   playerImg?: string;
 }
 
-export interface iCamp {
+export interface ICamp {
   id: number;
   idUser: number;
   name: string;
-  players: iPlayers[];
+  players: IPlayers[];
   status: boolean;
-  winner: iPlayers;
+  winner: IPlayers;
   games: string[][] | any;
   number_of_players: number;
   description: string;
   date?: string;
 }
 
-export interface iCampRegister {
+export interface ICampRegister {
   idUser: number;
   name: string;
   status: boolean;
-  winner: iPlayers | null;
+  winner: IPlayers | null;
   games: string[][];
-  players: iPlayers[];
+  players: IPlayers[];
   number_of_players: string;
   date?: string;
   description?: string;
 }
 
-export const CampConext = createContext<iCampConext>({} as iCampConext);
+export const CampConext = createContext<ICampConext>({} as ICampConext);
 
-export const CampProvider = ({ children }: iCampProvidertProps) => {
-  const [camp, setCamp] = useState<iCamp[]>([]);
+export const CampProvider = ({ children }: ICampProvidertProps) => {
+  const [camp, setCamp] = useState<ICamp[]>([]);
   const [idCamp, setIdCamp] = useState<number>(0);
   const [isCreateRound, setIsCreateRound] = useState(false);
   const { toastify } = CustomToast();
@@ -75,14 +75,14 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     try {
       const allGames = await Api.get(`deathmatch`, config);
       setCamp(
-        allGames.data.filter((element: iCamp) => element.idUser === idUser),
+        allGames.data.filter((element: ICamp) => element.idUser === idUser),
       );
     } catch (error) {
       return error;
     }
   };
 
-  const createCompetition = async (data: iCampRegister) => {
+  const createCompetition = async (data: ICampRegister) => {
     try {
       await Api.post(`deathmatch`, data, config);
     } catch (error) {
@@ -94,7 +94,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     }
   };
 
-  const addPlayersCompetition = async (idCamp: number, data: iPlayers[]) => {
+  const addPlayersCompetition = async (idCamp: number, data: IPlayers[]) => {
     try {
       if (data.length === 4 || data.length === 8 || data.length === 16) {
         const game = await Api.get(`deathmatch/${idCamp}`);
@@ -132,7 +132,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
     idCamp: number,
     round: number,
     key: number,
-    winnerPlayer: iPlayers,
+    winnerPlayer: IPlayers,
   ) => {
     try {
       const game = await Api.get(`deathmatch/${idCamp}`);
@@ -191,7 +191,7 @@ export const CampProvider = ({ children }: iCampProvidertProps) => {
   const deleteCompetition = async (id: number) => {
     try {
       await Api.delete(`deathmatch/${id}`, config);
-      const newListCamp = camp?.filter((e: iCamp) => e.id !== idCamp);
+      const newListCamp = camp?.filter((e: ICamp) => e.id !== idCamp);
       setCamp(newListCamp);
     } catch (error) {
       toastify({

@@ -1,19 +1,19 @@
-import { useToast } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react';
 
-interface Itoast {
+interface IToast {
   description: string;
-  status: any;
+  status: 'info' | 'warning' | 'success' | 'error' | 'loading' | undefined;
 }
 
 export const CustomToast = () => {
   const toast = useToast();
 
-  const toastify = (res: Itoast) => {
+  const toastify = (res: IToast) => {
     toast({
-      position: "top-right",
+      position: 'top-right',
       duration: 2500,
       isClosable: true,
-      variant: "left-accent",
+      variant: 'left-accent',
       description: res.description,
       status: res.status,
     });
