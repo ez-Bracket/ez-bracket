@@ -1,23 +1,16 @@
 export const Colors = {
-  primary: "#FF577F",
-  primaryHover: "#FF427F",
-  secundary: "#59323F",
-  gray1: "#121214",
-  gray2: "#212529",
-  gray3: "#343B41",
-  gray4: "#868E96",
-  gray5: "#F8F9FA",
-
-  feedback: {
-    success: "#3FE864",
-    negative: "#E83F5B",
-  },
-
-  text: {
-    primary: "#FF577F",
-    gray0: "#F8F9FA",
-    white: "#FFFFFF",
-    gray1: "#868E96",
-    gray50: "#868E96",
-  },
+  transparent: 'transparent',
+  black: '#000000',
+  white: '#ffffff',
+  black_rgba: 'rgba(0, 0, 0, 0.54)',
+  green100: '#61FFAA',
+  green200: '#08490e',
+  green300: '#38F892',
+  yellow100: '#FACD35',
+  error100: '#E64980',
+  gray100: '#C7C7C7',
+  gray200: '#353149',
+  gray300: '#221E34',
+  gray400: '#100D1E',
+  gray500: '#1D1A2C',
 };
