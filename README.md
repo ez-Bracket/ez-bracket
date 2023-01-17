@@ -56,7 +56,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
 
 ## 📄 Próximas implementações
 - [X] Implementação de um back-end com NodeJS e API RESTful.
-- [ ] Chaveamento de 16 e 32 players.
+- [X] Chaveamento de 16 e 32 players.
 - [ ] Sistema de ranking e estatísticas.
 - [ ] Criação de equipes dentro da plataforma.
 
