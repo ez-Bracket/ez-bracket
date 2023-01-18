@@ -20,30 +20,38 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
 ## 🦾 Tecnologias utilizadas
 
 ### 🛠 Front-end
-- **Figma** - Ferramenta de prototipação.
-- **React** - Biblioteca JavaScript.
-- **TypeScript** - Tipagem do JavaScript para padronizar e escalar o código.
-- **Chakra UI** - Biblioteca de componentização.
-- **TailwindCSS** - Aplicação de estilos na aplicação.
-- **Axios** - Gerenciamento de requisições HTTP.
-- **React Hook Form** & **Yup** - Gerenciador de formulários e validações.
-- **React Router DOM** - Criação de rotas na aplicação.
-- **Context API** - Criação e gerenciamento de contextos no código.
-- **React Icons** - Biblioteca de ícones do React.
-- **Animate.css** & **Framer Motion** - Biblioteca de animações.
-- **React Intersection Observer** - Monitoramento de elementos em tela para criar determinadas animações e situações.
+- **Figma**
+- **React**
+- **TypeScript**
+- **Chakra UI**
+- **TailwindCSS**
+- **Axios**
+- **React Hook Form** & **Yup**
+- **React Router DOM**
+- **Context API**
+- **React Icons**
+- **Animate.css** & **Framer Motion**
+- **React Intersection Observer**
 
-<br/>
+#
 
 ### 🔨 Back-end (API RESTful)
-- **Registro (POST):** Registro do usuário na plataforma.
-- **Login (POST):** Login do usuário na plataforma.
-- **Todos os usuários (GET):** Capturar as informações de todos os usuários cadastrados na plataforma.
-- **Edição de usuário (PATCH):** Editar as informações da conta do usuário.
-- **Competições (GET):** Mostrar todas as competições cadastradas na plataforma.
-- **Nova competição (POST):** Cadastrar uma nova competição eliminatória na plataforma.
-- **Players do campeonato (PUT):** Adicionar novos players ao campeonato e definir os vencedores.
-- **Deletar competição (DELETE):** O usuário pode excluir a competição da plataforma.
+- **TypeScript**
+- **NodeJS**
+- **Express**
+- **Express-async-errors**
+- **Jest**
+- **Supertest**
+- **PostgreSQL**
+- **Bcrypt**
+- **Json Web Token**
+- **Class-transformer**
+- **Dotenv**
+- **TypeORM**
+- **Multer**
+- **Mime-types**
+- **Cloudinary**
+- **Husky**
 
 <br/>
 
