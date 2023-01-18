@@ -88,7 +88,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         </sub>
     </td>
     <td align="center">
-        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQE9nSrEiZAuPA/profile-displayphoto-shrink_800_800/0/1651346524100?e=1673481600&v=beta&t=_jlJ9Pz3M7cKs7FEhxd_8Ej_rOkCxWaUkXA1vBVMKMw" width="100px;" alt="Foto do Gustavo"/><br>        
+        <img src="https://pps.whatsapp.net/v/t61.24694-24/118824223_173753290990422_8774592077882010571_n.jpg?ccb=11-4&oh=01_AdSB8ciuqkI8u20vp4uT1MIozcx3idV-UlRnYl2EhTuuZw&oe=63D4A61A" width="100px;" alt="Foto do Gustavo"/><br>        
         <sub>
             <b>Gustavo Ferreira</b> <br/>
             <b>Tech Lead</b> <br/>
@@ -114,7 +114,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         </sub>
     </td>
       <td align="center">
-        <img src="https://media-exp1.licdn.com/dms/image/C5603AQEuHFmQVdW6dA/profile-displayphoto-shrink_800_800/0/1653584673425?e=1673481600&v=beta&t=jfNBFsqyBywBoBQx7zutQT6lWuEQrXsbpNh0wcoDd2Y" width="100px;" alt="Foto do Ayrton"/><br>          
+        <img src="https://media.licdn.com/dms/image/C5603AQEuHFmQVdW6dA/profile-displayphoto-shrink_800_800/0/1653584673425?e=1679529600&v=beta&t=pQNg-wQuNhfovUPGwH7WlADUp1BQls_l9kArPtw_QDQ" width="100px;" alt="Foto do Ayrton"/><br>          
         <sub>
           <b>Ayrton Hideo</b>  <br/>
           <b>Quality Assurance</b> <br/>
@@ -145,7 +145,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         </sub>
     </td>    
     <td align="center">
-        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFebRQHqQaWxw/profile-displayphoto-shrink_800_800/0/1578356668381?e=1673481600&v=beta&t=qEaDh8enl0t2v9nUpQOpfkpFDALkxq8JoiGfTJT1EG0" width="100px;" alt="Foto do Fred"/><br>          
+        <img src="https://media.licdn.com/dms/image/C4D03AQFebRQHqQaWxw/profile-displayphoto-shrink_800_800/0/1578356668381?e=1679529600&v=beta&t=BkqeyKBrnPZ26qGVCIK3weHMwFgdAXee8qiwKYnvHUw" width="100px;" alt="Foto do Fred"/><br>          
         <sub>
           <b>Frederico Almeida</b>  <br/>
           <b>Quality Assurance</b> <br/>
@@ -158,7 +158,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
         </sub>
     </td>    
     <td align="center">
-        <img src="https://media-exp1.licdn.com/dms/image/D4D03AQFue6V0n3h8AQ/profile-displayphoto-shrink_800_800/0/1665627559778?e=1673481600&v=beta&t=u2aBm7kRyV5bGFATyMHonjUuVS9TQCq_yms-YFsGLb8" width="100px;" alt="Foto do Victor"/><br>          
+        <img src="https://pps.whatsapp.net/v/t61.24694-24/306644115_1172256033388510_7570431730471049903_n.jpg?ccb=11-4&oh=01_AdTaozxJ1cX3GslH3rwaFvn-rLbftEmfDQujF9-Jm5UjDQ&oe=63D48E4D" width="100px;" alt="Foto do Victor"/><br>          
         <sub>
           <b>Victor Silva</b>  <br/>
           <b>Quality Assurance</b> <br/>
