@@ -35,7 +35,7 @@ Nossa solução visa facilitar este processo através de uma aplicação desenvo
 
 #
 
-### 🔨 Back-end (API RESTful)
+### 🔨 Back-end
 - **TypeScript**
 - **NodeJS**
 - **Express**
